@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="widget.Tabbed_login" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>Tabbed Login</name>
+    <description>This widget captures input from the user as a string, and inverts the string</description>
+
+    <icon />
+     <properties>
+             <property key="StudentData" type="attribute" entityProperty="nameProperty" required="false">
+            <caption>Data to retrieve</caption>
+            <category>Data values</category>
+            <description>The context data for the object</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>     
+             <property key="nameProperty" type="entity" required="false">
+            <caption>Name property</caption>
+            <category>Data values</category>
+            <description>This is the entity property</description>
+        </property>
+             <property key="MicroflowToRun" type="microflow" required="false" defaultValue="">
+            <caption>Microflow</caption>
+            <category>Behavior</category>
+            <description>The microflow to execute on click.</description>
+            <returnType type="Boolean" />
+        </property>
+    </properties>
+</widget>
+
