@@ -5,8 +5,10 @@ import * as dojoClass from "dojo/dom-class";
 import * as dojoStyle from "dojo/dom-style";
 import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
+import * as TabContainer from "dijit/layout/TabContainer";
+import * as ContentPane from "dijit/layout/ContentPane";
 
-class Tabbed_login extends WidgetBase {
+class Tabbedlogin extends WidgetBase {
 
     // Parameters configured in modeler
     StudentData: string;
@@ -125,4 +127,4 @@ dojoDeclare("widget.Tabbed_login", [WidgetBase], function (Source: any) {
         }
     }
     return result;
-}(Tabbed_login));
+}(Tabbedlogin));
