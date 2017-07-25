@@ -7,6 +7,8 @@ import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import * as TabContainer from "dijit/layout/TabContainer";
 import * as ContentPane from "dijit/layout/ContentPane";
+import * as Container from "dijit/_Container";
+import * as Dbutton from "dijit/form/Button";
 
 class Tabbedlogin extends WidgetBase {
 
@@ -19,6 +21,10 @@ class Tabbedlogin extends WidgetBase {
     private contextObject: mendix.lib.MxObject;
     private ReverseText: string;
     private InputNode: any;
+    private Tabcontainer: any;
+    private pane1: any;
+    private pane2: any;
+    private pane3: any;
 
     postCreate() {
         this.DisplayText();
@@ -35,40 +41,35 @@ class Tabbedlogin extends WidgetBase {
 
     private DisplayText() {
         domConstruct.create("div", {
-            innerHTML: "<br/>"
+            id: "addButton"
         }, this.domNode);
+        this.Tabcontainer = new TabContainer({
+            style: "height: 100%; width: 100%;"
+        }, dom.byId("addButton"));
 
-        domConstruct.create("input", {
-            placeholder: "Enter your Text!",
-            type: "text",
-            id: "myName"
-        }, this.domNode).addEventListener("mouseleave", () => {
-            if (this.MicroflowToRun !== "") {
-                this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
-            }
-        });
-
-        domConstruct.create("div", {
-            innerHTML: "&nbsp<span></span>"
-        }, this.domNode);
-
-        domConstruct.create("input", {
-            class: "ButtonDiv",
-            type: "button",
-            value: "Add"
-        }, this.domNode).addEventListener("click", () => {
-            this.createObject();
-        }, false);
+        this.pane1 = new ContentPane({
+            title: "Login",
+            content: "This will be our login"
+        }
+        );
+        this.Tabcontainer.addChild(this.pane1);
+        this.pane2 = new ContentPane({
+            title: "Sign up",
+            content: "This will be used for sign up"
+        }
+        );
+        this.Tabcontainer.addChild(this.pane2);
+        this.pane3 = new ContentPane({
+            title: "Forget password",
+            content: "This will be used for sending emails"
+        }
+        );
+        this.Tabcontainer.addChild(this.pane3);
+        this.Tabcontainer.startup();
     }
 
     private updateRendering() {
-        if (this.contextObject) {
-            domConstruct.empty(this.domNode);
-            this.ReverseText = this.contextObject.get(this.StudentData) as string;
-            dojoHtml.set(this.domNode, this.ReverseName(this.ReverseText));
-            this.DisplayText();
-        } else {
-        }
+        
     }
 
     private createObject(): void {
@@ -104,7 +105,7 @@ class Tabbedlogin extends WidgetBase {
             mx.ui.action(mf, {
                 params: {
                     applyto: "selection",
-                    guids: [ guid ]
+                    guids: [guid]
                 },
                 callback: (objs: mendix.lib.MxObject) => {
                     if (cb && typeof cb === "function") {
@@ -127,4 +128,5 @@ dojoDeclare("widget.Tabbed_login", [WidgetBase], function (Source: any) {
         }
     }
     return result;
+
 }(Tabbedlogin));
