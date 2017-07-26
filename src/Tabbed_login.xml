@@ -1,24 +1,64 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <widget id="widget.Tabbed_login" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
     <name>Tabbed Login</name>
-    <description>This widget captures input from the user as a string, and inverts the string</description>
+    <description>This widget enables a user to login ,sign up or recover their password when they forget</description>
 
     <icon />
-     <properties>
-             <property key="StudentData" type="attribute" entityProperty="nameProperty" required="false">
-            <caption>Data to retrieve</caption>
-            <category>Data values</category>
+     <properties>    
+        <property key="PersonData" type="entity" required="true">
+            <caption>Person object</caption>
+            <category>Data to be commited</category>
+            <description>This is the entity property</description>
+        </property>
+        <property key="_FirstName" type="attribute" entityProperty="PersonData" required="true">
+            <caption>First Name</caption>
+            <category>Data to be commited</category>
             <description>The context data for the object</description>
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>
-        </property>     
-             <property key="nameProperty" type="entity" required="false">
-            <caption>Name property</caption>
-            <category>Data values</category>
-            <description>This is the entity property</description>
-        </property>
-             <property key="MicroflowToRun" type="microflow" required="false" defaultValue="">
+        </property> 
+        <property key="_LastName" type="attribute" entityProperty="PersonData" required="true">
+            <caption>last Name</caption>
+            <category>Data to be commited</category>
+            <description>The context data for the object</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property> 
+        <property key="_UserName" type="attribute" entityProperty="PersonData" required="true">
+            <caption>user Name</caption>
+            <category>Data to be commited</category>
+            <description>The context data for the object</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property> 
+        <property key="_password" type="attribute" entityProperty="PersonData" required="true">
+            <caption>Password</caption>
+            <category>Data to be commited</category>
+            <description>The context data for the object</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>  
+            <property key="_Email" type="attribute" entityProperty="PersonData" required="true">
+            <caption>Email Address</caption>
+            <category>Data to be commited</category>
+            <description>The context data for the object</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property> 
+        <property key="_Mobile" type="attribute" entityProperty="PersonData" required="true">
+            <caption>Mobile Number</caption>
+            <category>Data to be commited</category>
+            <description>The context data for the object</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property> 
+        <property key="MicroflowToRun" type="microflow" required="false" defaultValue="">
             <caption>Microflow</caption>
             <category>Behavior</category>
             <description>The microflow to execute on click.</description>
