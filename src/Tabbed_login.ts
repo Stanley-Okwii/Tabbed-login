@@ -1,37 +1,37 @@
 import * as dojoDeclare from "dojo/_base/declare";
 import * as domConstruct from "dojo/dom-construct";
 import * as WidgetBase from "mxui/widget/_WidgetBase";
-import * as dojoClass from "dojo/dom-class";
+import * as domprop from "dojo/dom-prop";
 import * as dojoStyle from "dojo/dom-style";
 import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import * as TabContainer from "dijit/layout/TabContainer";
 import * as ContentPane from "dijit/layout/ContentPane";
-import * as Container from "dijit/_Container";
-import * as Dbutton from "dijit/form/Button";
+import * as Registry from "dijit/registry";
+import * as domAttr from "dojo/dom-attr";
+
+import "./Tabbed_login.css";
 
 class Tabbedlogin extends WidgetBase {
 
     // Parameters configured in modeler
     PersonData: string;
-    _FirstName: string;
-    _LastName: string;
     _UserName: string;
     _password: string;
     _Email: string;
-    _Mobile: string;
     MicroflowToRun: string;
 
     // Internal variables
     private contextObject: mendix.lib.MxObject;
-    private InputNode: any;
     private Tabcontainer: any;
     private pane1: any;
     private pane2: any;
     private pane3: any;
+    private LoginUserName: string;
+    private LoginPassword: string;
 
     postCreate() {
-        this.DisplayText();
+
     }
 
     update(object: mendix.lib.MxObject, callback?: () => void) {
@@ -45,23 +45,22 @@ class Tabbedlogin extends WidgetBase {
 
     private DisplayText() {
         domConstruct.create("div", {
-            class: "city",
-            id: "MyTabContainer"
+            id: "WidgetDiv"
         }, this.domNode);
         this.Tabcontainer = new TabContainer({
             style: "height: 250%; width: 100%;",
-            class: "city",
             doLayout: false
-        }, dom.byId("MyTabContainer"));
+        }, dom.byId("WidgetDiv"));
 
         this.pane1 = new ContentPane({
-            title: "Login", class: "city"
+            title: "Login",
+            id: "logintab"
         });
         this.pane1.domNode.innerHTML = "<form><div>" +
             "<span>Enter user name</span>" +
-            "&nbsp <input type='text' placeholder='User Name'/><br/>" +
+            "&nbsp <input type = 'text' placeholder = 'User Name' id = 'LogUserName'/><br/>" +
             "<span>Enter password</span>" +
-            "&nbsp <input type='password' placeholder='Password'/>" +
+            "&nbsp <input type='password' placeholder ='Password' id ='LogPassword' />" +
             "<br/><br/><input type='button' value='Log in' id='submitter'/>" +
             "</div></form>";
         this.Tabcontainer.addChild(this.pane1);
@@ -69,20 +68,14 @@ class Tabbedlogin extends WidgetBase {
             title: "Sign up"
         });
         this.pane2.domNode.innerHTML = "<form><div>" +
-            "<span>Enter your first name</span>" +
-            "&nbsp <input type='text' placeholder ='first name' id='Regfirstname'/><br/>" +
-            "<span>Enter your last name</span>" +
-            "&nbsp<input type='text' placeholder ='last name' id='Reglastname'/><br/>" +
             "<span>Preferred user name</span>" +
-            "&nbsp<input type='text' placeholder ='user'  id='Regusername'/><br/>" +
+            "&nbsp<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
             "<span>Enter password</span>" +
             "&nbsp <input type='password' placeholder='Password'  id='Regpassword1'/><br/>" +
             "<span>Enter password again</span>" +
             "&nbsp <input type='password' placeholder='Password'  id='Regpassword2'/><br/>" +
             "<span>Email</span>" +
             "&nbsp <input type='email' placeholder ='e.g stanleeparker12@gmail.com'  id='RegEmail'/><br/>" +
-            "<span>Mobile number</span>" +
-            "&nbsp <input type='text' placeholder ='e.g 0785041234'  id='RegMobile'/>" +
             "<br/><br/><input type='button' value ='sign up' id='signup'/>" +
             "</div></form>";
         this.Tabcontainer.addChild(this.pane2);
@@ -96,25 +89,31 @@ class Tabbedlogin extends WidgetBase {
             "</div></form>";
         this.Tabcontainer.addChild(this.pane3);
         this.Tabcontainer.startup();
-
     }
 
     private updateRendering() {
+        this.DisplayText();
         dom.byId("submitter").addEventListener("click", () => {
             alert("This is working");
         }, false);
         dom.byId("signup").addEventListener("click", () => {
+            //this.pane1.set("selected", true);
+            //domprop.set(dom.byId("logintab"),"selected","true");
             this.createObject();
         }, false);
+    }
+
+    private LoginMethod(): void {
     }
 
     private createObject(): void {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
-                this.InputNode = dom.byId("Regfirstname");
-                obj.set(this._FirstName, this.InputNode.value);
-                obj.set(this._LastName, dom.byId("Reglastname").value);
-                this.SaveObject(obj);
+                obj.set(this._UserName, dom.byId("Regusername").value);
+                obj.set(this._Email, dom.byId("RegEmail").value);
+                obj.set(this._password, dom.byId("Regpassword1").value);
+                this.contextObject = obj;
+                this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
                 console.log("Object created on server");
             },
             entity: this.PersonData,

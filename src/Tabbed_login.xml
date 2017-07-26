@@ -9,22 +9,6 @@
             <caption>Person object</caption>
             <category>Data to be commited</category>
             <description>This is the entity property</description>
-        </property>
-        <property key="_FirstName" type="attribute" entityProperty="PersonData" required="true">
-            <caption>First Name</caption>
-            <category>Data to be commited</category>
-            <description>The context data for the object</description>
-            <attributeTypes>
-                <attributeType name="String" />
-            </attributeTypes>
-        </property> 
-        <property key="_LastName" type="attribute" entityProperty="PersonData" required="true">
-            <caption>last Name</caption>
-            <category>Data to be commited</category>
-            <description>The context data for the object</description>
-            <attributeTypes>
-                <attributeType name="String" />
-            </attributeTypes>
         </property> 
         <property key="_UserName" type="attribute" entityProperty="PersonData" required="true">
             <caption>user Name</caption>
@@ -49,15 +33,7 @@
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>
-        </property> 
-        <property key="_Mobile" type="attribute" entityProperty="PersonData" required="true">
-            <caption>Mobile Number</caption>
-            <category>Data to be commited</category>
-            <description>The context data for the object</description>
-            <attributeTypes>
-                <attributeType name="String" />
-            </attributeTypes>
-        </property> 
+        </property>  
         <property key="MicroflowToRun" type="microflow" required="false" defaultValue="">
             <caption>Microflow</caption>
             <category>Behavior</category>
