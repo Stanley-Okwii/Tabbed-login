@@ -34,11 +34,23 @@
                 <attributeType name="String" />
             </attributeTypes>
         </property>  
-        <property key="MicroflowToRun" type="microflow" required="false" defaultValue="">
-            <caption>Microflow</caption>
+        <property key="SignupMicroflow" type="microflow" required="false" defaultValue="">
+            <caption>Sign up</caption>
             <category>Behavior</category>
-            <description>The microflow to execute on click.</description>
+            <description>The microflow to execute on sign up</description>
             <returnType type="Boolean" />
+        </property>
+        <property key="LoginMicroflow" type="microflow" required="false" defaultValue="">
+            <caption>Login</caption>
+            <category>Behavior</category>
+            <description>The microflow to execute on login</description>
+            <returnType type="String" />
+        </property>
+                <property key="ForgetPasswordMicroflow" type="microflow" required="false" defaultValue="">
+            <caption>Forgot Password</caption>
+            <category>Behavior</category>
+            <description>This microflow will be executed when user clicks Reset button</description>
+            <returnType type="String" />
         </property>
     </properties>
 </widget>

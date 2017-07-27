@@ -1,3 +1,4 @@
 #file to be ignored
 /dist
 /node_modules
+.editorconfig
