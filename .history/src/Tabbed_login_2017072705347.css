@@ -1,0 +1,37 @@
+#WidgetDiv{
+    display: none;
+}
+
+.Widget_div{
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.dijitTabListContainer-top dijitTabController dijitScrollingTabController tabStrip-disabled dijitAlignTop dijitLayoutContainer{
+    padding: 5px;
+    margin: 5px;
+}
+
+.Pane-class{
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+}
+
+.tab-container{
+    padding: 5px;
+    margin: 5px;
+}
+
+.tabLabel{
+    width: auto;
+    text-align: center;
+    display: block;
+    background: #69F;
+    padding: 10px;
+    margin: 0px;
+    border: 1px solid black;
+    border-bottom: none;
+}
+

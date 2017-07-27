@@ -4,11 +4,11 @@
     width: auto;
 }
 
-   /* .dijitTabListContainer-top dijitTabController dijitScrollingTabController tabStrip-disabled dijitAlignTop dijitLayoutContainer{
+.dijitTabListContainer-top dijitTabController dijitScrollingTabController tabStrip-disabled dijitAlignTop dijitLayoutContainer{
     padding: 5px;
     margin: 5px;
     width: auto;
-}    */
+}
 
 .Pane-class{
     width: auto;
@@ -35,7 +35,7 @@
     border: 1px solid black;
     border-bottom: none;
 }
-/* 
+
 #dijitTabPaneWrapper dijitTabContainerTop-container dijitAlignCenter{
     width: auto;
     height: auto;
@@ -43,4 +43,5 @@
 
 #dijitTabContainerTopChildWrapper dijitHidden{
     display: none;
-} */
+}
+

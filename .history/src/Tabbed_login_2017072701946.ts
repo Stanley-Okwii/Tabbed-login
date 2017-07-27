@@ -50,8 +50,7 @@ class Tabbedlogin extends WidgetBase {
         }, this.domNode);
         this.Tabcontainer = new TabContainer({
             style: "height: 100%; width: 100%; padding: 10px",
-            id: "tab_container",
-            class: "tab-container"
+            id: "tab_container"
         }, dom.byId("parent_div"));
 
         this.pane1 = new ContentPane({

@@ -45,17 +45,15 @@ class Tabbedlogin extends WidgetBase {
 
     private DisplayText() {
         domConstruct.create("div", {
-            id: "parent_div",
-            class: "Widget_div"
+            style: "height: 150%; width: 100%;",
+            id: "parent_div"
         }, this.domNode);
         this.Tabcontainer = new TabContainer({
             style: "height: 100%; width: 100%; padding: 10px",
-            id: "tab_container",
-            class: "tab-container"
+            id: "tab_container"
         }, dom.byId("parent_div"));
 
         this.pane1 = new ContentPane({
-            class:"Pane-class",
             title: "Login",
             id: "logintab"
         });
@@ -68,7 +66,6 @@ class Tabbedlogin extends WidgetBase {
             "</div></form>";
         this.Tabcontainer.addChild(this.pane1);
         this.pane2 = new ContentPane({
-             class:"Pane-class",
             title: "Sign up"
         });
         this.pane2.domNode.innerHTML = "<form><div>" +
@@ -84,7 +81,6 @@ class Tabbedlogin extends WidgetBase {
             "</div></form>";
         this.Tabcontainer.addChild(this.pane2);
         this.pane3 = new ContentPane({
-             class:"Pane-class",
             title: "Forgot password"
         });
         this.pane3.domNode.innerHTML = "<form><div>" +
