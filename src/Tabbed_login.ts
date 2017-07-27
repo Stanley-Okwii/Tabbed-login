@@ -56,7 +56,7 @@ class Tabbedlogin extends WidgetBase {
         }, dom.byId("parent_div"));
 
         this.pane1 = new ContentPane({
-            class:"Pane-class",
+            class: "Pane-class",
             title: "Login",
             id: "logintab"
         });
@@ -65,11 +65,11 @@ class Tabbedlogin extends WidgetBase {
             "<input type = 'text' placeholder = 'User Name' id = 'LogUserName'/><br/>" +
             "<span>Enter password</span><br/>" +
             "<input type='password' placeholder ='Password' id ='LogPassword' />" +
-            "<br/><br/><input type='button' class='ButtonDiv' value='Log in' id='submitter'/>" +
+            "<br/><br/><input type='button' class='ButtonDiv' value='Log in' id='LoginID'/>" +
             "</div></form>";
         this.Tabcontainer.addChild(this.pane1);
         this.pane2 = new ContentPane({
-             class:"Pane-class",
+            class: "Pane-class",
             title: "Sign up"
         });
         this.pane2.domNode.innerHTML = "<form target='_blank'" +
@@ -85,12 +85,12 @@ class Tabbedlogin extends WidgetBase {
             "</div></form>";
         this.Tabcontainer.addChild(this.pane2);
         this.pane3 = new ContentPane({
-             class:"Pane-class",
+            class: "Pane-class",
             title: "Forgot password"
         });
         this.pane3.domNode.innerHTML = "<form target='_blank' ><div>" +
             "<span>Email</span><br/>" +
-            "<input type='email' placeholder='e.g stanleeparker12@gmail.com'/><br/>" +
+            "<input type='email' placeholder='e.g stanleeparker12@gmail.com' id='forgetID'/><br/>" +
             "<br/><br/><input type='button' value='submit' id='RememberPassword'/>" +
             "</div></form>";
         this.Tabcontainer.addChild(this.pane3);
@@ -159,7 +159,6 @@ class Tabbedlogin extends WidgetBase {
                     applyto: "selection",
                     guids: [guid]
                 },
-                progress: "modal",
                 callback: (objs: mendix.lib.MxObject) => {
                     if (cb && typeof cb === "function") {
                         cb(objs);
@@ -178,7 +177,6 @@ class Tabbedlogin extends WidgetBase {
                     applyto: "selection",
                     guids: [guid],
                 },
-                progress: "modal",
                 callback: (objs: mendix.lib.MxObject) => {
                     if (cb && typeof cb === "function") {
                         cb(objs);
