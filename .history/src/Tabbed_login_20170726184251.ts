@@ -45,22 +45,12 @@ class Tabbedlogin extends WidgetBase {
 
     private DisplayText() {
         domConstruct.create("div", {
-<<<<<<< HEAD
-            style: "height: 100%; width: 100%;",
-            id: "parent_div"
-        }, this.domNode);
-        this.Tabcontainer = new TabContainer({
-            style: "height: 100%; width: 100%; padding: 10px",
-            id: "tab_container"
-        }, dom.byId("addButton"));
-=======
             id: "WidgetDiv"
         }, this.domNode);
         this.Tabcontainer = new TabContainer({
             style: "height: 250%; width: 100%;",
             doLayout: false
         }, dom.byId("WidgetDiv"));
->>>>>>> temp
 
         this.pane1 = new ContentPane({
             title: "Login",

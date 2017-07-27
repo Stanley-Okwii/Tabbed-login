@@ -6,9 +6,6 @@
   "author": "",
   "copyright": "Flock of Birds",
   "private": true,
-  "dependencies": {
-    "croppie": "^2.4.1"
-  },
   "devDependencies": {
     "@types/big.js": "0.0.31",
     "@types/dojo": "^1.9.35",
