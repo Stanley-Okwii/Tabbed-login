@@ -30,7 +30,7 @@ module.exports = {
         ], {
             copyUnmodified: true
         }),
-        new ExtractTextPlugin("./src/widget/ui/Tabbed_login.css"),
+        new ExtractTextPlugin("src/Tabbed_login.css"),
         new webpack.LoaderOptionsPlugin({
             debug: true
         })
