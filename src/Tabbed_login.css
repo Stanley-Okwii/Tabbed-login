@@ -45,7 +45,7 @@ input[type=text] {
     border: none;
     border-bottom: 1px solid red;
     background-color: white;
-    color: white;
+    color: black;
 }
 
 input[type=text]:focus {
@@ -63,7 +63,7 @@ input[type=password] {
     border: none;
     border-bottom: 1px solid red;
     background-color: white;
-    color: white;
+    color: black;
 }
 
 input[type=password]:focus {
@@ -82,7 +82,7 @@ input[type=email] {
     border: none;
     border-bottom: 1px solid red;
     background-color: white;
-    color: white;
+    color: black;
 }
 
 input[type=email]:focus {
