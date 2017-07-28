@@ -60,6 +60,7 @@ class Tabbedlogin extends WidgetBase {
             title: "Login"
         });
         this.pane1.domNode.innerHTML = "<form target='_blank'><div>" +
+          "<span>Have an account?</span><hr size='5' noshade />" +
             "<span>User name</span><br/>" +
             "<input type = 'text' placeholder = 'Usename' id = 'LogUserName'/><br/>" +
             "<span>Password</span><br/>" +
@@ -72,6 +73,8 @@ class Tabbedlogin extends WidgetBase {
             title: "Sign up"
         });
         this.pane2.domNode.innerHTML = "<form target='_blank'" +
+         "<span>Register for this site</span><br/>" +
+          "<span>Sign up for the good stuff now</span><br/>" +
             "<span>User name</span><br/>" +
             "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
             "<span>Password</span><br/>" +
@@ -86,9 +89,11 @@ class Tabbedlogin extends WidgetBase {
             title: "Forgot password"
         });
         this.pane3.domNode.innerHTML = "<form target='_blank' ><div>" +
+         "<span>Lost your password</span><br/>" +
+          "<span>Enter your user name or email to reset password</span><br/>" +
             "<span>Email</span><br/>" +
             "<input type='email' placeholder='e.g stanleeparker12@gmail.com' id='forgetID'/><br/>" +
-            "<br/><br/><input type='button' value='submit' id='RememberPassword'/>" +
+            "<br/><br/><input type='button' value='Reset' id='RememberPassword'/>" +
             "</div></form>";
         this.Tabcontainer.addChild(this.pane3);
         this.Tabcontainer.startup();
