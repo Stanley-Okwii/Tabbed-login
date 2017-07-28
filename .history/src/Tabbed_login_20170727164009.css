@@ -4,111 +4,111 @@
     width: auto;
 }
 
+   /* .dijitTabListContainer-top dijitTabController dijitScrollingTabController tabStrip-disabled dijitAlignTop dijitLayoutContainer{
+    padding: 5px;
+    margin: 5px;
+    width: auto;
+}    */
+
 .Pane-class{
     width: auto;
     padding: 5px;
     margin: 5px;
-    background-color: #eaeae1;
-    border: 1px solid #eaeae1;
+    background-color: white;
+    border: 1px solid gray;
     border-radius: 3%;
 }
 
 .tab-container{
     width: auto;
-    padding: 0px;
-    margin: 0px;
+    padding: 5px;
+    margin: 5px;
 }
+
 .tabLabel{
-    padding: 8px 16px;
-    float: left;
     width: auto;
     text-align: center;
     display: block;
-    background: white;
-    background-color: white; 
+    background: #69F;
     padding: 5px;
     margin: 0px;
-    border: 1px solid #d6d6c2;
+    border: 1px solid black;
     border-bottom: none;
 }
 
 input {
-    width: 60%;
+    width: 100%;
 }
 input[type=text] {
-    width: 60%;
+    width: 80%;
     padding: 5px 5px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 1px solid red;
+    border: 2px solid red;
     border-radius: 4px;
     border: none;
-    border-bottom: 1px solid red;
-    background-color: white;
+    border-bottom: 2px solid red;
+    background-color: #3CBC8D;
     color: white;
 }
 
 input[type=text]:focus {
-    background-color: white;
-    border: none;
-    color: black
+    background-color: lightblue;
+    border: 3px solid #555;
 }
 input[type=password] {
-    width: 60%;
+    width: 80%;
     padding: 5px 5px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 1px solid red;
+    border: 2px solid red;
     border-radius: 4px;
     border: none;
-    border-bottom: 1px solid red;
-    background-color: white;
+    border-bottom: 2px solid red;
+    background-color: #3CBC8D;
     color: white;
 }
 
 input[type=password]:focus {
-    background-color: white;
-    border: none;
-    color: black
+    background-color: lightblue;
+    border: 3px solid #555;
 }
 
 input[type=email] {
-    width: 60%;
+    width: 80%;
     padding: 5px 5px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 1px solid red;
+    border: 2px solid red;
     border-radius: 4px;
     border: none;
-    border-bottom: 1px solid red;
-    background-color: white;
+    border-bottom: 2px solid red;
+    background-color: #3CBC8D;
     color: white;
 }
 
 input[type=email]:focus {
-    background-color: white;
-    border: none;
-    color: black
+    background-color: lightblue;
+    border: 1px solid #eaeae1;
 }
 
 
 input[type=button] {
     width: 20%;
-    padding: 5px;
+    padding: 5px 5px;
     margin: 8px 0;
     box-sizing: border-box;
     border: none;
     border-radius: 4px;
     border: none;
-    border-bottom: none;
-    background-color:#39e600;
+    border-bottom: 2px solid red;
+    background-color: #3CBC8D;
     color: white;
 }
 
 input[type=button]:focus {
-    background-color: white;
-    border: none;
-    color: black
+    background-color: lightblue;
+    border:none;
 }
 form[target='_blank'] {
     background-color: #eaeae1;
@@ -120,9 +120,12 @@ form[target='_blank'] {
     font-family: verdana;
     font-size: 20px;
 }
-
-.dijitTabContainerTop-container {
-    border: none;
-    border-top: 0;
+/* 
+#dijitTabPaneWrapper dijitTabContainerTop-container dijitAlignCenter{
+    width: auto;
+    height: auto;
 }
 
+#dijitTabContainerTopChildWrapper dijitHidden{
+    display: none;
+} */

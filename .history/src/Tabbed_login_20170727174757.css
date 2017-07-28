@@ -18,9 +18,8 @@
     padding: 0px;
     margin: 0px;
 }
+
 .tabLabel{
-    padding: 8px 16px;
-    float: left;
     width: auto;
     text-align: center;
     display: block;
@@ -101,7 +100,7 @@ input[type=button] {
     border-radius: 4px;
     border: none;
     border-bottom: none;
-    background-color:#39e600;
+    background-color:gray;
     color: white;
 }
 
@@ -119,10 +118,5 @@ form[target='_blank'] {
 .Widget_div span {
     font-family: verdana;
     font-size: 20px;
-}
-
-.dijitTabContainerTop-container {
-    border: none;
-    border-top: 0;
 }
 
