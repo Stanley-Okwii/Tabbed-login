@@ -52,18 +52,17 @@ class Tabbedlogin extends WidgetBase {
         this.Tabcontainer = new TabContainer({
             doLayout: false,
             style: "height: 100%; width: 100%; padding: 10px",
-            id: "tab_container",
+            id: "tab_container"
         }, dom.byId("parent_div"));
 
         this.pane1 = new ContentPane({
             class: "Pane-class",
-            title: "Login",
-            id: "logintab"
+            title: "Login"
         });
         this.pane1.domNode.innerHTML = "<form target='_blank'><div>" +
-            "<span>Enter user name</span><br/>" +
-            "<input type = 'text' placeholder = 'User Name' id = 'LogUserName'/><br/>" +
-            "<span>Enter password</span><br/>" +
+            "<span>User name</span><br/>" +
+            "<input type = 'text' placeholder = 'Usename' id = 'LogUserName'/><br/>" +
+            "<span>Password</span><br/>" +
             "<input type='password' placeholder ='Password' id ='LogPassword' />" +
             "<br/><br/><input type='button' class='ButtonDiv' value='Log in' id='LoginID'/>" +
             "</div></form>";
@@ -73,12 +72,10 @@ class Tabbedlogin extends WidgetBase {
             title: "Sign up"
         });
         this.pane2.domNode.innerHTML = "<form target='_blank'" +
-            "<span>Preferred user name</span><br/>" +
+            "<span>User name</span><br/>" +
             "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
-            "<span>Enter password</span><br/>" +
+            "<span>Password</span><br/>" +
             "<input type='password' placeholder='Password'  id='Regpassword1'/><br/>" +
-            "<span>Enter password again</span><br/>" +
-            "<input type='password' placeholder='Password'  id='Regpassword2'/><br/>" +
             "<span>Email</span><br/>" +
             "<input type='email' placeholder ='e.g stanleeparker12@gmail.com'  id='RegEmail'/><br/>" +
             "<br/><br/><input type='button' value ='sign up' id='signup'/>" +
@@ -103,7 +100,7 @@ class Tabbedlogin extends WidgetBase {
             this.LoginMethod();
         }, false);
         dom.byId("signup").addEventListener("click", () => {
-            this.createObject();
+            this.SignUpMethod();
         }, false);
         dom.byId("RememberPassword").addEventListener("click", () => {
             this.RecoverPassword();
@@ -111,7 +108,7 @@ class Tabbedlogin extends WidgetBase {
     }
 
 
-    private createObject(): void {
+    private SignUpMethod(): void {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
                 obj.set(this._UserName, dom.byId("Regusername").value);
@@ -132,7 +129,7 @@ class Tabbedlogin extends WidgetBase {
             callback: (obj: mendix.lib.MxObject) => {
                 obj.set(this._UserName, dom.byId("LogUserName").value);
                 obj.set(this._password, dom.byId("LogPassword").value);
-                this.ExecuteMicroflow2(this.LoginMicroflow, obj.getGuid());
+                this.ExecuteMicroflow(this.LoginMicroflow, obj.getGuid());
             },
             entity: this.PersonData,
             error: (e) => {
@@ -144,7 +141,7 @@ class Tabbedlogin extends WidgetBase {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
                 obj.set(this._Email, dom.byId("forgetID").value);
-                this.ExecuteMicroflow2(this.ForgetPasswordMicroflow, obj.getGuid());
+                this.ExecuteMicroflow(this.ForgetPasswordMicroflow, obj.getGuid());
             },
             entity: this.PersonData,
             error: (e) => {
@@ -158,24 +155,6 @@ class Tabbedlogin extends WidgetBase {
                 params: {
                     applyto: "selection",
                     guids: [guid]
-                },
-                callback: (objs: mendix.lib.MxObject) => {
-                    if (cb && typeof cb === "function") {
-                        cb(objs);
-                    }
-                },
-                error: (error) => {
-                    // console.debug(error.description);
-                }
-            }, this);
-        }
-    }
-    private ExecuteMicroflow2(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
-        if (mf && guid) {
-            mx.ui.action(mf, {
-                params: {
-                    applyto: "selection",
-                    guids: [guid],
                 },
                 callback: (objs: mendix.lib.MxObject) => {
                     if (cb && typeof cb === "function") {
