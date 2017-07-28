@@ -62,7 +62,7 @@ class Tabbedlogin extends WidgetBase {
         });
         this.pane1.domNode.innerHTML = "<form target='_blank'><div>" +
             "<span>Enter user name</span><br/>" +
-            "<input type = 'text' placeholder = 'User Name' id = 'LogUserName'/><br/>" +
+            "&nbsp <input type = 'text' placeholder = 'User Name' id = 'LogUserName'/><br/>" +
             "<span>Enter password</span><br/>" +
             "<input type='password' placeholder ='Password' id ='LogPassword' />" +
             "<br/><br/><input type='button' class='ButtonDiv' value='Log in' id='submitter'/>" +
@@ -73,14 +73,14 @@ class Tabbedlogin extends WidgetBase {
             title: "Sign up"
         });
         this.pane2.domNode.innerHTML = "<form target='_blank'" +
-            "<span>Preferred user name</span><br/>" +
-            "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
+            "<span>Preferred user name</span>" +
+            "&nbsp<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
             "<span>Enter password</span><br/>" +
-            "<input type='password' placeholder='Password'  id='Regpassword1'/><br/>" +
-            "<span>Enter password again</span><br/>" +
-            "<input type='password' placeholder='Password'  id='Regpassword2'/><br/>" +
+            "&nbsp <input type='password' placeholder='Password'  id='Regpassword1'/><br/>" +
+            "<span>Enter password again</span>" +
+            "&nbsp <input type='password' placeholder='Password'  id='Regpassword2'/><br/>" +
             "<span>Email</span><br/>" +
-            "<input type='email' placeholder ='e.g stanleeparker12@gmail.com'  id='RegEmail'/><br/>" +
+            "&nbsp <input type='email' placeholder ='e.g stanleeparker12@gmail.com'  id='RegEmail'/><br/>" +
             "<br/><br/><input type='button' value ='sign up' id='signup'/>" +
             "</div></form>";
         this.Tabcontainer.addChild(this.pane2);
@@ -90,7 +90,7 @@ class Tabbedlogin extends WidgetBase {
         });
         this.pane3.domNode.innerHTML = "<form target='_blank' ><div>" +
             "<span>Email</span><br/>" +
-            "<input type='email' placeholder='e.g stanleeparker12@gmail.com'/><br/>" +
+            "&nbsp <input type='email' placeholder='e.g stanleeparker12@gmail.com'/><br/>" +
             "<br/><br/><input type='button' value='submit' id='RememberPassword'/>" +
             "</div></form>";
         this.Tabcontainer.addChild(this.pane3);
