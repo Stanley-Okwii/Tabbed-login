@@ -174,8 +174,8 @@ class Tabbedlogin extends WidgetBase {
     }
     private LoginMethod(): void {
         const UserNameN = dom.byId("LogUserName").value;
-        const PasswordN = dom.byId("LogUserName").value;
-        mx.login(UserNameN, PasswordN, () => { console.log("rollback successful"); },
+        const PasswordN = dom.byId("LogPassword").value;
+        mx.login(UserNameN, PasswordN, () => { console.log("successful login"); },
          () => { console.log("Error in login"); });
     }
 
