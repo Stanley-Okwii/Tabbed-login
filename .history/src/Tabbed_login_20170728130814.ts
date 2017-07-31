@@ -1,10 +1,14 @@
 import * as dojoDeclare from "dojo/_base/declare";
 import * as domConstruct from "dojo/dom-construct";
 import * as WidgetBase from "mxui/widget/_WidgetBase";
+import * as domprop from "dojo/dom-prop";
+import * as dojoStyle from "dojo/dom-style";
 import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import * as TabContainer from "dijit/layout/TabContainer";
 import * as ContentPane from "dijit/layout/ContentPane";
+import * as Registry from "dijit/registry";
+import * as domAttr from "dojo/dom-attr";
 
 import "./Tabbed_login.css";
 
@@ -27,12 +31,10 @@ class Tabbedlogin extends WidgetBase {
     private pane3: any;
     private LoginUserName: string;
     private LoginPassword: string;
-    pwShown:number = 0;
-    imputPasswordFieldID: string = ""; 
+    pwShown:number;
 
     postCreate() {
     }
-
 
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
@@ -59,66 +61,53 @@ class Tabbedlogin extends WidgetBase {
             title: "Login"
         });
         this.pane1.domNode.innerHTML = "<form target='_blank'><div>" +
-            "<span>Have an account?</span><hr size='5' noshade />" +
             "<span>User name</span><br/>" +
             "<input type = 'text' placeholder = 'Usename' id = 'LogUserName'/><br/>" +
             "<span>Password</span><br/>" +
-            "<input type='password' placeholder ='Password' id ='LogPassword' /><span id='eye'>show password</span>" +
-            "<br/><input type='button' class='ButtonDiv' value='Log in' id='LoginID'/>" +
-            "</div></form>";
+            "<input type='password' placeholder ='Password' id ='LogPassword' /><img id= 'eye'src='data:image/png;base64,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' alt='showpassword' />" +
+            "<br/><br/><input type='button' class='ButtonDiv' value='Log in' id='LoginID'/>" +
+            "</div></form>"+
+            "<script src='myscripts.js'></script>";
         
         this.Tabcontainer.addChild(this.pane1);
         this.pane2 = new ContentPane({
             class: "Pane-class",
             title: "Sign up"
         });
+        this.pane2.domNode.innerHTML = ``
         this.pane2.domNode.innerHTML = "<form target='_blank'" +
-            "<span>Register for this site</span><br/>" +
-            "<span>Sign up for the good stuff now</span><br/>" +
             "<span>User name</span><br/>" +
             "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
             "<span>Password</span><br/>" +
-            "<input type='password' placeholder='Password'  id='Regpassword1'/><img id= 'eye2'src='data:image/png;base64,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' alt='showpassword' /><br/>" +
+            "<input type='password' placeholder='Password'  id='Regpassword1'/><br/>" +
             "<span>Email</span><br/>" +
             "<input type='email' placeholder ='e.g stanleeparker12@gmail.com'  id='RegEmail'/><br/>" +
-            "<input type='button' value ='sign up' id='signup'/>" +
+            "<br/><br/><input type='button' value ='sign up' id='signup'/>" +
             "</div></form>";
-            
+
+            this.pane2.domNode.innerHTML = "<form target='_blank'" +
+            "<span>User name</span><br/>" +
+            "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
+            "<span>Password</span><br/>" +
+            "<input type='password' placeholder='Password'  id='Regpassword1'/><br/>" +
+            "<span>Email</span><br/>" +
+            "<input type='email' placeholder ='e.g stanleeparker12@gmail.com'  id='RegEmail'/><br/>" +
+            "<br/><br/><input type='button' value ='sign up' id='signup'/>" +
+            "</div></form>";
         this.Tabcontainer.addChild(this.pane2);
         this.pane3 = new ContentPane({
             class: "Pane-class",
             title: "Forgot password"
         });
         this.pane3.domNode.innerHTML = "<form target='_blank' ><div>" +
-            "<span>Lost your password</span><br/>" +
-            "<span>Enter your user name or email to reset password</span><br/>" +
             "<span>Email</span><br/>" +
             "<input type='email' placeholder='e.g stanleeparker12@gmail.com' id='forgetID'/><br/>" +
-            "<input type='button' value='submit' id='RememberPassword'/>" +
+            "<br/><br/><input type='button' value='submit' id='RememberPassword'/>" +
             "</div></form>";
         this.Tabcontainer.addChild(this.pane3);
         this.Tabcontainer.startup();
 
         dom.byId("eye").addEventListener("click", () => {
-            function show() {
-                dom.byId('LogPassword').setAttribute('type', 'text');
-            }
-
-            function hide(){
-                dom.byId('LogPassword').setAttribute('type', 'password');
-            }
-            
-            if (this.pwShown === 0) {
-                this.pwShown = 1;
-                show();
-            } else {
-                this.pwShown = 0;
-                hide();
-            }
-    
-        }, false);
-
-         dom.byId("eye2").addEventListener("click", () => {
             function show() {
                 dom.byId('Regpassword1').setAttribute('type', 'text');
             }
@@ -127,9 +116,9 @@ class Tabbedlogin extends WidgetBase {
                 dom.byId('Regpassword1').setAttribute('type', 'password');
             }
 
-            this.pwShown;
+            this.pwShown = 0;
 
-            if (this.pwShown === 0) {
+            if (this.pwShown == 0) {
                 this.pwShown = 1;
                 show();
             } else {
@@ -138,7 +127,6 @@ class Tabbedlogin extends WidgetBase {
             }
     
         }, false);
-
     }
 
     private updateRendering() {
@@ -176,24 +164,11 @@ class Tabbedlogin extends WidgetBase {
             callback: (obj: mendix.lib.MxObject) => {
                 obj.set(this._UserName, dom.byId("LogUserName").value);
                 obj.set(this._password, dom.byId("LogPassword").value);
-                this.contextObject = obj;
-                this.ExecuteMicroflow(this.LoginMicroflow, this.contextObject.getGuid());
+                this.ExecuteMicroflow(this.LoginMicroflow, obj.getGuid());
             },
             entity: this.PersonData,
             error: (e) => {
                 console.error("Could not commit object:", e);
-            }
-        });
-    }
-
-    private output() {
-        mx.data.get({
-            microflow: this.LoginMicroflow,
-            callback: (objc: mendix.lib.MxContext) => {
-
-            },
-            error: (e) => {
-                console.error("Could not get data from microflow:", e);
             }
         });
     }
@@ -226,7 +201,7 @@ class Tabbedlogin extends WidgetBase {
                 }
             }, this);
         }
-    } 
+    }
 }
 
 dojoDeclare("widget.Tabbed_login", [WidgetBase], function (Source: any) {

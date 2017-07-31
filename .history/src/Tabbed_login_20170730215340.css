@@ -32,11 +32,6 @@
     border-bottom: none;
 }
 
-tabLabel :active {
-        display: block;
-    background:lightblue;
-    color: black;
-}
 input {
     width: 60%;
 }
@@ -157,6 +152,10 @@ form[target='_blank'] {
     padding: 0;
     width: 100%;
     border: none;
+}
+
+.dijitTabPaneWrapper dijitTabContainerTop-container{
+
 }
 
 .dijitTabListContainer-top dijitTabController dijitScrollingTabController tabStrip-disabled dijitLayoutContainer{

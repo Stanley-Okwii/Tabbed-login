@@ -1,10 +1,14 @@
 import * as dojoDeclare from "dojo/_base/declare";
 import * as domConstruct from "dojo/dom-construct";
 import * as WidgetBase from "mxui/widget/_WidgetBase";
+import * as domprop from "dojo/dom-prop";
+import * as dojoStyle from "dojo/dom-style";
 import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import * as TabContainer from "dijit/layout/TabContainer";
 import * as ContentPane from "dijit/layout/ContentPane";
+import * as Registry from "dijit/registry";
+import * as domAttr from "dojo/dom-attr";
 
 import "./Tabbed_login.css";
 
@@ -33,7 +37,6 @@ class Tabbedlogin extends WidgetBase {
     postCreate() {
     }
 
-
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
         this.updateRendering();
@@ -59,7 +62,6 @@ class Tabbedlogin extends WidgetBase {
             title: "Login"
         });
         this.pane1.domNode.innerHTML = "<form target='_blank'><div>" +
-            "<span>Have an account?</span><hr size='5' noshade />" +
             "<span>User name</span><br/>" +
             "<input type = 'text' placeholder = 'Usename' id = 'LogUserName'/><br/>" +
             "<span>Password</span><br/>" +
@@ -73,8 +75,6 @@ class Tabbedlogin extends WidgetBase {
             title: "Sign up"
         });
         this.pane2.domNode.innerHTML = "<form target='_blank'" +
-            "<span>Register for this site</span><br/>" +
-            "<span>Sign up for the good stuff now</span><br/>" +
             "<span>User name</span><br/>" +
             "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
             "<span>Password</span><br/>" +
@@ -90,8 +90,6 @@ class Tabbedlogin extends WidgetBase {
             title: "Forgot password"
         });
         this.pane3.domNode.innerHTML = "<form target='_blank' ><div>" +
-            "<span>Lost your password</span><br/>" +
-            "<span>Enter your user name or email to reset password</span><br/>" +
             "<span>Email</span><br/>" +
             "<input type='email' placeholder='e.g stanleeparker12@gmail.com' id='forgetID'/><br/>" +
             "<input type='button' value='submit' id='RememberPassword'/>" +
@@ -176,24 +174,11 @@ class Tabbedlogin extends WidgetBase {
             callback: (obj: mendix.lib.MxObject) => {
                 obj.set(this._UserName, dom.byId("LogUserName").value);
                 obj.set(this._password, dom.byId("LogPassword").value);
-                this.contextObject = obj;
-                this.ExecuteMicroflow(this.LoginMicroflow, this.contextObject.getGuid());
+                this.ExecuteMicroflow(this.LoginMicroflow, obj.getGuid());
             },
             entity: this.PersonData,
             error: (e) => {
                 console.error("Could not commit object:", e);
-            }
-        });
-    }
-
-    private output() {
-        mx.data.get({
-            microflow: this.LoginMicroflow,
-            callback: (objc: mendix.lib.MxContext) => {
-
-            },
-            error: (e) => {
-                console.error("Could not get data from microflow:", e);
             }
         });
     }
@@ -226,7 +211,7 @@ class Tabbedlogin extends WidgetBase {
                 }
             }, this);
         }
-    } 
+    }
 }
 
 dojoDeclare("widget.Tabbed_login", [WidgetBase], function (Source: any) {
