@@ -27,10 +27,10 @@ class Tabbedlogin extends WidgetBase {
     private pane3: any;
     private LoginUserName: string;
     private LoginPassword: string;
-    pwShown: number = 0;
-    imputPasswordFieldID: string = "";
+    private PasswordShown: boolean;
 
     postCreate() {
+        this.PasswordShown = false;
     }
 
     update(object: mendix.lib.MxObject, callback?: () => void) {
@@ -55,6 +55,7 @@ class Tabbedlogin extends WidgetBase {
 
         this.pane1 = new ContentPane({
             class: "Pane-class",
+            id: "LoginTabID",
             title: "Login"
         });
         this.pane1.domNode.innerHTML = "<form target='_blank'><div>" +
@@ -77,7 +78,7 @@ class Tabbedlogin extends WidgetBase {
             "<span>User name</span><br/>" +
             "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
             "<span>Password</span><br/>" +
-            "<input type='password' placeholder='Password'  id='Regpassword1'/><img id= 'eye2'src='data:image/png;base64,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' alt='showpassword' /><br/>" +
+            "<div class = 'signupdiv'><input type='password' placeholder='Password'  id='Regpassword1'/><img id= 'eye2' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAvVBMVEUAAAAAdOgAbfEAbvAAbe8Ab/EAbfAAbfAAbfAAbvEAbvAAbfAAcPUAbvAAbfAAbe8AbfAAbfAAbvAAa/IAbPIAbPAAbfAAbPAAbfAAbe8AbO8AbfEAa+0AbvAAbPAAbfAAbO8AAP8AbfAAbfAAbe8AVf8Abe8AbfAAbfAAbfAAbPAAbvAAgP8AbfAAbfEAZuYAbe8AbfAAbfAAbfAAb/EAbfEAauoAbfEAavEAbfAAbfAAbPAAbPEAbfAAAADVqeqmAAAAPXRSTlMACzZkkTWp3P4lqv0Zl/vE7vqHOTuG4Gj11U44KzPdv1ABiONiA7Tv7a8heQamsApw8OyWN6EMjyT28chcs98b0AAAAAFiS0dEAIgFHUgAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfhBx8JNi1ohA/RAAAA+klEQVQ4y+VS11LDMBBcpSd2RImdAjhdxCU9AQJk//+3kC1sxhPPkGe4B2l0uzd7tyfg/4UolSuVckkUo9VavcEkGvVa9QJutgxqWYbTauZguy3Jm9u7+44QjivZJWXb/sF7fXLwgMcn8/SGo/GA7Pe+4cmUnM1VIvS88IMQnozUfEZOJ3FyuSLXG8Pdxvq7EO4e2KzJ1RJQ+j7o8uPLK2y8xYwADk8aOehKBX1GSR9S4f3jUzdLH8I6x7lI12aEsyXgGx/yhFTiRAeBIeQlsib3LsJdQZPZmJH0EAb+5ZipUePR0Cs2KrW6S+k6xVb/vqwr1n3Fh/nT8QWVEDP/c98IMQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNy0wNy0zMVQwOTo1NDo0NSswMjowMCs+z9cAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTctMDctMzFUMDk6NTQ6NDUrMDI6MDBaY3drAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg==' alt='showpassword' /></div><br/>" +
             "<span>Email</span><br/>" +
             "<input type='email' placeholder ='e.g stanleeparker12@gmail.com'  id='RegEmail'/><br/>" +
             "<input type='button' value ='sign up' id='signup'/>" +
@@ -99,41 +100,39 @@ class Tabbedlogin extends WidgetBase {
         this.Tabcontainer.startup();
 
         dom.byId("eye").addEventListener("click", () => {
-            function show() {
-                dom.byId('LogPassword').setAttribute('type', 'text');
+            function ShowPassword() {
+                dom.byId("LogPassword").setAttribute("type", "text");
             }
 
-            function hide() {
-                dom.byId('LogPassword').setAttribute('type', 'password');
+            function HidePassword() {
+                dom.byId("LogPassword").setAttribute("type", "password");
             }
 
-            if (this.pwShown === 0) {
-                this.pwShown = 1;
-                show();
+            if (this.PasswordShown === false) {
+                this.PasswordShown = true;
+                ShowPassword();
             } else {
-                this.pwShown = 0;
-                hide();
+                this.PasswordShown = false;
+                HidePassword();
             }
 
         }, false);
 
         dom.byId("eye2").addEventListener("click", () => {
-            function show() {
-                dom.byId('Regpassword1').setAttribute('type', 'text');
+            function ShowPassword() {
+                dom.byId("Regpassword1").setAttribute("type", "text");
             }
 
-            function hide() {
-                dom.byId('Regpassword1').setAttribute('type', 'password');
+            function HidePassword() {
+                dom.byId("Regpassword1").setAttribute("type", "password");
             }
 
-            this.pwShown;
-
-            if (this.pwShown === 0) {
-                this.pwShown = 1;
-                show();
+            if (this.PasswordShown === false) {
+                this.PasswordShown = true;
+                ShowPassword();
             } else {
-                this.pwShown = 0;
-                hide();
+                this.PasswordShown = false;
+                HidePassword();
             }
 
         }, false);
@@ -147,6 +146,10 @@ class Tabbedlogin extends WidgetBase {
         }, false);
         dom.byId("signup").addEventListener("click", () => {
             this.SignUpMethod();
+            function SwitchTab() {
+                dom.byId("LoginTabID").setAttribute("selected", "true");
+            }
+            SwitchTab();
         }, false);
         dom.byId("RememberPassword").addEventListener("click", () => {
             this.RecoverPassword();
@@ -171,18 +174,10 @@ class Tabbedlogin extends WidgetBase {
         });
     }
     private LoginMethod(): void {
-        mx.data.create({
-            callback: (obj: mendix.lib.MxObject) => {
-                obj.set(this._UserName, dom.byId("LogUserName").value);
-                obj.set(this._password, dom.byId("LogPassword").value);
-                this.contextObject = obj;
-                this.ExecuteMicroflow(this.LoginMicroflow, this.contextObject.getGuid());
-            },
-            entity: this.PersonData,
-            error: (e) => {
-                console.error("Could not commit object:", e);
-            }
-        });
+        const UserNameN = dom.byId("LogUserName").value;
+        const PasswordN = dom.byId("LogUserName").value;
+        mx.login(UserNameN, PasswordN, () => { console.log("rollback successful"); },
+         () => { console.log("Error in login"); });
     }
 
     private output() {

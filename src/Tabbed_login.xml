@@ -20,7 +20,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <category>Data to be commited</category>
             <description>This is the entity property</description>
         </property> 
-        <property key="_UserName" type="attribute" entityProperty="PersonData" required="true">
+        <property key="_UserName" type="attribute" entityProperty="PersonData" required="false">
             <caption>user Name</caption>
             <category>Data to be commited</category>
             <description>The context data for the object</description>
@@ -28,7 +28,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
                 <attributeType name="String" />
             </attributeTypes>
         </property> 
-        <property key="_password" type="attribute" entityProperty="PersonData" required="true">
+        <property key="_password" type="attribute" entityProperty="PersonData" required="false">
             <caption>Password</caption>
             <category>Data to be commited</category>
             <description>The context data for the object</description>
@@ -36,7 +36,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
                 <attributeType name="String" />
             </attributeTypes>
         </property>  
-            <property key="_Email" type="attribute" entityProperty="PersonData" required="true">
+            <property key="_Email" type="attribute" entityProperty="PersonData" required="false">
             <caption>Email Address</caption>
             <category>Data to be commited</category>
             <description>The context data for the object</description>
@@ -44,19 +44,19 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
                 <attributeType name="String" />
             </attributeTypes>
         </property>  
-        <property key="SignupMicroflow" type="microflow" required="true" defaultValue="">
+        <property key="SignupMicroflow" type="microflow" required="false" defaultValue="">
             <caption>Sign up</caption>
             <category>Behavior</category>
             <description>The microflow to execute on sign up</description>
             <returnType type="Boolean" />
         </property>
-        <property key="LoginMicroflow" type="microflow" required="true" defaultValue="">
+        <property key="LoginMicroflow" type="microflow" required="false" defaultValue="">
             <caption>Login</caption>
             <category>Behavior</category>
             <description>The microflow to execute on login</description>
             <returnType type="String" />
         </property>
-                <property key="ForgetPasswordMicroflow" type="microflow" required="true" defaultValue="">
+                <property key="ForgetPasswordMicroflow" type="microflow" required="false" defaultValue="">
             <caption>Forgot Password</caption>
             <category>Behavior</category>
             <description>This microflow will be executed when user clicks Reset button</description>
