@@ -3,7 +3,17 @@
     <name>Tabbed Login</name>
     <description>This widget enables a user to login ,sign up or recover their password when they forget</description>
 
-    <icon />
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZ
+cwAADdcAAA3XAUIom3gAAAAHdElNRQfhBx8IMTfbZQpbAAAA/0lEQVRo3u2XsQrCMBiEL46K+AbF
+WRwcfCAHi+Di4gN1cfIJivgYOgg+RBVFp7hoGxvaJn+Dg9zd0qGXfNx1KUBRFFVWDO3g2MrNnHKr
+pusjZE4HXRB95Ua4OeWemNYDpE7HaGjsjFQXB+fcGYO29X+8yHOJV27bXH/q1NIVQ4/1TS/rD85K
++1aD7qGc1zf9wKSu/hhNKt5de6xv+oS+rH7/j7XKG1n9NrDcc1n9dkbqO8ay+sPNcERPUn/IGRJZ
+/eFm0BDWH26G/MGv/nAzFA9CtZxB5VcrMYJM73s7P77WEgEIQAACEIAABCAAAQhAAAIQQLX4Lf2P
+BghAURT1Au8AZsVVqkRnAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTA3LTMxVDA4OjQ5OjU1KzAy
+OjAwDnJCvAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNy0zMVQwODo0OTo1NSswMjowMH8v+gAA
+AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
+</icon>
      <properties>    
         <property key="PersonData" type="entity" required="true">
             <caption>Person object</caption>
@@ -34,19 +44,19 @@
                 <attributeType name="String" />
             </attributeTypes>
         </property>  
-        <property key="SignupMicroflow" type="microflow" required="false" defaultValue="">
+        <property key="SignupMicroflow" type="microflow" required="true" defaultValue="">
             <caption>Sign up</caption>
             <category>Behavior</category>
             <description>The microflow to execute on sign up</description>
             <returnType type="Boolean" />
         </property>
-        <property key="LoginMicroflow" type="microflow" required="false" defaultValue="">
+        <property key="LoginMicroflow" type="microflow" required="true" defaultValue="">
             <caption>Login</caption>
             <category>Behavior</category>
             <description>The microflow to execute on login</description>
             <returnType type="String" />
         </property>
-                <property key="ForgetPasswordMicroflow" type="microflow" required="false" defaultValue="">
+                <property key="ForgetPasswordMicroflow" type="microflow" required="true" defaultValue="">
             <caption>Forgot Password</caption>
             <category>Behavior</category>
             <description>This microflow will be executed when user clicks Reset button</description>

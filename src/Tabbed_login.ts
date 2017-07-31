@@ -31,7 +31,6 @@ class Tabbedlogin extends WidgetBase {
     postCreate() {
     }
 
-
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
         this.updateRendering();
@@ -145,7 +144,7 @@ class Tabbedlogin extends WidgetBase {
         mx.data.get({
             microflow: this.LoginMicroflow,
             callback: (objc: mendix.lib.MxContext) => {
-
+                
             },
             error: (e) => {
                 console.error("Could not get data from microflow:", e);
