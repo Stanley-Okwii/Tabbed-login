@@ -1,6 +1,4 @@
-Tabbed Login
-
-#Tabbed Login Widget
+# Mendix Tabbed Login Widget
 
 ## Description
 This widget allows users to create accounts, login to a particular website and recover their forgotten passwoeds.
