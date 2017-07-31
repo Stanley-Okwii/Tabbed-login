@@ -32,6 +32,11 @@
     border-bottom: none;
 }
 
+tabLabel :active {
+        display: block;
+    background:lightblue;
+    color: black;
+}
 input {
     width: 60%;
 }

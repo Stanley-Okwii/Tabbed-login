@@ -2,7 +2,7 @@
   "name": "crop-image",
   "widgetName": "Tabbed_login",
   "version": "0.1.0",
-  "description": "A fast and easy to use image cropping widget based on the Croppie library from Foliotek",
+  "description": "Set up a login, sign up and reset your password tabs quick and easy",
   "author": "",
   "copyright": "Flock of Birds",
   "private": true,
