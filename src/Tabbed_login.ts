@@ -59,8 +59,7 @@ class Tabbedlogin extends WidgetBase {
             title: "Login"
         });
         this.pane1.domNode.innerHTML = "<form target='_blank'><div>" +
-            "<span>Have an account?</span><hr size='5' noshade />" +
-            "<span>User name</span><br/>" +
+            "<span><font size='3'>Have an account?</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'>"+"<span>User name</span><br/>" +
             "<input type = 'text' placeholder = 'Usename' id = 'LogUserName'/><br/>" +
             "<span>Password</span><br/>" +
             "<input type='password' placeholder ='Password' id ='LogPassword' /><span id='eye'>show password</span>" +
@@ -73,7 +72,7 @@ class Tabbedlogin extends WidgetBase {
             title: "Sign up"
         });
         this.pane2.domNode.innerHTML = "<form target='_blank'" +
-            "<span>Register for this site</span><br/>" +
+            "<span><font size='3'>Register for this site</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'>" +
             "<span>Sign up for the good stuff now</span><br/>" +
             "<span>User name</span><br/>" +
             "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
@@ -90,7 +89,7 @@ class Tabbedlogin extends WidgetBase {
             title: "Forgot password"
         });
         this.pane3.domNode.innerHTML = "<form target='_blank' ><div>" +
-            "<span>Lost your password</span><br/>" +
+            "<span><font size='3'>Lost your password</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'>" +
             "<span>Enter your user name or email to reset password</span><br/>" +
             "<span>Email</span><br/>" +
             "<input type='email' placeholder='e.g stanleeparker12@gmail.com' id='forgetID'/><br/>" +
