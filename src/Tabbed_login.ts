@@ -59,7 +59,7 @@ class Tabbedlogin extends WidgetBase {
             title: "Login"
         });
         this.pane1.domNode.innerHTML = "<form target='_blank'><div>" +
-            "<span><font size='3'>Have an account?</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'>"+"<span>User name</span><br/>" +
+            "<span><font size='3'>Have an account?</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'><div id='warningNode'>dispaly</div>"+"<span>User name</span><br/>" +
             "<input type = 'text' placeholder = 'Usename' id = 'LogUserName'/><br/>" +
             "<span>Password</span><br/>" +
             "<input type='password' placeholder ='Password' id ='LogPassword' /><span id='eye'>show password</span>" +
@@ -157,6 +157,9 @@ class Tabbedlogin extends WidgetBase {
 
 
     private SignUpMethod(): void {
+        // username, password (enter twice), email.
+        // use a non-persistent entity to create a mx object for signupuser.
+        // then send this entity to a microflow.
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
                 obj.set(this._UserName, dom.byId("Regusername").value);
@@ -176,7 +179,9 @@ class Tabbedlogin extends WidgetBase {
         const UserNameN = dom.byId("LogUserName").value;
         const PasswordN = dom.byId("LogPassword").value;
         mx.login(UserNameN, PasswordN, () => { console.log("successful login"); },
-         () => { console.log("Error in login"); });
+         () => {
+             dom.byId("warningNode").innerHTML= "<div style='color:red; display: block;'>The username or password you entered is incorrect.<br/></div>"; //display warning
+             console.log("Error in login"); });
     }
 
     private output() {
