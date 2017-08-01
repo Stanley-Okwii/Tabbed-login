@@ -20,6 +20,11 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <category>Data to be commited</category>
             <description>This is the entity property</description>
         </property> 
+                <property key="Account" type="entity" required="true">
+            <caption>Account object</caption>
+            <category>Data to be commited</category>
+            <description>This is the entity property</description>
+        </property> 
         <property key="_UserName" type="attribute" entityProperty="PersonData" required="false">
             <caption>user Name</caption>
             <category>Data to be commited</category>
