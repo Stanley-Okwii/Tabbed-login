@@ -1,46 +1,111 @@
-.Widget_div{
-    padding: 0px;
-    height: 100%;
-    width: auto;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.Pane-class{
-    width: auto;
-    padding: 5px;
-    margin: 5px;
-    background-color: #eaeae1;
-    border: 1px solid #eaeae1;
-    border-radius: 3%;
+html, body {
+  height: 100vh;
 }
 
-.tab-container{
-    width: auto;
-    padding: 0px;
-    margin: 0px;
-}
-.tabLabel{
-    padding: 8px 16px;
-    float: left;
-    width: auto;
-    text-align: center;
-    display: block;
-    background: white;
-    background-color: white; 
-    padding: 5px;
-    margin: 0px;
-    border: 1px solid #d6d6c2;
-    border-bottom: none;
+body {
+  font: 14px/1 'Open Sans', sans-serif;
+  color: #555;
+  background: #eee;
 }
 
-tabLabel :active {
-        display: block;
-    background:#008CBA;
-    color: black;
+main {
+  min-width: 320px;
+  max-width: 800px;
+  padding: 0px;
+  margin: 0 auto;
+  background: #fff;
 }
+
+section {
+  display: none;
+  padding: 20px 0 0;
+  border-top: 1px solid #ddd;
+}
+
 input {
-    width: 60%;
+  display: none;
 }
+
+label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+
+label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+label:hover {
+  color: #888;
+  cursor: pointer;
+}
+
+input:checked + label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid #008CBA;
+  border-bottom: 1px solid #fff;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4 {
+  display: block;
+}
+
+@media screen and (max-width: 650px) {
+  label {
+    font-size: 0;
+  }
+  label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  label {
+    padding: 15px;
+  }
+}
+
+#content1{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#content2{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#content3{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
 input[type=text] {
+    display: block;
     width: 60%;
     padding: 5px 5px;
     margin: 8px 0;
@@ -52,42 +117,21 @@ input[type=text] {
     color: black;
 }
 
-input[type=text]:focus {
-    background-color: white;
-    border: 1px solid #008CBA;
-    color: black
-}
 input[type=password] {
+    display: block;
     width: 60%;
     padding: 5px 5px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 1px solid #008CBA;
     border-radius: 4px;
     border: none;
     border-bottom: 1px solid #008CBA;
     background-color: white;
     color: black;
-}
-.signupdiv{
-        width: 60%;
-    padding: 5px 5px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid #008CBA;
-    border-radius: 4px;
-    border: none;
-    border-bottom: 1px solid #008CBA;
-    background-color: white;
-    color: black;
-}
-input[type=password]:focus {
-    background-color: white;
-    border: 1px solid #008CBA;
-    color: black
 }
 
 input[type=email] {
+    display: block;
     width: 60%;
     padding: 5px 5px;
     margin: 8px 0;
@@ -99,76 +143,14 @@ input[type=email] {
     color: black;
 }
 
-input[type=email]:focus {
-    background-color: white;
-    border: 1px solid #008CBA;
-    color: black
-}
-
-
 input[type=button] {
-    width: 20%;
-    padding: 5px;
-    margin: 8px 0;
+    display: block;
+    width: 60%;
+    padding:5px;
+    margin: 8px;
     box-sizing: border-box;
-    border: none;
     border-radius: 4px;
-    border: none;
-    border-bottom: none;
-    background-color:#008CBA;
-    color: white;
-}
-
-input[type=button]:focus {
-    background-color: #008CBA;
     border: 1px solid #008CBA;
-    color: black
-}
-form[target='_blank'] {
-    background-color: #eaeae1;
-    width: auto;
-    height: auto;
-}
-
-.Widget_div span {
-    font-family: verdana;
-    font-size: 20px;
-}
-
-.dijitTabContainerTop-container {
-    border: none;
-    border-top: 0;
-}
-
-.dijitTabContainer dijitTabContainerTop dijitContainer dijitLayoutContainer dijitTabContainerNoLayout tabStrip-disabled{
-    height: 100%;
-    width: 100%;
-    padding: 0px;
-    margin: 0px;
-}
-
-.mx-dataview mx-name-dataView2 form-horizontal{    
-    border: 2px solid black;
-    width: 100%
-}
-
-.dijitTabListWrapper dijitTabContainerTopNone dijitAlignCenter{
-    height: 36px;
-    left: 0px;
-    top: 0px;
-    border-bottom: none;
-    position: absolute;
-    width: 100%;
-    border: none;
-}
-
-.nowrapTabStrip dijitTabContainerTop-tabs dijitTabNoLayout{
-    padding: 0;
-    width: 100%;
-    border: none;
-}
-
-.dijitTabListContainer-top dijitTabController dijitScrollingTabController tabStrip-disabled dijitLayoutContainer{
-    height: 36px;
-    width: 100%;
+    background-color: #008CBA;
+    color: black;
 }
