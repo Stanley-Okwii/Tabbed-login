@@ -14,7 +14,47 @@ BghAURT1Au8AZsVVqkRnAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTA3LTMxVDA4OjQ5OjU1KzAy
 OjAwDnJCvAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNy0zMVQwODo0OTo1NSswMjowMH8v+gAA
 AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
 </icon>
-     <properties>    
+     <properties>
+            <property key="userexample" type="string" defaultValue="Username" required="false">
+            <caption>Username Placeholder</caption>
+            <category>Display</category>
+            <description>Input box sample value</description>
+        </property>
+        <property key="passexample" type="string" defaultValue="Password" required="false">
+            <caption>Password Placeholder</caption>
+            <category>Display</category>
+            <description>Input box sample value</description>
+        </property>
+        <property key="showLabels" type="boolean" defaultValue="false">
+            <caption>Show Labels</caption>
+            <category>Display</category>
+            <description>Show username and password labels</description>
+        </property>
+        <property key="usernameLabel" type="string" defaultValue="User name" required="false">
+            <caption>Username Label</caption>
+            <category>Display</category>
+            <description>Username label caption (Only used if Show Labels is Yes)</description>
+        </property>
+        <property key="passwordLabel" type="string" defaultValue="Password" required="false">
+            <caption>Password Label</caption>
+            <category>Display</category>
+            <description>Password label caption (Only used if Show Labels is Yes)</description>
+        </property>
+        <property key="logintext" type="string" defaultValue="Login">
+            <caption>Login Button Caption</caption>
+            <category>Display</category>
+            <description>Login button caption</description>
+        </property>
+        <property key="emptytext" type="string" required="false" defaultValue="No username or password given">
+            <caption>Empty Username or Password Text</caption>
+            <category>Display</category>
+            <description>Displayed when Username or Password is empty</description>
+        </property>
+        <property key="forgottext" type="string" required="false" defaultValue="Forgot your password?">
+            <caption>Forgot Password Link Text</caption>
+            <category>Display</category>
+            <description>Text in Forgot Password link</description>
+        </property>  
         <property key="PersonLogin" type="entity" required="true">
             <caption>Person Entity</caption>
             <category>Person Credentials</category>

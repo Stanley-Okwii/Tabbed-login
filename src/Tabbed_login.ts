@@ -20,6 +20,9 @@ class Tabbedlogin extends WidgetBase {
     SignupMicroflow: string;
     ForgetPasswordMicroflow: string;
 
+    //initializing parameters in the modeler
+    userexample: "Username";
+
     // Internal variables
     private contextObject: mendix.lib.MxObject;
     private Tabcontainer: any;
@@ -61,7 +64,7 @@ class Tabbedlogin extends WidgetBase {
         });
         this.pane1.domNode.innerHTML = "<form target='_blank'><div>" +
             "<span><font size='3'>Have an account?</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'><div id='warningNode'>dispaly</div>" + "<span>User name</span><br/>" +
-            "<input type = 'text' placeholder = 'Usename' id = 'LogUserName'/><br/>" +
+            "<input type = 'text' id = 'LogUserName'/><br/>" +
             "<span>Password</span><br/>" +
             "<input type='password' placeholder ='Password' id ='LogPassword' /><img id= 'eye2' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAvVBMVEUAAAAAdOgAbfEAbvAAbe8Ab/EAbfAAbfAAbfAAbvEAbvAAbfAAcPUAbvAAbfAAbe8AbfAAbfAAbvAAa/IAbPIAbPAAbfAAbPAAbfAAbe8AbO8AbfEAa+0AbvAAbPAAbfAAbO8AAP8AbfAAbfAAbe8AVf8Abe8AbfAAbfAAbfAAbPAAbvAAgP8AbfAAbfEAZuYAbe8AbfAAbfAAbfAAb/EAbfEAauoAbfEAavEAbfAAbfAAbPAAbPEAbfAAAADVqeqmAAAAPXRSTlMACzZkkTWp3P4lqv0Zl/vE7vqHOTuG4Gj11U44KzPdv1ABiONiA7Tv7a8heQamsApw8OyWN6EMjyT28chcs98b0AAAAAFiS0dEAIgFHUgAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfhBx8JNi1ohA/RAAAA+klEQVQ4y+VS11LDMBBcpSd2RImdAjhdxCU9AQJk//+3kC1sxhPPkGe4B2l0uzd7tyfg/4UolSuVckkUo9VavcEkGvVa9QJutgxqWYbTauZguy3Jm9u7+44QjivZJWXb/sF7fXLwgMcn8/SGo/GA7Pe+4cmUnM1VIvS88IMQnozUfEZOJ3FyuSLXG8Pdxvq7EO4e2KzJ1RJQ+j7o8uPLK2y8xYwADk8aOehKBX1GSR9S4f3jUzdLH8I6x7lI12aEsyXgGx/yhFTiRAeBIeQlsib3LsJdQZPZmJH0EAb+5ZipUePR0Cs2KrW6S+k6xVb/vqwr1n3Fh/nT8QWVEDP/c98IMQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNy0wNy0zMVQwOTo1NDo0NSswMjowMCs+z9cAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTctMDctMzFUMDk6NTQ6NDUrMDI6MDBaY3drAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg==' alt='showpassword' />" +
             "<br/><input type='button' class='ButtonDiv' value='Log in' id='LoginID'/>" +
@@ -106,6 +109,7 @@ class Tabbedlogin extends WidgetBase {
 
     private updateRendering() {
         this.DisplayText();
+        dom.byId("LogUserName").setAttribute("placeholder", this.userexample);
         dom.byId("LoginID").addEventListener("click", () => {
             this.LoginMethod();
         }, false);
