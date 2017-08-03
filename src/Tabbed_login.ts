@@ -24,10 +24,13 @@ class Tabbedlogin extends WidgetBase {
     userexample: string;
     passexample: string;
     showLabels: false;
+    EmailLabel: string;
     usernameLabel: string;
     emptytext: string;
     passwordLabel: string;
     logintext: string;
+    Signuptext: string;
+    ResetPasswordtext: string;
     tablabel1: string;
     tablabel2: string;
     tablabel3: string;
@@ -89,7 +92,7 @@ class Tabbedlogin extends WidgetBase {
             "<section id='content1'>" +
 
             "<form target='_blank'><div>" +
-            "<span><font size='3'>Have an account?</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'><div id='warningNode'></div><span id='userLabel'>User name</span><br/>" +
+            "<div id='warningNode'></div><span id='userLabel'>User name</span><br/>" +
             "<input type = 'text' id = 'LogUserName'/><br/>" +
             "<span id='userPassword'>Password</span><br/>" +
             "<div style='display: inline-flex; width:100% '> <input type='password' id ='LogPassword' /> <img id= 'eye' style='color:black; padding: 5px 5px; margin: 8px 0' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAvVBMVEUAAAAAdOgAbfEAbvAAbe8Ab/EAbfAAbfAAbfAAbvEAbvAAbfAAcPUAbvAAbfAAbe8AbfAAbfAAbvAAa/IAbPIAbPAAbfAAbPAAbfAAbe8AbO8AbfEAa+0AbvAAbPAAbfAAbO8AAP8AbfAAbfAAbe8AVf8Abe8AbfAAbfAAbfAAbPAAbvAAgP8AbfAAbfEAZuYAbe8AbfAAbfAAbfAAb/EAbfEAauoAbfEAavEAbfAAbfAAbPAAbPEAbfAAAADVqeqmAAAAPXRSTlMACzZkkTWp3P4lqv0Zl/vE7vqHOTuG4Gj11U44KzPdv1ABiONiA7Tv7a8heQamsApw8OyWN6EMjyT28chcs98b0AAAAAFiS0dEAIgFHUgAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfhBx8JNi1ohA/RAAAA+klEQVQ4y+VS11LDMBBcpSd2RImdAjhdxCU9AQJk//+3kC1sxhPPkGe4B2l0uzd7tyfg/4UolSuVckkUo9VavcEkGvVa9QJutgxqWYbTauZguy3Jm9u7+44QjivZJWXb/sF7fXLwgMcn8/SGo/GA7Pe+4cmUnM1VIvS88IMQnozUfEZOJ3FyuSLXG8Pdxvq7EO4e2KzJ1RJQ+j7o8uPLK2y8xYwADk8aOehKBX1GSR9S4f3jUzdLH8I6x7lI12aEsyXgGx/yhFTiRAeBIeQlsib3LsJdQZPZmJH0EAb+5ZipUePR0Cs2KrW6S+k6xVb/vqwr1n3Fh/nT8QWVEDP/c98IMQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNy0wNy0zMVQwOTo1NDo0NSswMjowMCs+z9cAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTctMDctMzFUMDk6NTQ6NDUrMDI6MDBaY3drAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg==' alt='showpassword' /></div>" +
@@ -100,15 +103,13 @@ class Tabbedlogin extends WidgetBase {
 
             "<section id='content2'>" +
             "<form target='_blank'>" +
-            "<span><font size='3'>Register for this site</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'>" +
-            "<span>Sign up for the good stuff now</span><br/>" +
-            "<div id='warningNode2'></div></br><span>User name</span><br/>" +
+            "<div id='warningNode2'></div></br><span id='userLabel1'>User name</span><br/>" +
             "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
-            "<span>Password</span><br/>" +
+            "<span  id='userPassword1'>Password</span><br/>" +
             "<input type='password' placeholder='Password'  id='Regpassword1'/><br/>" +
-            "<span>Password again</span><br/>" +
+            "<span id='userPassword2'>Password again</span><br/>" +
             "<input type='password' placeholder='Password'  id='Regpassword2'/><br/>" +
-            "<span>Email</span><br/>" +
+            "<span id='EmailLabel'>Email</span><br/>" +
             "<input type='email' placeholder ='example@gmail.com'  id='RegEmail'/><br/>" +
             "<input type='button' value ='sign up' id='signup'/>" +
             "</div></form>" +
@@ -116,9 +117,8 @@ class Tabbedlogin extends WidgetBase {
 
             "<section id='content3'>" +
             "<form target='_blank' ><div>" +
-            "<span><font size='3'>Lost your password</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'>" +
-            "<div id='warningNode3'></div></br><span>Enter your user email to reset password</span><br/>" +
-            "<span>Email</span><br/>" +
+            "<div id='warningNode3'></div><span>Enter your email to reset password</span><br/>" +
+            "<span id='EmailLabel'>Email</span><br/>" +
             "<input type='email' placeholder='example@gmail.com' id='forgetID'/><br/>" +
             "<input type='button' value='Reset' id='RememberPassword'/>" +
             "</div></form>" +
@@ -126,7 +126,15 @@ class Tabbedlogin extends WidgetBase {
         }, this.domNode);
         dom.byId("LogUserName").setAttribute("placeholder", this.userexample);
         dom.byId("LogPassword").setAttribute("placeholder", this.passexample);
+        dom.byId("Regpassword1").setAttribute("placeholder", this.passexample);
+        dom.byId("Regpassword2").setAttribute("placeholder", this.passexample);
+        dom.byId("forgetID").setAttribute("placeholder", this.EmailLabel);
+        dom.byId("RegEmail").setAttribute("placeholder", this.EmailLabel);
+        // dom.byId("Regpassword2").setAttribute("placeholder", this.passexample);
+
         dom.byId("LoginID").setAttribute("value", this.logintext);
+        dom.byId("signup").setAttribute("value", this.Signuptext);
+        dom.byId("RememberPassword").setAttribute("value", this.ResetPasswordtext);
 
     }
     private updateRendering() {
@@ -179,6 +187,10 @@ class Tabbedlogin extends WidgetBase {
         if (this.showLabels) {
             dom.byId("userLabel").innerHTML = this.usernameLabel;
             dom.byId("userPassword").innerHTML = this.passwordLabel;
+            dom.byId("EmailLabel").innerHTML = this.EmailLabel;
+            dom.byId("userPassword2").innerHTML = this.passwordLabel;
+            dom.byId("userPassword1").innerHTML = this.passwordLabel;
+            dom.byId("userLabel1").innerHTML = this.usernameLabel;
             dom.byId("tab1").innerHTML = this.tablabel1;
             dom.byId("tab2").innerHTML = this.tablabel2;
             dom.byId("tab3").innerHTML = this.tablabel3;

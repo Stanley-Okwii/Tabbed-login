@@ -49,6 +49,10 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <caption>Password Placeholder</caption>
             <category>Display</category>
             <description>Input box sample value</description>
+        <property key="emailexample" type="string" defaultValue="example@org.com" required="false">
+            <caption>Email Placeholder</caption>
+            <category>Display</category>
+            <description>Input box sample value</description>
         </property>
         <property key="showLabels" type="boolean" defaultValue="false">
             <caption>Show Labels</caption>
@@ -65,10 +69,25 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <category>Display</category>
             <description>Password label caption (Only used if Show Labels is Yes)</description>
         </property>
+        <property key="EmailLabel" type="string" defaultValue="Email" required="false">
+            <caption>Email Label</caption>
+            <category>Display</category>
+            <description>Email label caption (Only used for sign up tab and forgot password)</description>
+        </property>
         <property key="logintext" type="string" defaultValue="Login">
             <caption>Login Button Caption</caption>
             <category>Display</category>
-            <description>Login button caption</description>
+            <description>Login button caption </description>
+        </property>
+        <property key="Signuptext" type="string" defaultValue="Sign up">
+            <caption>Sign up Button Caption</caption>
+            <category>Display</category>
+            <description>Sign up button caption</description>
+        </property>
+        <property key="ResetPasswordtext" type="string" defaultValue="Reset">
+            <caption>Reset Password Button Caption</caption>
+            <category>Display</category>
+            <description>Reset Password  button caption</description>
         </property>
         <property key="emptytext" type="string" required="false" defaultValue="No username or password given">
             <caption>Empty Username or Password Text</caption>
