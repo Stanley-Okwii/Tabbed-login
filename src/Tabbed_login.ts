@@ -75,13 +75,13 @@ class Tabbedlogin extends WidgetBase {
             id: "parent_div",
             style: "height: 100%; width: 100%; border: 1px solid #DDDDDD;",
             innerHTML: "<input id='tab1' type='radio' name='tabs' checked>" +
-            "<label for='tab1'>Login</label>" +
+            "<label for='tab1' id='domtablabel1' >Login</label>" +
 
             "<input id='tab2' type='radio' name='tabs'>" +
-            "<label for='tab2'>Register</label>" +
+            "<label for='tab2' id='domtablabel2' >Register</label>" +
 
             "<input id='tab3' type='radio' name='tabs'>" +
-            "<label for='tab3' id='tablabel3'>Forgot password</label>" +
+            "<label for='tab3' id='domtablabel3'>Forgot password</label>" +
 
             "<section id='content1'>" +
 
@@ -173,9 +173,9 @@ class Tabbedlogin extends WidgetBase {
         if (this.showLabels) {
             dom.byId("userLabel").innerHTML = this.usernameLabel;
             dom.byId("userPassword").innerHTML = this.passwordLabel;
-            dom.byId("tab1").innerHTML = this.tablabel1;
-            dom.byId("tab2").innerHTML = this.tablabel2;
-            dom.byId("tab3").innerHTML = this.tablabel3;
+            dom.byId("domtablabel1").innerHTML = this.tablabel1;
+            dom.byId("domtablabel2").innerHTML = this.tablabel2;
+            dom.byId("domtablabel3").innerHTML = this.tablabel3;
         }
     }
 
