@@ -14,12 +14,16 @@ BghAURT1Au8AZsVVqkRnAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTA3LTMxVDA4OjQ5OjU1KzAy
 OjAwDnJCvAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNy0zMVQwODo0OTo1NSswMjowMH8v+gAA
 AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
 </icon>
-     <properties>
     <properties>
-        <property key="showTab" type="boolean" defaultValue="true">
+        <property key="showForgotTab" type="boolean" defaultValue="true">
             <caption>Show forgot password Tab</caption>
             <category>Tab Control</category>
-            <description>Removes forgot password tab from the Tab container</description>
+            <description>Show forgot password tab in the Tab container</description>
+        </property>
+        <property key="showSignupTab" type="boolean" defaultValue="true">
+            <caption>Show Sign up Tab</caption>
+            <category>Tab Control</category>
+            <description>Show sign up tab in the Tab container</description>
         </property>
         <property key="tablabel1" type="string" defaultValue="Login" required="false">
             <caption>Tab1 label</caption>

@@ -46,7 +46,8 @@ class Tabbedlogin extends WidgetBase {
     private keyboardType: string;
 
     // Case Handling
-    showTab: false;
+    private showForgotTab: boolean;
+    private showSignupTab: boolean;
     private convertCase: string;
 
     private contextObject: mendix.lib.MxObject;
@@ -80,7 +81,7 @@ class Tabbedlogin extends WidgetBase {
             "<label for='tab1'>Login</label>" +
 
             "<input id='tab2' type='radio' name='tabs'>" +
-            "<label for='tab2'>Register</label>" +
+            "<label for='tab2'id='tablabel2'>Register</label>" +
 
             "<input id='tab3' type='radio' name='tabs'>" +
             "<label for='tab3' id='tablabel3'>Forgot password</label>" +
@@ -131,7 +132,7 @@ class Tabbedlogin extends WidgetBase {
     private updateRendering() {
         this.DisplayText();
         this.DisplayLabels();
-        this.displayTab3();
+        this.displayTabs();
         if (this.dofocus) {
             this.focusNode();
         }
@@ -184,9 +185,12 @@ class Tabbedlogin extends WidgetBase {
         }
     }
 
-    private displayTab3(): void {
-        if (this.showTab) {
+    private displayTabs(): void {
+        if (this.showForgotTab === false) {
             dom.byId("tablabel3").setAttribute("style", "display: none");
+        }
+        if (this.showSignupTab === false) {
+            dom.byId("tablabel2").setAttribute("style", "display: none");
         }
     }
     private addMobileOptions(): void {
