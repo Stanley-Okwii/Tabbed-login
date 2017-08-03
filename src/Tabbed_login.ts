@@ -5,6 +5,7 @@ import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import * as TabContainer from "dijit/layout/TabContainer";
 import * as ContentPane from "dijit/layout/ContentPane";
+//import * as dojoStyle from "dojo/dom-style";
 
 import "./Tabbed_login.css";
 
@@ -27,6 +28,9 @@ class Tabbedlogin extends WidgetBase {
     emptytext: string;
     passwordLabel: string;
     logintext: string;
+    tablabel1: string;
+    tablabel2: string;
+    tablabel3: string;
 
     // initializing parameters for Login Behaviour category in the modeler
     showprogress: false;
@@ -36,6 +40,7 @@ class Tabbedlogin extends WidgetBase {
     showLoginFailureWarning: false;
     loginFailureText: "Your account will be blocked for 5 minutes if login with the same username fails thrice!";
     autoComplete: false;
+    showTab: false;
     /**
         * Case Handling
         */
@@ -76,7 +81,7 @@ class Tabbedlogin extends WidgetBase {
             "<label for='tab2'>Register</label>" +
 
             "<input id='tab3' type='radio' name='tabs'>" +
-            "<label for='tab3'>Forgot password</label>" +
+            "<label for='tab3' id='tablabel3'>Forgot password</label>" +
 
             "<section id='content1'>" +
 
@@ -119,10 +124,12 @@ class Tabbedlogin extends WidgetBase {
         dom.byId("LogUserName").setAttribute("placeholder", this.userexample);
         dom.byId("LogPassword").setAttribute("placeholder", this.passexample);
         dom.byId("LoginID").setAttribute("value", this.logintext);
+        
     }
     private updateRendering() {
         this.DisplayText();
         this.DisplayLabels();
+        this.displayTab3();
         if (this.dofocus) {
             this.focusNode();
         }
@@ -166,6 +173,15 @@ class Tabbedlogin extends WidgetBase {
         if (this.showLabels) {
             dom.byId("userLabel").innerHTML = this.usernameLabel;
             dom.byId("userPassword").innerHTML = this.passwordLabel;
+            dom.byId("tab1").innerHTML = this.tablabel1;
+            dom.byId("tab2").innerHTML = this.tablabel2;
+            dom.byId("tab3").innerHTML = this.tablabel3;
+        }
+    }
+
+    private displayTab3(): void {
+        if (this.showTab) {
+            dom.byId("tablabel3").setAttribute("style", "display: none");
         }
     }
 

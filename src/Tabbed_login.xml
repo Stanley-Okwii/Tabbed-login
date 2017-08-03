@@ -14,8 +14,28 @@ BghAURT1Au8AZsVVqkRnAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTA3LTMxVDA4OjQ5OjU1KzAy
 OjAwDnJCvAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNy0zMVQwODo0OTo1NSswMjowMH8v+gAA
 AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
 </icon>
-     <properties>
-            <property key="userexample" type="string" defaultValue="Username" required="false">
+    <properties>
+        <property key="showTab" type="boolean" defaultValue="true">
+            <caption>Disable forgot password Tab</caption>
+            <category>Tabs</category>
+            <description>Removes forgot password tab from the Tab container</description>
+        </property>
+        <property key="tablabel1" type="string" defaultValue="Login" required="false">
+            <caption>Tab1 label</caption>
+            <category>Tabs</category>
+            <description>Name of your first Tab</description>
+        </property>
+        <property key="tablabel2" type="string" defaultValue="Register" required="false">
+            <caption>Tab2 label</caption>
+            <category>Tabs</category>
+            <description>Name of your second Tab</description>
+        </property>
+        <property key="tablabel3" type="string" defaultValue="Register" required="false">
+            <caption>Tab3 label</caption>
+            <category>Tabs</category>
+            <description>Name of your third Tab</description>
+        </property>
+        <property key="userexample" type="string" defaultValue="Username" required="false">
             <caption>Username Placeholder</caption>
             <category>Display</category>
             <description>Input box sample value</description>
