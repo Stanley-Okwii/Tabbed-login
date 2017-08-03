@@ -30,12 +30,12 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <category>Tab Control</category>
             <description>Name of your first Tab</description>
         </property>
-        <property key="tablabel2" type="string" defaultValue="Register" required="false">
+        <property key="tablabel2" type="string" defaultValue="Sign up" required="false">
             <caption>Tab2 label</caption>
             <category>Tab Control</category>
             <description>Name of your second Tab</description>
         </property>
-        <property key="tablabel3" type="string" defaultValue="Register" required="false">
+        <property key="tablabel3" type="string" defaultValue="Forgot password" required="false">
             <caption>Tab3 label</caption>
             <category>Tab Control</category>
             <description>Name of your third Tab</description>
@@ -49,6 +49,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <caption>Password Placeholder</caption>
             <category>Display</category>
             <description>Input box sample value</description>
+        </property>
         <property key="emailexample" type="string" defaultValue="example@org.com" required="false">
             <caption>Email Placeholder</caption>
             <category>Display</category>

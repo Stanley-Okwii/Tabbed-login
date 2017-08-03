@@ -23,6 +23,7 @@ class Tabbedlogin extends WidgetBase {
     // initializing parameters for Display category in the modeler
     userexample: string;
     passexample: string;
+    emailexample: string;
     showLabels: false;
     EmailLabel: string;
     usernameLabel: string;
@@ -84,11 +85,7 @@ class Tabbedlogin extends WidgetBase {
             "<label for='tab1' id='domtablabel1' >Login</label>" +
 
             "<input id='tab2' type='radio' name='tabs'>" +
-<<<<<<< HEAD
-            "<label for='tab2'id='tablabel2'>Register</label>" +
-=======
             "<label for='tab2' id='domtablabel2' >Register</label>" +
->>>>>>> 82a43a3691a99c3a84a30e3c8bf90d42519e3545
 
             "<input id='tab3' type='radio' name='tabs'>" +
             "<label for='tab3' id='domtablabel3'>Forgot password</label>" +
@@ -107,7 +104,7 @@ class Tabbedlogin extends WidgetBase {
 
             "<section id='content2'>" +
             "<form target='_blank'>" +
-            "<div id='warningNode2'></div></br><span id='userLabel1'>User name</span><br/>" +
+            "<div id='warningNode2'></div><span id='userLabel1'>User name</span><br/>" +
             "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
             "<span  id='userPassword1'>Password</span><br/>" +
             "<input type='password' placeholder='Password'  id='Regpassword1'/><br/>" +
@@ -121,19 +118,20 @@ class Tabbedlogin extends WidgetBase {
 
             "<section id='content3'>" +
             "<form target='_blank' ><div>" +
-            "<div id='warningNode3'></div><span>Enter your email to reset password</span><br/>" +
-            "<span id='EmailLabel'>Email</span><br/>" +
+            "<div id='warningNode3'></div>" +
+            "<span id='EmailLabel1'>Email</span><br/>" +
             "<input type='email' placeholder='example@gmail.com' id='forgetID'/><br/>" +
             "<input type='button' value='Reset' id='RememberPassword'/>" +
             "</div></form>" +
             "</section>"
         }, this.domNode);
         dom.byId("LogUserName").setAttribute("placeholder", this.userexample);
+        dom.byId("Regusername").setAttribute("placeholder", this.userexample);
         dom.byId("LogPassword").setAttribute("placeholder", this.passexample);
         dom.byId("Regpassword1").setAttribute("placeholder", this.passexample);
         dom.byId("Regpassword2").setAttribute("placeholder", this.passexample);
-        dom.byId("forgetID").setAttribute("placeholder", this.EmailLabel);
-        dom.byId("RegEmail").setAttribute("placeholder", this.EmailLabel);
+        dom.byId("forgetID").setAttribute("placeholder", this.emailexample);
+        dom.byId("RegEmail").setAttribute("placeholder", this.emailexample);
         // dom.byId("Regpassword2").setAttribute("placeholder", this.passexample);
 
         dom.byId("LoginID").setAttribute("value", this.logintext);
@@ -192,6 +190,7 @@ class Tabbedlogin extends WidgetBase {
             dom.byId("userLabel").innerHTML = this.usernameLabel;
             dom.byId("userPassword").innerHTML = this.passwordLabel;
             dom.byId("EmailLabel").innerHTML = this.EmailLabel;
+            dom.byId("EmailLabel1").innerHTML = this.EmailLabel;
             dom.byId("userPassword2").innerHTML = this.passwordLabel;
             dom.byId("userPassword1").innerHTML = this.passwordLabel;
             dom.byId("userLabel1").innerHTML = this.usernameLabel;
