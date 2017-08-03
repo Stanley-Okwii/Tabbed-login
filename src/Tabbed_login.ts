@@ -101,7 +101,7 @@ class Tabbedlogin extends WidgetBase {
             "<span>Password again</span><br/>" +
             "<input type='password' placeholder='Password'  id='Regpassword2'/><br/>" +
             "<span>Email</span><br/>" +
-            "<input type='email' placeholder ='e.g stanleeparker12@gmail.com'  id='RegEmail'/><br/>" +
+            "<input type='email' placeholder ='example@gmail.com'  id='RegEmail'/><br/>" +
             "<input type='button' value ='sign up' id='signup'/>" +
             "</div></form>" +
             "</section>" +
@@ -109,10 +109,10 @@ class Tabbedlogin extends WidgetBase {
             "<section id='content3'>" +
             "<form target='_blank' ><div>" +
             "<span><font size='3'>Lost your password</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'>" +
-            "<span>Enter your user email to reset password</span><br/>" +
+            "<div id='warningNode'></div></br><span>Enter your user email to reset password</span><br/>" +
             "<span>Email</span><br/>" +
-            "<input type='email' placeholder='e.g stanleeparker12@gmail.com' id='forgetID'/><br/>" +
-            "<input type='button' value='submit' id='RememberPassword'/>" +
+            "<input type='email' placeholder='example@gmail.com' id='forgetID'/><br/>" +
+            "<input type='button' value='Reset' id='RememberPassword'/>" +
             "</div></form>" +
             "</section>"
         }, this.domNode);
@@ -183,6 +183,16 @@ class Tabbedlogin extends WidgetBase {
         if (this.showLabels) {
             dom.byId("userLabel").innerHTML = this.usernameLabel;
             dom.byId("userPassword").innerHTML = this.passwordLabel;
+        }
+    }
+
+    private ValidateEmail(mail: string): boolean {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+            return (true);
+        } else {
+            dom.byId("warningNode").innerHTML = "<div style='color:red; display: block;'>" +
+                "The Email address you entered is invalid.<br/></div>";
+            return (false);
         }
     }
     private SignUpMethod(): void {
@@ -258,16 +268,21 @@ class Tabbedlogin extends WidgetBase {
         }
     }
     private RecoverPassword(): void {
-        mx.data.create({
-            callback: (obj: mendix.lib.MxObject) => {
-                obj.set(this._Email, dom.byId("forgetID").value);
-                this.ExecuteMicroflow(this.ForgetPasswordMicroflow, obj.getGuid());
-            },
-            entity: this.PersonLogin,
-            error: (e) => {
-                console.error("Could not commit object:", e);
-            }
-        });
+        if (this.ValidateEmail(dom.byId("forgetID").value)) {
+            mx.data.create({
+                callback: (obj: mendix.lib.MxObject) => {
+                    obj.set(this._Email, dom.byId("forgetID").value);
+                    this.ExecuteMicroflow(this.ForgetPasswordMicroflow, obj.getGuid());
+                },
+                entity: this.PersonLogin,
+                error: (e) => {
+                    console.error("Could not commit object:", e);
+                }
+            });
+        } else {
+            dom.byId("warningNode").innerHTML = "<div style='color:red; display: block;'>" +
+                "The Email address you entered is invalid.<br/></div>";
+        }
     }
     private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
         if (mf && guid) {
@@ -299,7 +314,7 @@ class Tabbedlogin extends WidgetBase {
                         cb(objs);
                     }
                     if (objs) {
-                        mx.login( dom.byId("Regusername").value,  dom.byId("Regpassword1").value,
+                        mx.login(dom.byId("Regusername").value, dom.byId("Regpassword1").value,
                             () => {
                                 if (this.indicator) {
                                     mx.ui.hideProgress(this.indicator);
