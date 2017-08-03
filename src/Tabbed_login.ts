@@ -3,7 +3,7 @@ import * as domConstruct from "dojo/dom-construct";
 import * as WidgetBase from "mxui/widget/_WidgetBase";
 import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
-import * as TabContainer from "dijit/layout/TabContainer";
+import * as dojoHas from "dojo/has";
 import * as ContentPane from "dijit/layout/ContentPane";
 
 import "./Tabbed_login.css";
@@ -36,9 +36,13 @@ class Tabbedlogin extends WidgetBase {
     showLoginFailureWarning: false;
     loginFailureText: "Your account will be blocked for 5 minutes if login with the same username fails thrice!";
     autoComplete: false;
-    /**
-        * Case Handling
-        */
+
+    // Mobile
+    autoCorrect: false;
+    autoCapitalize: false;
+    private keyboardType: string;
+
+    // Case Handling
     private convertCase: string;
 
     // Internal variables
@@ -94,14 +98,14 @@ class Tabbedlogin extends WidgetBase {
             "<form target='_blank'>" +
             "<span><font size='3'>Register for this site</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'>" +
             "<span>Sign up for the good stuff now</span><br/>" +
-            "<span>User name</span><br/>" +
+            "<div id='warningNode2'></div></br><span>User name</span><br/>" +
             "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
             "<span>Password</span><br/>" +
             "<input type='password' placeholder='Password'  id='Regpassword1'/><br/>" +
             "<span>Password again</span><br/>" +
             "<input type='password' placeholder='Password'  id='Regpassword2'/><br/>" +
             "<span>Email</span><br/>" +
-            "<input type='email' placeholder ='e.g stanleeparker12@gmail.com'  id='RegEmail'/><br/>" +
+            "<input type='email' placeholder ='example@gmail.com'  id='RegEmail'/><br/>" +
             "<input type='button' value ='sign up' id='signup'/>" +
             "</div></form>" +
             "</section>" +
@@ -109,10 +113,10 @@ class Tabbedlogin extends WidgetBase {
             "<section id='content3'>" +
             "<form target='_blank' ><div>" +
             "<span><font size='3'>Lost your password</font></span><br/><hr style='border: 0px; height: 2px; background: #333; margin: 0px;margin-bottom: 10px; margin-top: 2px;'>" +
-            "<span>Enter your user email to reset password</span><br/>" +
+            "<div id='warningNode3'></div></br><span>Enter your user email to reset password</span><br/>" +
             "<span>Email</span><br/>" +
-            "<input type='email' placeholder='e.g stanleeparker12@gmail.com' id='forgetID'/><br/>" +
-            "<input type='button' value='submit' id='RememberPassword'/>" +
+            "<input type='email' placeholder='example@gmail.com' id='forgetID'/><br/>" +
+            "<input type='button' value='Reset' id='RememberPassword'/>" +
             "</div></form>" +
             "</section>"
         }, this.domNode);
@@ -175,8 +179,11 @@ class Tabbedlogin extends WidgetBase {
         this.setUsernameInputAttributes();
         if (this.autoComplete) {
             dom.byId("LogUserName").setAttribute("autocomplete", "on");
-            dom.byId("LogPassword").setAttribute("autocomplete", "on");
+            dom.byId("forgetID").setAttribute("autocomplete", "on");
+            dom.byId("RegEmail").setAttribute("autocomplete", "on");
+            dom.byId("Regusername").setAttribute("autocomplete", "on");
         }
+        this.addMobileOptions();
     }
 
     private DisplayLabels(): void {
@@ -185,22 +192,39 @@ class Tabbedlogin extends WidgetBase {
             dom.byId("userPassword").innerHTML = this.passwordLabel;
         }
     }
+    private addMobileOptions(): void {
+        if (dojoHas("ios") || dojoHas("android") || dojoHas("bb")) {
+            dom.byId("LogUserName").setAttribute("type", this.keyboardType);
+        }
+    }
+    private ValidateEmail(mail: string): boolean {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+            return (true);
+        } else {
+            return (false);
+        }
+    }
     private SignUpMethod(): void {
-        mx.data.create({
-            callback: (obj: mendix.lib.MxObject) => {
-                obj.set(this._UserName, dom.byId("Regusername").value);
-                obj.set(this._Email, dom.byId("RegEmail").value);
-                obj.set(this._password, dom.byId("Regpassword1").value);
-                obj.set(this._password, dom.byId("Regpassword2").value);
-                this.contextObject = obj;
-                this.ExecuteMicroflowSignup(this.SignupMicroflow, this.contextObject.getGuid());
-                console.log("Object created on server");
-            },
-            entity: this.PersonLogin,
-            error: (e) => {
-                console.error("Could not commit object:", e);
-            }
-        });
+        if (this.ValidateEmail(dom.byId("RegEmail").value)) {
+            mx.data.create({
+                callback: (obj: mendix.lib.MxObject) => {
+                    obj.set(this._UserName, dom.byId("Regusername").value);
+                    obj.set(this._Email, dom.byId("RegEmail").value);
+                    obj.set(this._password, dom.byId("Regpassword1").value);
+                    obj.set(this._password, dom.byId("Regpassword2").value);
+                    this.contextObject = obj;
+                    this.ExecuteMicroflowSignup(this.SignupMicroflow, this.contextObject.getGuid());
+                    console.log("Object created on server");
+                },
+                entity: this.PersonLogin,
+                error: (e) => {
+                    console.error("Could not commit object:", e);
+                }
+            });
+        } else {
+            dom.byId("warningNode2").innerHTML = "<div style='color:red; display: block;'>" +
+                "The Email address you entered is invalid.<br/></div>";
+        }
     }
     private LoginMethod(): void {
         const UserNameN = dom.byId("LogUserName").value;
@@ -248,6 +272,18 @@ class Tabbedlogin extends WidgetBase {
         }, 100);
     }
     private setUsernameInputAttributes(): void {
+        if (this.autoCorrect) {
+            dom.byId("LogUserName").setAttribute("autocorrect", "on");
+            dom.byId("LogUserName").setAttribute("autocorrect", "on");
+
+        }
+        if (this.autoCapitalize && this.convertCase !== "none") {
+            dom.byId("LogUserName").setAttribute("autocapitalize", "on");
+        }
+        if (this.autoComplete) {
+            dom.byId("LogUserName").setAttribute("autocomplete", "on");
+            dom.byId("LogPassword").setAttribute("autocomplete", "on");
+        }
         if (this.convertCase !== "none") {
             dom.byId("LogUserName").setAttribute("autocapitalize", "on");
         }
@@ -258,16 +294,24 @@ class Tabbedlogin extends WidgetBase {
         }
     }
     private RecoverPassword(): void {
-        mx.data.create({
-            callback: (obj: mendix.lib.MxObject) => {
-                obj.set(this._Email, dom.byId("forgetID").value);
-                this.ExecuteMicroflow(this.ForgetPasswordMicroflow, obj.getGuid());
-            },
-            entity: this.PersonLogin,
-            error: (e) => {
-                console.error("Could not commit object:", e);
-            }
-        });
+        if (this.ValidateEmail(dom.byId("forgetID").value)) {
+            mx.data.create({
+                callback: (obj: mendix.lib.MxObject) => {
+                    obj.set(this._Email, dom.byId("forgetID").value);
+                    this.ExecuteMicroflow(this.ForgetPasswordMicroflow, obj.getGuid());
+                },
+                entity: this.PersonLogin,
+                error: (e) => {
+                    console.error("Could not commit object:", e);
+                }
+            });
+            dom.byId("warningNode3").innerHTML = "<div style='color:red; display: none;'>" +
+                "<br/></div>";
+        }
+        else {
+            dom.byId("warningNode3").innerHTML = "<div style='color:red; display: block;'>" +
+                "The Email address you entered is invalid.<br/></div>";
+        }
     }
     private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
         if (mf && guid) {
@@ -299,7 +343,7 @@ class Tabbedlogin extends WidgetBase {
                         cb(objs);
                     }
                     if (objs) {
-                        mx.login( dom.byId("Regusername").value,  dom.byId("Regpassword1").value,
+                        mx.login(dom.byId("Regusername").value, dom.byId("Regpassword1").value,
                             () => {
                                 if (this.indicator) {
                                     mx.ui.hideProgress(this.indicator);

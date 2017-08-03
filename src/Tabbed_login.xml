@@ -15,7 +15,7 @@ OjAwDnJCvAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wNy0zMVQwODo0OTo1NSswMjowMH8v+gAA
 AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
 </icon>
      <properties>
-            <property key="userexample" type="string" defaultValue="Username" required="false">
+        <property key="userexample" type="string" defaultValue="Username" required="false">
             <caption>Username Placeholder</caption>
             <category>Display</category>
             <description>Input box sample value</description>
@@ -52,12 +52,12 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
         </property>
         <property key="PersonLogin" type="entity" required="true">
             <caption>Person Entity</caption>
-            <category>Person Credentials</category>
+            <category>SignUp</category>
             <description>This is the entity property</description>
         </property>
            <property key="_UserName" type="attribute" entityProperty="PersonLogin" required="false">
             <caption>User Name</caption>
-            <category>Person Credentials</category>
+            <category>SignUp</category>
             <description>The context data for the User Name</description>
             <attributeTypes>
                 <attributeType name="String" />
@@ -65,23 +65,15 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
         </property> 
         <property key="_password" type="attribute" entityProperty="PersonLogin" required="false">
             <caption>Password</caption>
-            <category>Person Credentials</category>
+            <category>SignUp</category>
             <description>The context data for the Password</description>
-            <attributeTypes>
-                <attributeType name="String" />
-            </attributeTypes>
-        </property> 
-        <property key="_password2" type="attribute" entityProperty="PersonLogin" required="false">
-            <caption>Password 2</caption>
-            <category>Person Credentials</category>
-            <description>The context data for the Password 2</description>
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>
         </property>
         <property key="_Email" type="attribute" entityProperty="PersonLogin" required="false">
             <caption>Email Address</caption>
-            <category>Person Credentials</category>
+            <category>SignUp</category>
             <description>The context data for the Email Address</description>
             <attributeTypes>
                 <attributeType name="String" />
@@ -123,8 +115,8 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <description>Enables/disables auto-complete functionality on username and pasword input fields</description>
         </property>
         <property key="SignupMicroflow" type="microflow" required="false" defaultValue="">
-            <caption>Sign up</caption>
-            <category>Microflow Calls</category>
+            <caption>Action microflow</caption>
+            <category>SignUp</category>
             <description>The microflow to execute on sign up</description>
             <returnType type="Boolean" />
         </property>
@@ -132,7 +124,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <caption>Forgot Password</caption>
             <category>Microflow Calls</category>
             <description>This microflow will be executed when user clicks Reset button</description>
-            <returnType type="String" />
+            <returnType type="Void" />
         </property>
         <property key="convertCase" type="enumeration" defaultValue="none">
             <caption>Convert to lowercase/uppercase</caption>
@@ -143,7 +135,28 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
                 <enumerationValue key="toLowerCase">Convert to lowercase</enumerationValue>
                 <enumerationValue key="toUpperCase">Convert to uppercase</enumerationValue>
             </enumerationValues>
-        </property>   
+        </property>
+                <property key="autoCorrect" type="boolean" defaultValue="false">
+            <caption>Auto-correct</caption>
+            <category>Mobile</category>
+            <description>Auto-correct Username</description>
+        </property>
+        <property key="autoCapitalize" type="boolean" defaultValue="false">
+            <caption>Auto-capitalize</caption>
+            <category>Mobile</category>
+            <description>Auto-capitalize Username</description>
+        </property>
+        <property key="keyboardType" type="enumeration" defaultValue="text">
+            <caption>Username Keyboard Type</caption>
+            <category>Mobile</category>
+            <description>The keyboard type to display when the user is entering their username</description>
+            <enumerationValues>
+                <enumerationValue key="text">Text</enumerationValue>
+                <enumerationValue key="email">Email</enumerationValue>
+                <enumerationValue key="tel">Telephone Number</enumerationValue>
+                <enumerationValue key="number">Number</enumerationValue>
+            </enumerationValues>
+        </property>
     </properties>
 </widget>
 
