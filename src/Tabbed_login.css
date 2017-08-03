@@ -41,7 +41,7 @@ label {
   padding: 15px 25px;
   font-weight: 600;
   text-align: center;
-  color: #bbb;
+  color: #000;
   border: 1px solid transparent;
 }
 
@@ -56,8 +56,8 @@ label:hover {
   cursor: pointer;
 }
 
-input:checked + label {
-  color: #555;
+input:checked + label {    
+  color: #008CBA;
   border: 1px solid #ddd;
   border-top: 2px solid #008CBA;
   border-bottom: 1px solid #fff;
