@@ -61,10 +61,10 @@ class TabbedloginNocontext extends WidgetBase {
         domConstruct.create("div", {
             id: "parent_div",
             style: "height: 100%; width: 100%; border: 1px solid #DDDDDD; border-radius: 10px;",
-            innerHTML: "<input id='tab1' type='radio' name='tabs' checked>" +
-            "<label for='tab1' id='domtablabel1' >Login</label>" +
+            innerHTML: "<input id='tab11' type='radio' name='tabs' checked>" +
+            "<label for='tab11' id='domtablabel1' >Login</label>" +
 
-            "<section id='content1'>" +
+            "<section id='content11'>" +
 
             "<form target='_blank'><div>" +
             "<div id='warningNode'></div><span id='userLabel'>User name</span><br/>" +
