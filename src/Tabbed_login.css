@@ -41,7 +41,7 @@ label {
   padding: 15px 25px;
   font-weight: 600;
   text-align: center;
-  color: #000;
+  color: #888888;
   border: 1px solid transparent;
 }
 
@@ -52,7 +52,7 @@ label:before {
 }
 
 label:hover {
-  color: #888;
+  color: #000000;
   cursor: pointer;
 }
 

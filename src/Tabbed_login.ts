@@ -77,7 +77,7 @@ class Tabbedlogin extends WidgetBase {
     private DisplayText() {
         domConstruct.create("div", {
             id: "parent_div",
-            style: "height: 100%; width: 100%; border: 1px solid #DDDDDD;",
+            style: "height: 100%; width: 100%; border: 1px solid #DDDDDD; border-radius: 10px;",
             innerHTML: "<input id='tab1' type='radio' name='tabs' checked>" +
             "<label for='tab1' id='domtablabel1' >Login</label>" +
 
