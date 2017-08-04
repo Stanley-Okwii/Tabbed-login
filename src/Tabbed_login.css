@@ -43,6 +43,7 @@ label {
   text-align: center;
   color: #888888;
   border: 1px solid transparent;
+  font-size: 100%;
 }
 
 label:before {

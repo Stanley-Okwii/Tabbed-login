@@ -79,13 +79,13 @@ class Tabbedlogin extends WidgetBase {
             id: "parent_div",
             style: "height: 100%; width: 100%; border: 1px solid #DDDDDD; border-radius: 10px;",
             innerHTML: "<input id='tab1' type='radio' name='tabs' checked>" +
-            "<label for='tab1' id='domtablabel1' >Login</label>" +
+            "<label for='tab1' id='domtablabel1' style='font-size: 100%;' >Login</label>" +
 
             "<input id='tab2' type='radio' name='tabs'>" +
-            "<label for='tab2' id='domtablabel2' >Register</label>" +
+            "<label for='tab2' id='domtablabel2' style='font-size: 100%;'>Register</label>" +
 
             "<input id='tab3' type='radio' name='tabs'>" +
-            "<label for='tab3' id='domtablabel3'>Forgot password</label>" +
+            "<label for='tab3' id='domtablabel3' style='font-size: 100%;'>Forgot password</label>" +
 
             "<section id='content1'>" +
 
