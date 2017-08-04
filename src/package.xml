@@ -3,9 +3,11 @@
     <clientModule name="Tabbed_login" version="0.1.0" xmlns="http://www.mendix.com/clientModule/1.0/">
         <widgetFiles>
             <widgetFile path="Tabbed_login.xml"/>
+             <widgetFile path="Tabbed_loginNoContext.xml"/>
         </widgetFiles>
         <files>
             <file path="widget/Tabbed_login"/>
+            <file path="widget/Tabbed_loginNoContext"/>
         </files>
     </clientModule>
 </package>
