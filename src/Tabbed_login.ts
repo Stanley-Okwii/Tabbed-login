@@ -1,16 +1,13 @@
 import * as dojoDeclare from "dojo/_base/declare";
 import * as domConstruct from "dojo/dom-construct";
 import * as WidgetBase from "mxui/widget/_WidgetBase";
-import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import * as dojoHas from "dojo/has";
-import * as ContentPane from "dijit/layout/ContentPane";
-//import * as dojoStyle from "dojo/dom-style";
+import * as dojoEvent from "dojo/_base/event";
 
 import "./Tabbed_login.css";
 
 class Tabbedlogin extends WidgetBase {
-
     // Parameters configured in modeler 
     PersonLogin: string;
     _UserName: string;
@@ -32,9 +29,9 @@ class Tabbedlogin extends WidgetBase {
     logintext: string;
     Signuptext: string;
     ResetPasswordtext: string;
-    tablabel1: string;
-    tablabel2: string;
-    tablabel3: string;
+    LoginTab: string;
+    SignupTab: string;
+    ForgotTab: string;
 
     // initializing parameters for Login Behaviour category in the modeler
     showprogress: false;
@@ -132,12 +129,10 @@ class Tabbedlogin extends WidgetBase {
         dom.byId("Regpassword2").setAttribute("placeholder", this.passexample);
         dom.byId("forgetID").setAttribute("placeholder", this.emailexample);
         dom.byId("RegEmail").setAttribute("placeholder", this.emailexample);
-        // dom.byId("Regpassword2").setAttribute("placeholder", this.passexample);
 
         dom.byId("LoginID").setAttribute("value", this.logintext);
         dom.byId("signup").setAttribute("value", this.Signuptext);
         dom.byId("RememberPassword").setAttribute("value", this.ResetPasswordtext);
-
     }
     private updateRendering() {
         this.DisplayText();
@@ -154,6 +149,9 @@ class Tabbedlogin extends WidgetBase {
         }, false);
         dom.byId("RememberPassword").addEventListener("click", () => {
             this.RecoverPassword();
+        }, false);
+        dom.byId("Regpassword2").addEventListener("blur", () => {
+            this.validatePasswordFields();
         }, false);
 
         let isUnMask = false;
@@ -194,21 +192,21 @@ class Tabbedlogin extends WidgetBase {
             dom.byId("userPassword2").innerHTML = this.passwordLabel;
             dom.byId("userPassword1").innerHTML = this.passwordLabel;
             dom.byId("userLabel1").innerHTML = this.usernameLabel;
-            dom.byId("tab1").innerHTML = this.tablabel1;
-            dom.byId("tab2").innerHTML = this.tablabel2;
-            dom.byId("tab3").innerHTML = this.tablabel3;
-            dom.byId("domtablabel1").innerHTML = this.tablabel1;
-            dom.byId("domtablabel2").innerHTML = this.tablabel2;
-            dom.byId("domtablabel3").innerHTML = this.tablabel3;
+            dom.byId("tab1").innerHTML = this.LoginTab;
+            dom.byId("tab2").innerHTML = this.SignupTab;
+            dom.byId("tab3").innerHTML = this.ForgotTab;
+            dom.byId("domtablabel1").innerHTML = this.LoginTab;
+            dom.byId("domtablabel2").innerHTML = this.SignupTab;
+            dom.byId("domtablabel3").innerHTML = this.ForgotTab;
         }
     }
 
     private displayTabs(): void {
         if (this.showForgotTab === false) {
-            dom.byId("tablabel3").setAttribute("style", "display: none");
+            dom.byId("domtablabel2").setAttribute("style", "display: none");
         }
         if (this.showSignupTab === false) {
-            dom.byId("tablabel2").setAttribute("style", "display: none");
+            dom.byId("domtablabel3").setAttribute("style", "display: none");
         }
     }
     private addMobileOptions(): void {
@@ -217,15 +215,25 @@ class Tabbedlogin extends WidgetBase {
         }
     }
 
-    private ValidateEmail(mail: string): boolean {
+    private validateEmail(mail: string): boolean {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
             return (true);
         } else {
             return (false);
         }
     }
+    private validatePasswordFields(): void {
+        if (dom.byId("Regpassword1").value !== dom.byId("Regpassword2").value) {
+            dom.byId("warningNode2").innerHTML = "<div style='color:red; display: block;'>" +
+                "Passwords dont match. Please check and try again.<br/></div>"
+        } else{
+             dom.byId("warningNode2").innerHTML = "<div style='display: none;'>" +
+                "<br/></div>"
+        }
+    }
+
     private SignUpMethod(): void {
-        if (this.ValidateEmail(dom.byId("RegEmail").value)) {
+        if (this.validateEmail(dom.byId("RegEmail").value)) {
             mx.data.create({
                 callback: (obj: mendix.lib.MxObject) => {
                     obj.set(this._UserName, dom.byId("Regusername").value);
@@ -252,6 +260,11 @@ class Tabbedlogin extends WidgetBase {
         if (this.showprogress) {
             this.indicator = mx.ui.showProgress();
         }
+        setTimeout(() => {
+            if (this.showprogress) {
+                this.indicator = mx.ui.showProgress();
+            }
+        }, 5);
         mx.login(UserNameN, PasswordN,
             () => {
                 if (this.indicator) {
@@ -275,7 +288,7 @@ class Tabbedlogin extends WidgetBase {
                     console.log("Error in login");
                 } else {
                     dom.byId("warningNode").innerHTML = "<div style='color:red; display: block;'>" +
-                        this.emptytext + "<br/></div>"; //display warning
+                        this.emptytext + "<br/></div>";
                 }
                 if (this.clearPw) {
                     dom.byId("LogUserName").setAttribute("value", "");
@@ -284,9 +297,9 @@ class Tabbedlogin extends WidgetBase {
                     dom.byId("LogPassword").setAttribute("value", "");
                 }
             });
+
     }
     private focusNode() {
-        //Even with timeout set to 0, function code is made asynchronous
         setTimeout(() => {
             dom.byId("LogUserName").focus();
         }, 100);
@@ -314,7 +327,7 @@ class Tabbedlogin extends WidgetBase {
         }
     }
     private RecoverPassword(): void {
-        if (this.ValidateEmail(dom.byId("forgetID").value)) {
+        if (this.validateEmail(dom.byId("forgetID").value)) {
             mx.data.create({
                 callback: (obj: mendix.lib.MxObject) => {
                     obj.set(this._Email, dom.byId("forgetID").value);
@@ -365,9 +378,6 @@ class Tabbedlogin extends WidgetBase {
                     if (objs) {
                         mx.login(dom.byId("Regusername").value, dom.byId("Regpassword1").value,
                             () => {
-                                if (this.indicator) {
-                                    mx.ui.hideProgress(this.indicator);
-                                }
                                 console.log("successful login");
                             },
                             () => {
@@ -387,12 +397,6 @@ class Tabbedlogin extends WidgetBase {
                                 } else {
                                     dom.byId("warningNode").innerHTML = "<div style='color:red; display: block;'>" +
                                         this.emptytext + "<br/></div>"; //display warning
-                                }
-                                if (this.clearPw) {
-                                    dom.byId("LogUserName").setAttribute("value", "");
-                                }
-                                if (this.clearUn) {
-                                    dom.byId("LogPassword").setAttribute("value", "");
                                 }
                             });
                     }

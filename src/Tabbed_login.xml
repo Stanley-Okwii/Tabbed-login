@@ -25,20 +25,20 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <category>Tab Control</category>
             <description>Show sign up tab in the Tab container</description>
         </property>
-        <property key="tablabel1" type="string" defaultValue="Login" required="false">
-            <caption>Tab1 label</caption>
+        <property key="LoginTab" type="string" defaultValue="Login" required="false">
+            <caption>Login tab label</caption>
             <category>Tab Control</category>
-            <description>Name of your first Tab</description>
+            <description>Name of your Login Tab</description>
         </property>
-        <property key="tablabel2" type="string" defaultValue="Sign up" required="false">
-            <caption>Tab2 label</caption>
+        <property key="SignupTab" type="string" defaultValue="Sign up" required="false">
+            <caption>Sign up label</caption>
             <category>Tab Control</category>
-            <description>Name of your second Tab</description>
+            <description>Name of your sign up Tab</description>
         </property>
-        <property key="tablabel3" type="string" defaultValue="Forgot password" required="false">
-            <caption>Tab3 label</caption>
+        <property key="ForgotTab" type="string" defaultValue="Forgot password" required="false">
+            <caption>Forgot password label</caption>
             <category>Tab Control</category>
-            <description>Name of your third Tab</description>
+            <description>Name of your forgot password Tab</description>
         </property>
         <property key="userexample" type="string" defaultValue="Username" required="false">
             <caption>Username Placeholder</caption>
@@ -73,7 +73,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
         <property key="EmailLabel" type="string" defaultValue="Email" required="false">
             <caption>Email Label</caption>
             <category>Display</category>
-            <description>Email label caption (Only used for sign up tab and forgot password)</description>
+            <description>Email label caption (Only used if Show Labels is Yes)</description>
         </property>
         <property key="logintext" type="string" defaultValue="Login">
             <caption>Login Button Caption</caption>
@@ -96,7 +96,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <description>Displayed when Username or Password is empty</description>
         </property>
         <property key="PersonLogin" type="entity" required="true">
-            <caption>Person Entity</caption>
+            <caption>select Entity</caption>
             <category>SignUp</category>
             <description>This is the entity property</description>
         </property>
