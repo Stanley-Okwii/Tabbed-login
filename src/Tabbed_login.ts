@@ -39,7 +39,7 @@ class Tabbedlogin extends WidgetBase {
     clearUn: false;
     dofocus: false;
     showLoginFailureWarning: false;
-    loginFailureText: "Your account will be blocked for 5 minutes if login with the same username fails thrice!";
+    loginFailureText: string;
     autoComplete: false;
     // Mobile
     autoCorrect: false;
