@@ -4,7 +4,6 @@ import * as WidgetBase from "mxui/widget/_WidgetBase";
 import * as dom from "dojo/dom";
 import * as dojoHas from "dojo/has";
 import * as dojoEvent from "dojo/_base/event";
-
 import "./Tabbed_login.css";
 
 class Tabbedlogin extends WidgetBase {
@@ -226,8 +225,8 @@ class Tabbedlogin extends WidgetBase {
         if (dom.byId("Regpassword1").value !== dom.byId("Regpassword2").value) {
             dom.byId("warningNode2").innerHTML = "<div style='color:red; display: block;'>" +
                 "Passwords dont match. Please check and try again.<br/></div>"
-        } else{
-             dom.byId("warningNode2").innerHTML = "<div style='display: none;'>" +
+        } else {
+            dom.byId("warningNode2").innerHTML = "<div style='display: none;'>" +
                 "<br/></div>"
         }
     }
@@ -236,7 +235,7 @@ class Tabbedlogin extends WidgetBase {
         if (this.validateEmail(dom.byId("RegEmail").value)) {
             mx.data.create({
                 callback: (obj: mendix.lib.MxObject) => {
-                    obj.set(this._UserName, dom.byId("Regusername").value);
+                    obj.set(this._UserName, this.changeCase(dom.byId("Regusername").value));
                     obj.set(this._Email, dom.byId("RegEmail").value);
                     obj.set(this._password, dom.byId("Regpassword1").value);
                     obj.set(this._password, dom.byId("Regpassword2").value);
@@ -255,7 +254,7 @@ class Tabbedlogin extends WidgetBase {
         }
     }
     private LoginMethod(): void {
-        const UserNameN = dom.byId("LogUserName").value;
+        const UserNameN = this.changeCase(dom.byId("LogUserName").value);
         const PasswordN = dom.byId("LogPassword").value;
         if (this.showprogress) {
             this.indicator = mx.ui.showProgress();
@@ -312,6 +311,7 @@ class Tabbedlogin extends WidgetBase {
         }
         if (this.autoCapitalize && this.convertCase !== "none") {
             dom.byId("LogUserName").setAttribute("autocapitalize", "on");
+
         }
         if (this.autoComplete) {
             dom.byId("LogUserName").setAttribute("autocomplete", "on");
@@ -319,11 +319,14 @@ class Tabbedlogin extends WidgetBase {
         }
         if (this.convertCase !== "none") {
             dom.byId("LogUserName").setAttribute("autocapitalize", "on");
+            dom.byId("Regusername").setAttribute("autocapitalize", "on");
         }
         if (this.convertCase === "toLowerCase") {
             dom.byId("LogUserName").setAttribute("text-transform", "lowercase");
+            dom.byId("Regusername").setAttribute("text-transform", "lowercase");
         } else if (this.convertCase === "toUpperCase") {
             dom.byId("LogUserName").setAttribute("text-transform", "uppercase");
+            dom.byId("Regusername").setAttribute("text-transform", "uppercase");
         }
     }
     private RecoverPassword(): void {
@@ -345,6 +348,15 @@ class Tabbedlogin extends WidgetBase {
             dom.byId("warningNode3").innerHTML = "<div style='color:red; display: block;'>" +
                 "The Email address you entered is invalid.<br/></div>";
         }
+    }
+    private changeCase(username: string): string {
+        if (this.convertCase === "toUpperCase") {
+            return username.toUpperCase();
+        }
+        if (this.convertCase === "toLowerCase") {
+            return username.toLowerCase();
+        }
+        return username;
     }
     private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
         if (mf && guid) {
@@ -376,7 +388,7 @@ class Tabbedlogin extends WidgetBase {
                         cb(objs);
                     }
                     if (objs) {
-                        mx.login(dom.byId("Regusername").value, dom.byId("Regpassword1").value,
+                        mx.login(this.changeCase(dom.byId("Regusername").value), dom.byId("Regpassword1").value,
                             () => {
                                 console.log("successful login");
                             },
