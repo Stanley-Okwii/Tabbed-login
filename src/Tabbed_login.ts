@@ -163,9 +163,9 @@ class Tabbedlogin extends WidgetBase {
             function ShowPassword1() {
                 dom.byId("LogPassword").setAttribute("type", "text");
             }
-            function HidePassword1(): void {
+            function HidePassword1():void {
                 dom.byId("LogPassword").setAttribute("type", "password");
-            }git 
+            }
 
             if (this.isUnMask === false) {
                 this.isUnMask = true;
