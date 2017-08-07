@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <package xmlns="http://www.mendix.com/package/1.0/">
-    <clientModule name="Tabbed_login" version="0.1.0" xmlns="http://www.mendix.com/clientModule/1.0/">
+    <clientModule name="TabbedLogin" version="0.1.0" xmlns="http://www.mendix.com/clientModule/1.0/">
         <widgetFiles>
-            <widgetFile path="Tabbed_login.xml"/>
-             <widgetFile path="Tabbed_loginNoContext.xml"/>
+            <widgetFile path="TabbedLogin.xml"/>
+             <widgetFile path="TabbedLoginNoContext.xml"/>
         </widgetFiles>
         <files>
-            <file path="widget/Tabbed_login"/>
-            <file path="widget/Tabbed_loginNoContext"/>
+            <file path="widget/TabbedLogin"/>
+            <file path="widget/TabbedLoginNoContext"/>
         </files>
     </clientModule>
 </package>

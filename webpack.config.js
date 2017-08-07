@@ -5,8 +5,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     entry:
     {
-        Tabbed_login: "./src/Tabbed_login.ts",
-        Tabbed_loginNoContext: "./src/Tabbed_loginNoContext.ts"
+        TabbedLogin: "./src/TabbedLogin.ts",
+        TabbedLoginNoContext: "./src/TabbedLoginNoContext.ts"
     },
     output: {
         path: __dirname + "/dist/tmp",
@@ -36,7 +36,7 @@ module.exports = {
         ], {
                 copyUnmodified: true
             }),
-        new ExtractTextPlugin("./src/widget/ui/Tabbed_login.css"),
+        new ExtractTextPlugin("./src/widget/ui/TabbedLogin.css"),
         new webpack.LoaderOptionsPlugin({
             debug: true
         })

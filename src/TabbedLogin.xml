@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="widget.Tabbed_login" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
-    <name>Tabbed Login</name>
-    <description>This widget enables a user to login ,sign up or recover their password when they forget</description>
+<widget id="widget.TabbedLogin" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>Tabbed login</name>
+    <description>It enables a user to login ,sign up or recover their password when they forget</description>
 
     <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
 AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZ
@@ -46,12 +46,12 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <description>Input box sample value</description>
         </property>
         <property key="passexample" type="string" defaultValue="Password" required="false">
-            <caption>Password Placeholder</caption>
+            <caption>Password placeholder</caption>
             <category>Display</category>
             <description>Input box sample value</description>
         </property>
         <property key="emailexample" type="string" defaultValue="example@org.com" required="false">
-            <caption>Email Placeholder</caption>
+            <caption>Email placeholder</caption>
             <category>Display</category>
             <description>Input box sample value</description>
         </property>
@@ -61,7 +61,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <description>Show username and password labels</description>
         </property>
         <property key="usernameLabel" type="string" defaultValue="User name" required="false">
-            <caption>Username Label</caption>
+            <caption>Username label</caption>
             <category>Display</category>
             <description>Username label caption (Only used if Show Labels is Yes)</description>
         </property>
