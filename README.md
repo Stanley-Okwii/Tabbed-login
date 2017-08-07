@@ -28,14 +28,34 @@ NOTE: the FullName attribute in the Account Entity acts as the email Attribute
 
 ## Properties
 
+### SignUp
+* *select Entity* - select a non-persistent entity to handle your signup credentials
+* *User Name* - Select a userName attribute from the non-persistent Entity
+* *password* - Select a Password attribute from the non-persistent Entity
+* *Email Address* - Select an Email attribute from the non-persistent Entity
+* *Action Microflow* - Choose a signup microflow that will save th credentials into the System.user Entity
+
+### Behavior
+* *Forgot Password* - select an Action microflow to execute when user forgot password
+* *Show Progress Bar* - choose yes if you want the progress bar to appear incase of a slow network
+* *Login Failure warnings* - to enable warning incase of login failures
+* *Login Failure Text* - Enter custom login failure Text
+* *Focus User Input Field* - Enable auto selection of an input field by default
+* *Clear passwords* - Clears Passwords for failed logins
+* *Clear username* - Clears username for failed logins
+* *Auto-complete* - Completes automatically for credentials that have been ever entered previously
+
 ### Display
 * *Username placeholder* - Standard text to be displayed in username field
 * *Password placeholder* - Standard text to be displayed in password field
+* *Show Labels* - Enable this to display custom labels
 * *Username Label* - Username label caption
 * *Password Label* - Password label caption
 * *Login button caption* - Text to be displayed on login button
 * *Empty username/password message* - Feedback message shown when a user didn't provide all credentials
-* *Forgot password link text* - Text to use in the Forgot password link
+* *Email Label* - Email label caption
+* *Signup button caption* - Text to be displayed on signup button
+* *Signup button caption* - Text to be displayed on signup button
 
 ### Behaviour
 * *Show progress bar* - Display a progress bar while signing in
