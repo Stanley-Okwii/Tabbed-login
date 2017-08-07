@@ -160,13 +160,12 @@ class Tabbedlogin extends WidgetBase {
             this.validatePasswordFields();
         }, false);
         dom.byId("eye").addEventListener("click", () => {
-            function ShowPassword1(){
+            function ShowPassword1() {
                 dom.byId("LogPassword").setAttribute("type", "text");
-
             }
-            function HidePassword1(){
+            function HidePassword1(): void {
                 dom.byId("LogPassword").setAttribute("type", "password");
-            }
+            }git 
 
             if (this.isUnMask === false) {
                 this.isUnMask = true;
