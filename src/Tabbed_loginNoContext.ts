@@ -124,7 +124,7 @@ class TabbedloginNocontext extends WidgetBase {
     }
 
     private LoginMethod(): void {
-        const UserNameN = dom.byId("LogUserName1").value;
+        const UserNameN = this.changeCase(dom.byId("LogUserName1").value);
         const PasswordN = dom.byId("LogPassword1").value;
         if (this.showprogress1) {
             this.indicator = mx.ui.showProgress();
@@ -172,6 +172,15 @@ class TabbedloginNocontext extends WidgetBase {
         setTimeout(() => {
             dom.byId("LogUserName1").focus();
         }, 100);
+    }
+    private changeCase(username: string): string {
+        if (this.convertCase1 === "toUpperCase") {
+            return username.toUpperCase();
+        }
+        if (this.convertCase1 === "toLowerCase") {
+            return username.toLowerCase();
+        }
+        return username;
     }
     private setUsernameInputAttributes(): void {
         if (this.autoCorrect1) {
