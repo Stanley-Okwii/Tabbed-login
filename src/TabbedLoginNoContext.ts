@@ -1,7 +1,6 @@
 import * as dojoDeclare from "dojo/_base/declare";
 import * as domConstruct from "dojo/dom-construct";
 import * as WidgetBase from "mxui/widget/_WidgetBase";
-import TemplateExp from "./TabbedLoginNoContext.html";
 import * as dom from "dojo/dom";
 import * as dojoHas from "dojo/has";
 import "./TabbedLogin.css";

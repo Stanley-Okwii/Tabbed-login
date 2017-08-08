@@ -75,55 +75,8 @@ class TabbedLogin extends WidgetBase {
     }
 
     private DisplayText() {
-        domConstruct.create("div", {
-            id: "parent_div",
-            style: "height: 100%; width: 100%; border: 1px solid #DDDDDD; border-radius: 10px;",
-            innerHTML: "<input id='tab1' type='radio' name='tabs' checked>" +
-            "<label for='tab1' id='domtablabel1' style='font-size: 100%;' >Login</label>" +
-
-            "<input id='tab2' type='radio' name='tabs'>" +
-            "<label for='tab2' id='domtablabel2' style='font-size: 100%;'>Register</label>" +
-
-            "<input id='tab3' type='radio' name='tabs'>" +
-            "<label for='tab3' id='domtablabel3' style='font-size: 100%;'>Forgot password</label>" +
-
-            "<section id='content1'>" +
-
-            "<form target='_blank'><div>" +
-            "<div id='warningNode'></div><span id='userLabel'>User name</span><br/>" +
-            "<input type = 'text' id = 'LogUserName'/><br/>" +
-            "<span id='userPassword'>Password</span><br/>" +
-            "<div style='display: inline-flex; width:100% '> <input type='password' id ='LogPassword' />" +
-            "<img id= 'eye' style='color:black; padding: 5px 5px; margin: 8px 0' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAvVBMVEUAAAAAdOgAbfEAbvAAbe8Ab/EAbfAAbfAAbfAAbvEAbvAAbfAAcPUAbvAAbfAAbe8AbfAAbfAAbvAAa/IAbPIAbPAAbfAAbPAAbfAAbe8AbO8AbfEAa+0AbvAAbPAAbfAAbO8AAP8AbfAAbfAAbe8AVf8Abe8AbfAAbfAAbfAAbPAAbvAAgP8AbfAAbfEAZuYAbe8AbfAAbfAAbfAAb/EAbfEAauoAbfEAavEAbfAAbfAAbPAAbPEAbfAAAADVqeqmAAAAPXRSTlMACzZkkTWp3P4lqv0Zl/vE7vqHOTuG4Gj11U44KzPdv1ABiONiA7Tv7a8heQamsApw8OyWN6EMjyT28chcs98b0AAAAAFiS0dEAIgFHUgAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfhBx8JNi1ohA/RAAAA+klEQVQ4y+VS11LDMBBcpSd2RImdAjhdxCU9AQJk//+3kC1sxhPPkGe4B2l0uzd7tyfg/4UolSuVckkUo9VavcEkGvVa9QJutgxqWYbTauZguy3Jm9u7+44QjivZJWXb/sF7fXLwgMcn8/SGo/GA7Pe+4cmUnM1VIvS88IMQnozUfEZOJ3FyuSLXG8Pdxvq7EO4e2KzJ1RJQ+j7o8uPLK2y8xYwADk8aOehKBX1GSR9S4f3jUzdLH8I6x7lI12aEsyXgGx/yhFTiRAeBIeQlsib3LsJdQZPZmJH0EAb+5ZipUePR0Cs2KrW6S+k6xVb/vqwr1n3Fh/nT8QWVEDP/c98IMQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNy0wNy0zMVQwOTo1NDo0NSswMjowMCs+z9cAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTctMDctMzFUMDk6NTQ6NDUrMDI6MDBaY3drAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg==' alt='showpassword' />" +
-            "</div>" +
-            "<br/><input type='button' class='ButtonDiv' value='Log in' id='LoginID'/>" +
-            "</div></form>" +
-
-            "</section>" +
-
-            "<section id='content2'>" +
-            "<form target='_blank'>" +
-            "<div id='warningNode2'></div><span id='userLabel1'>User name</span><br/>" +
-            "<input type='text' placeholder ='user name'  id='Regusername'/><br/>" +
-            "<span  id='userPassword1'>Password</span><br/>" +
-            "<input type='password' placeholder='Password'  id='Regpassword1'/><br/>" +
-            "<span id='userPassword2'>Password again</span><br/>" +
-            "<input type='password' placeholder='Password'  id='Regpassword2'/><br/>" +
-            "<span id='EmailLabel'>Email</span><br/>" +
-            "<input type='email' placeholder ='example@gmail.com'  id='RegEmail'/><br/>" +
-            "<input type='button' value ='sign up' id='signup'/>" +
-            "</div></form>" +
-            "</section>" +
-
-            "<section id='content3'>" +
-            "<form target='_blank' ><div>" +
-            "<div id='warningNode3'></div>" +
-            "<span id='EmailLabel1'>Email</span><br/>" +
-            "<input type='email' placeholder='example@gmail.com' id='forgetID'/><br/>" +
-            "<input type='button' value='Reset' id='RememberPassword'/>" +
-            "</div></form>" +
-            "</section>"
-        }, this.domNode);
+        const HtmlTemplate = require("./TabbedLogin.html");
+        domConstruct.place(domConstruct.toDom(HtmlTemplate), this.domNode);
         dom.byId("LogUserName").setAttribute("placeholder", this.userexample);
         dom.byId("Regusername").setAttribute("placeholder", this.userexample);
         dom.byId("LogPassword").setAttribute("placeholder", this.passexample);
