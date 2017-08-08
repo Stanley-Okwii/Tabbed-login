@@ -16,164 +16,164 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
 </icon>
     <properties>
         <property key="showForgotTab" type="boolean" defaultValue="true">
-            <caption>Show forgot password Tab</caption>
-            <category>Tab Control</category>
-            <description>Show forgot password tab in the Tab container</description>
+            <caption>Show "Forgot password" tab</caption>
+            <category>Tab control</category>
+            <description>Show forgot password tab in the "Tab container"</description>
         </property>
         <property key="showSignupTab" type="boolean" defaultValue="true">
-            <caption>Show Sign up Tab</caption>
-            <category>Tab Control</category>
-            <description>Show sign up tab in the Tab container</description>
+            <caption>Show "Sign up" tab</caption>
+            <category>Tab control</category>
+            <description>Show sign up tab in the tab container</description>
         </property>
-        <property key="LoginTab" type="string" defaultValue="Login" required="false">
+        <property key="loginTab" type="string" defaultValue="Login" required="false">
             <caption>Login tab label</caption>
-            <category>Tab Control</category>
-            <description>Name of your Login Tab</description>
+            <category>Tab control</category>
+            <description>Name of your Login tab</description>
         </property>
-        <property key="SignupTab" type="string" defaultValue="Sign up" required="false">
+        <property key="signupTab" type="string" defaultValue="Sign up" required="false">
             <caption>Sign up label</caption>
-            <category>Tab Control</category>
-            <description>Name of your sign up Tab</description>
+            <category>Tab control</category>
+            <description>Name of your sign up tab</description>
         </property>
-        <property key="ForgotTab" type="string" defaultValue="Forgot password" required="false">
+        <property key="forgotTab" type="string" defaultValue="Forgot password" required="false">
             <caption>Forgot password label</caption>
-            <category>Tab Control</category>
-            <description>Name of your forgot password Tab</description>
+            <category>Tab control</category>
+            <description>Name of your forgot password tab</description>
         </property>
         <property key="userexample" type="string" defaultValue="Username" required="false">
-            <caption>Username Placeholder</caption>
-            <category>Display</category>
+            <caption>Username placeholder</caption>
+            <category>Appearance</category>
             <description>Input box sample value</description>
         </property>
         <property key="passexample" type="string" defaultValue="Password" required="false">
             <caption>Password placeholder</caption>
-            <category>Display</category>
+            <category>Appearance</category>
             <description>Input box sample value</description>
         </property>
         <property key="emailexample" type="string" defaultValue="example@org.com" required="false">
             <caption>Email placeholder</caption>
-            <category>Display</category>
+            <category>Appearance</category>
             <description>Input box sample value</description>
         </property>
         <property key="showLabels" type="boolean" defaultValue="false">
-            <caption>Show Labels</caption>
-            <category>Display</category>
+            <caption>Show labels</caption>
+            <category>Appearance</category>
             <description>Show username and password labels</description>
         </property>
         <property key="usernameLabel" type="string" defaultValue="User name" required="false">
             <caption>Username label</caption>
-            <category>Display</category>
-            <description>Username label caption (Only used if Show Labels is Yes)</description>
+            <category>Appearance</category>
+            <description>Username label caption</description>
         </property>
         <property key="passwordLabel" type="string" defaultValue="Password" required="false">
-            <caption>Password Label</caption>
-            <category>Display</category>
-            <description>Password label caption (Only used if Show Labels is Yes)</description>
+            <caption>Password label</caption>
+            <category>Appearance</category>
+            <description>Password label caption</description>
         </property>
-        <property key="EmailLabel" type="string" defaultValue="Email" required="false">
-            <caption>Email Label</caption>
-            <category>Display</category>
-            <description>Email label caption (Only used if Show Labels is Yes)</description>
+        <property key="emailLabel" type="string" defaultValue="Email" required="false">
+            <caption>Email label</caption>
+            <category>Appearance</category>
+            <description>Email label caption</description>
         </property>
         <property key="logintext" type="string" defaultValue="Login">
-            <caption>Login Button Caption</caption>
-            <category>Display</category>
+            <caption>Login button</caption>
+            <category>Appearance</category>
             <description>Login button caption </description>
         </property>
-        <property key="Signuptext" type="string" defaultValue="Sign up">
-            <caption>Sign up Button Caption</caption>
-            <category>Display</category>
+        <property key="signuptext" type="string" defaultValue="Sign up">
+            <caption>Sign up button</caption>
+            <category>Appearance</category>
             <description>Sign up button caption</description>
         </property>
-        <property key="ResetPasswordtext" type="string" defaultValue="Reset">
-            <caption>Reset Password Button Caption</caption>
-            <category>Display</category>
+        <property key="resetPasswordtext" type="string" defaultValue="Reset">
+            <caption>Reset password button</caption>
+            <category>Appearance</category>
             <description>Reset Password  button caption</description>
         </property>
         <property key="emptytext" type="string" required="false" defaultValue="No username or password given">
-            <caption>Empty Username or Password Text</caption>
-            <category>Display</category>
+            <caption>Empty Username or Password text</caption>
+            <category>Appearance</category>
             <description>Displayed when Username or Password is empty</description>
         </property>
-        <property key="PersonLogin" type="entity" required="true">
-            <caption>select Entity</caption>
-            <category>SignUp</category>
+        <property key="personLogin" type="entity" required="true">
+            <caption>Select entity</caption>
+            <category>Sign up</category>
             <description>This is the entity property</description>
         </property>
-           <property key="_UserName" type="attribute" entityProperty="PersonLogin" required="false">
-            <caption>User Name</caption>
-            <category>SignUp</category>
+           <property key="userName" type="attribute" entityProperty="personLogin" required="false">
+            <caption>User name</caption>
+            <category>Sign up</category>
             <description>The context data for the User Name</description>
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>
         </property> 
-        <property key="_password" type="attribute" entityProperty="PersonLogin" required="false">
+        <property key="password" type="attribute" entityProperty="personLogin" required="false">
             <caption>Password</caption>
-            <category>SignUp</category>
+            <category>Sign up</category>
             <description>The context data for the Password</description>
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>
         </property>
-        <property key="_Email" type="attribute" entityProperty="PersonLogin" required="false">
+        <property key="email" type="attribute" entityProperty="personLogin" required="false">
             <caption>Email Address</caption>
-            <category>SignUp</category>
+            <category>Sign up</category>
             <description>The context data for the Email Address</description>
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>
         </property>
          <property key="showprogress" type="boolean" defaultValue="false">
-            <caption>Show Progress Bar</caption>
-            <category>Behavior</category>
+            <caption>Show progress bar</caption>
+            <category>Events</category>
             <description>Display a progress bar while signing in</description>
         </property>
         <property key="showLoginFailureWarning" type="boolean" defaultValue="false">
-            <caption>Login Failure Warning</caption>
-            <category>Behavior</category>
+            <caption>Login failure warning</caption>
+            <category>Events</category>
             <description>Alert that username will be blocked for 5 minutes if login fails 3 times</description>
         </property>
         <property key="loginFailureText" type="string" defaultValue="Your account will be blocked for 5 minutes if login with the same username fails thrice!">
-            <caption>Login Failure Text</caption>
-            <category>Behavior</category>
+            <caption>Login failure text</caption>
+            <category>Events</category>
             <description>Warning message to show when login fails twice</description>
         </property>
         <property key="dofocus" type="boolean" defaultValue="false">
-            <caption>Focus Username Input Field</caption>
-            <category>Behavior</category>
-            <description>When form is shown, username filed takes focus (If not automatic)</description>
+            <caption>Focus Username input field</caption>
+            <category>Events</category>
+            <description>When form is shown, username filed takes focus </description>
         </property>
         <property key="clearPw" type="boolean" defaultValue="false">
             <caption>Clear password</caption>
-            <category>Behavior</category>
+            <category>Events</category>
             <description>When the login fails, clear the password field</description>
         </property>
         <property key="clearUn" type="boolean" defaultValue="false">
             <caption>Clear username</caption>
-            <category>Behavior</category>
+            <category>Events</category>
             <description>When the login fails, clear the username field</description>
         </property>
         <property key="autoComplete" type="boolean" defaultValue="false">
             <caption>Auto-complete</caption>
-            <category>Behavior</category>
+            <category>Events</category>
             <description>Enables/disables auto-complete functionality on username and pasword input fields</description>
         </property>
-        <property key="SignupMicroflow" type="microflow" required="false" defaultValue="">
+        <property key="signupMicroflow" type="microflow" required="false" defaultValue="">
             <caption>Action microflow</caption>
-            <category>SignUp</category>
+            <category>Sign up</category>
             <description>The microflow to execute on sign up</description>
             <returnType type="Boolean" />
         </property>
-        <property key="ForgetPasswordMicroflow" type="microflow" required="false" defaultValue="">
-            <caption>Forgot Password</caption>
-            <category>Behavior</category>
+        <property key="forgetPasswordMicroflow" type="microflow" required="false" defaultValue="">
+            <caption>Forgot password</caption>
+            <category>Events</category>
             <description>This microflow will be executed when user clicks Reset button</description>
             <returnType type="Void" />
         </property>
         <property key="convertCase" type="enumeration" defaultValue="none">
-            <caption>Convert to lowercase/uppercase</caption>
-            <category>Casehandling</category>
+            <caption>Convert case</caption>
+            <category>Appearance</category>
             <description>Automatic conversion of Username to lowercase/uppercase</description>
             <enumerationValues>
                 <enumerationValue key="none">None</enumerationValue>
@@ -192,7 +192,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <description>Auto-capitalize Username</description>
         </property>
         <property key="keyboardType" type="enumeration" defaultValue="text">
-            <caption>Username Keyboard Type</caption>
+            <caption>Username keyboard type</caption>
             <category>Mobile</category>
             <description>The keyboard type to display when the user is entering their username</description>
             <enumerationValues>
