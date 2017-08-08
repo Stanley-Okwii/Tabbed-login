@@ -8,29 +8,28 @@ import "./Tabbed_login.css";
 
 class Tabbedlogin extends WidgetBase {
     // Parameters configured in modeler 
-    PersonLogin: string;
-    _UserName: string;
-    _password: string;
-    _password2: string;
-    _Email: string;
-    SignupMicroflow: string;
-    ForgetPasswordMicroflow: string;
+    personLogin: string;
+    userName: string;
+    password: string;
+    email: string;
+    signupMicroflow: string;
+    forgetPasswordMicroflow: string;
 
     // initializing parameters for Display category in the modeler
     userexample: string;
     passexample: string;
     emailexample: string;
     showLabels: false;
-    EmailLabel: string;
+    emailLabel: string;
     usernameLabel: string;
     emptytext: string;
     passwordLabel: string;
     logintext: string;
-    Signuptext: string;
-    ResetPasswordtext: string;
-    LoginTab: string;
-    SignupTab: string;
-    ForgotTab: string;
+    signuptext: string;
+    resetPasswordtext: string;
+    loginTab: string;
+    signupTab: string;
+    forgotTab: string;
 
     // initializing parameters for Login Behaviour category in the modeler
     showprogress: false;
@@ -133,8 +132,8 @@ class Tabbedlogin extends WidgetBase {
         dom.byId("RegEmail").setAttribute("placeholder", this.emailexample);
 
         dom.byId("LoginID").setAttribute("value", this.logintext);
-        dom.byId("signup").setAttribute("value", this.Signuptext);
-        dom.byId("RememberPassword").setAttribute("value", this.ResetPasswordtext);
+        dom.byId("signup").setAttribute("value", this.signuptext);
+        dom.byId("RememberPassword").setAttribute("value", this.resetPasswordtext);
     }
     private updateRendering() {
         this.DisplayText();
@@ -189,17 +188,17 @@ class Tabbedlogin extends WidgetBase {
         if (this.showLabels) {
             dom.byId("userLabel").innerHTML = this.usernameLabel;
             dom.byId("userPassword").innerHTML = this.passwordLabel;
-            dom.byId("EmailLabel").innerHTML = this.EmailLabel;
-            dom.byId("EmailLabel1").innerHTML = this.EmailLabel;
+            dom.byId("EmailLabel").innerHTML = this.emailLabel;
+            dom.byId("EmailLabel1").innerHTML = this.emailLabel;
             dom.byId("userPassword2").innerHTML = this.passwordLabel;
             dom.byId("userPassword1").innerHTML = this.passwordLabel;
             dom.byId("userLabel1").innerHTML = this.usernameLabel;
-            dom.byId("tab1").innerHTML = this.LoginTab;
-            dom.byId("tab2").innerHTML = this.SignupTab;
-            dom.byId("tab3").innerHTML = this.ForgotTab;
-            dom.byId("domtablabel1").innerHTML = this.LoginTab;
-            dom.byId("domtablabel2").innerHTML = this.SignupTab;
-            dom.byId("domtablabel3").innerHTML = this.ForgotTab;
+            dom.byId("tab1").innerHTML = this.loginTab;
+            dom.byId("tab2").innerHTML = this.signupTab;
+            dom.byId("tab3").innerHTML = this.forgotTab;
+            dom.byId("domtablabel1").innerHTML = this.loginTab;
+            dom.byId("domtablabel2").innerHTML = this.signupTab;
+            dom.byId("domtablabel3").innerHTML = this.forgotTab;
         }
     }
 
@@ -238,15 +237,15 @@ class Tabbedlogin extends WidgetBase {
         if (this.validateEmail(dom.byId("RegEmail").value)) {
             mx.data.create({
                 callback: (obj: mendix.lib.MxObject) => {
-                    obj.set(this._UserName, this.changeCase(dom.byId("Regusername").value));
-                    obj.set(this._Email, dom.byId("RegEmail").value);
-                    obj.set(this._password, dom.byId("Regpassword1").value);
-                    obj.set(this._password, dom.byId("Regpassword2").value);
+                    obj.set(this.userName, this.changeCase(dom.byId("Regusername").value));
+                    obj.set(this.email, dom.byId("RegEmail").value);
+                    obj.set(this.password, dom.byId("Regpassword1").value);
+                    obj.set(this.password, dom.byId("Regpassword2").value);
                     this.contextObject = obj;
-                    this.ExecuteMicroflowSignup(this.SignupMicroflow, this.contextObject.getGuid());
+                    this.ExecuteMicroflowSignup(this.signupMicroflow, this.contextObject.getGuid());
                     console.log("Object created on server");
                 },
-                entity: this.PersonLogin,
+                entity: this.personLogin,
                 error: (e) => {
                     console.error("Could not commit object:", e);
                 }
@@ -339,10 +338,10 @@ class Tabbedlogin extends WidgetBase {
         if (this.validateEmail(dom.byId("forgetID").value)) {
             mx.data.create({
                 callback: (obj: mendix.lib.MxObject) => {
-                    obj.set(this._Email, dom.byId("forgetID").value);
-                    this.ExecuteMicroflow(this.ForgetPasswordMicroflow, obj.getGuid());
+                    obj.set(this.email, dom.byId("forgetID").value);
+                    this.ExecuteMicroflow(this.forgetPasswordMicroflow, obj.getGuid());
                 },
-                entity: this.PersonLogin,
+                entity: this.personLogin,
                 error: (e) => {
                     console.error("Could not commit object:", e);
                 }
