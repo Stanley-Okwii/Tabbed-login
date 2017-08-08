@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="widget.Tabbed_login" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
-    <name>Tabbed Login</name>
-    <description>This widget enables a user to login ,sign up or recover their password when they forget</description>
+<widget id="widget.TabbedLogin" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>Tabbed login</name>
+    <description>It enables a user to login ,sign up or recover their password when they forget</description>
 
     <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
 AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZ

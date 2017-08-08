@@ -3,9 +3,9 @@ import * as domConstruct from "dojo/dom-construct";
 import * as WidgetBase from "mxui/widget/_WidgetBase";
 import * as dom from "dojo/dom";
 import * as dojoHas from "dojo/has";
-import "./Tabbed_login.css";
+import "./TabbedLogin.css";
 
-class TabbedloginNocontext extends WidgetBase {
+class TabbedLoginNoContext extends WidgetBase {
     // initializing parameters for Display category in the modeler
     userexample1: string;
     passexample1: string;
@@ -35,7 +35,7 @@ class TabbedloginNocontext extends WidgetBase {
     private contextObject: mendix.lib.MxObject;
     private indicator: number;
     private loginForm_FailedAttempts: number;
-    private message: string;;
+    private message: string;
 
     postCreate() {
         this.loginForm_FailedAttempts = 0;
@@ -101,7 +101,7 @@ class TabbedloginNocontext extends WidgetBase {
                 isUnMask = false;
                 HidePassword1();
             }
-        }, false)
+        }, false);
 
         this.setUsernameInputAttributes();
         if (this.autoComplete1) {
@@ -207,7 +207,7 @@ class TabbedloginNocontext extends WidgetBase {
     }
 }
 
-dojoDeclare("widget.Tabbed_loginNoContext", [WidgetBase], function (Source: any) {
+dojoDeclare("widget.TabbedLoginNoContext", [WidgetBase], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
@@ -215,4 +215,4 @@ dojoDeclare("widget.Tabbed_loginNoContext", [WidgetBase], function (Source: any)
         }
     }
     return result;
-}(TabbedloginNocontext));
+}(TabbedLoginNoContext));
