@@ -20,6 +20,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-newer": "^1.1.1",
     "grunt-webpack": "^2.0.1",
+    "html-loader": "^0.5.0",
     "json-loader": "^0.5.4",
     "mendix-client": "git+https://github.com/FlockOfBirds/Mendix-client-typing.git",
     "source-map-loader": "^0.2.0",

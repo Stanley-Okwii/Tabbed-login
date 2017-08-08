@@ -14,7 +14,7 @@ module.exports = {
         libraryTarget: "umd"
     },
     resolve: {
-        extensions: [".ts", ".js", ".json"],
+        extensions: [".ts", ".js", ".json", ".html"],
     },
     module: {
         rules: [
@@ -24,6 +24,15 @@ module.exports = {
                     fallback: "style-loader",
                     use: "css-loader"
                 })
+            },
+            {
+                test: /\.(html)$/,
+                use: {
+                    loader: 'html-loader',
+                    options: {
+                        minimize: true
+                    }
+                }
             }
         ]
     },

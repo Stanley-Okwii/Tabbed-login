@@ -103,7 +103,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
            <property key="userName" type="attribute" entityProperty="personLogin" required="false">
             <caption>User name</caption>
             <category>Sign up</category>
-            <description>The context data for the User Name</description>
+            <description>The context data for the user name</description>
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>
@@ -111,15 +111,15 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
         <property key="password" type="attribute" entityProperty="personLogin" required="false">
             <caption>Password</caption>
             <category>Sign up</category>
-            <description>The context data for the Password</description>
+            <description>The context data for the password</description>
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>
         </property>
         <property key="email" type="attribute" entityProperty="personLogin" required="false">
-            <caption>Email Address</caption>
+            <caption>Email address</caption>
             <category>Sign up</category>
-            <description>The context data for the Email Address</description>
+            <description>The context data for the email address</description>
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>
@@ -140,7 +140,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <description>Warning message to show when login fails twice</description>
         </property>
         <property key="dofocus" type="boolean" defaultValue="false">
-            <caption>Focus Username input field</caption>
+            <caption>Focus username input field</caption>
             <category>Events</category>
             <description>When form is shown, username filed takes focus </description>
         </property>
@@ -174,7 +174,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
         <property key="convertCase" type="enumeration" defaultValue="none">
             <caption>Convert case</caption>
             <category>Appearance</category>
-            <description>Automatic conversion of Username to lowercase/uppercase</description>
+            <description>Automatic conversion of username to lowercase/uppercase</description>
             <enumerationValues>
                 <enumerationValue key="none">None</enumerationValue>
                 <enumerationValue key="toLowerCase">Convert to lowercase</enumerationValue>
@@ -184,12 +184,12 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
                 <property key="autoCorrect" type="boolean" defaultValue="false">
             <caption>Auto-correct</caption>
             <category>Mobile</category>
-            <description>Auto-correct Username</description>
+            <description>Auto-correct username</description>
         </property>
         <property key="autoCapitalize" type="boolean" defaultValue="false">
             <caption>Auto-capitalize</caption>
             <category>Mobile</category>
-            <description>Auto-capitalize Username</description>
+            <description>Auto-capitalize username</description>
         </property>
         <property key="keyboardType" type="enumeration" defaultValue="text">
             <caption>Username keyboard type</caption>
