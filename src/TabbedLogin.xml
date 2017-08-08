@@ -181,10 +181,20 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
                 <enumerationValue key="toUpperCase">Convert to uppercase</enumerationValue>
             </enumerationValues>
         </property>
-                <property key="autoCorrect" type="boolean" defaultValue="false">
+        <property key="autoCorrect" type="boolean" defaultValue="false">
             <caption>Auto-correct</caption>
             <category>Mobile</category>
             <description>Auto-correct Username</description>
+        </property>
+        <property key="gliphyIconunMask" type="image" required= "false">
+            <caption>Show password gliph icon</caption>
+            <category>Appearance</category>
+            <description>Icon for unmask password</description>
+        </property>
+        <property key="gliphyIconMask" type="image" required= "false">
+            <caption>Hide password gliph icon</caption>
+            <category>Appearance</category>
+            <description>Icon for mask password</description>
         </property>
         <property key="autoCapitalize" type="boolean" defaultValue="false">
             <caption>Auto-capitalize</caption>
