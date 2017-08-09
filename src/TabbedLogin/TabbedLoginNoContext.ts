@@ -164,10 +164,10 @@ class TabbedLoginNoContext extends WidgetBase {
                         }
                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                     }
-                    dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
+                    dom.byId("warningNode1").innerHTML = this.displayWarning(this.message);
                     console.log("Error in login");
                 } else {
-                    dom.byId("warningNode").innerHTML = this.displayWarning( this.emptyText1);
+                    dom.byId("warningNode1").innerHTML = this.displayWarning( this.emptyText1);
                 }
                 if (this.clearPassword1) {
                     dom.byId("LogUserName1").setAttribute("value", "");
