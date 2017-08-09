@@ -125,6 +125,10 @@ input[type=text] {
   color: black;
 }
 
+input[type=text]:focus {
+    border: 1px solid #008CBA;
+}
+
 input[type=password] {
   display: block;
   width: 60%;
@@ -138,6 +142,10 @@ input[type=password] {
   color: black;
 }
 
+input[type=password]:focus {
+    border: 1px solid #008CBA;
+}
+
 input[type=email] {
   display: block;
   width: 60%;
@@ -149,6 +157,10 @@ input[type=email] {
   border-bottom: 1px solid #008CBA;
   background-color: white;
   color: black;
+}
+
+input[type=email]:focus {
+    border: 1px solid #008CBA;
 }
 
 input[type=button] {
