@@ -152,12 +152,10 @@ class TabbedLoginNoContext extends WidgetBase {
                 if (this.indicator) {
                     mx.ui.hideProgress(this.indicator);
                 }
-                console.log("successful login");
             },
             () => {
 
-                if ((dom.byId("LogUserName1").value !== "") || (dom.byId("LogPassword1").value !== "")) {
-
+                if ((UserNameN !== "") || (PasswordN !== "")) {
                     if (this.showLoginFailureWarning1) {
                         if (this.loginForm_FailedAttempts === 1) {
                             this.message += "</br>" + this.loginFailureText1;
