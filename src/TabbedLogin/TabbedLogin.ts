@@ -16,16 +16,16 @@ class TabbedLogin extends WidgetBase {
     forgetPasswordMicroflow: string;
 
     // initializing parameters for Display category in the modeler
-    userexample: string;
-    passexample: string;
-    emailexample: string;
+    userExample: string;
+    passwordExample: string;
+    emailExample: string;
     showLabels: false;
     emailLabel: string;
-    usernameLabel: string;
-    emptytext: string;
+    userNameLabel: string;
+    emptyText: string;
     passwordLabel: string;
-    logintext: string;
-    signuptext: string;
+    loginText: string;
+    signupText: string;
     resetPasswordtext: string;
     loginTab: string;
     signupTab: string;
@@ -34,8 +34,8 @@ class TabbedLogin extends WidgetBase {
     gliphyIconMask: string;
     // initializing parameters for Login Behaviour category in the modeler
     showprogress: false;
-    clearPw: false;
-    clearUn: false;
+    clearPassword: false;
+    clearUserName: false;
     dofocus: false;
     showLoginFailureWarning: false;
     loginFailureText: string;
@@ -78,16 +78,16 @@ class TabbedLogin extends WidgetBase {
         const HtmlTemplate = require("../Template/TabbedLogin.html");
 
         domConstruct.place(domConstruct.toDom(HtmlTemplate), this.domNode);
-        dom.byId("LogUserName").setAttribute("placeholder", this.userexample);
-        dom.byId("Regusername").setAttribute("placeholder", this.userexample);
-        dom.byId("LogPassword").setAttribute("placeholder", this.passexample);
-        dom.byId("Regpassword1").setAttribute("placeholder", this.passexample);
-        dom.byId("Regpassword2").setAttribute("placeholder", this.passexample);
-        dom.byId("forgetID").setAttribute("placeholder", this.emailexample);
-        dom.byId("RegEmail").setAttribute("placeholder", this.emailexample);
+        dom.byId("LogUserName").setAttribute("placeholder", this.userExample);
+        dom.byId("Regusername").setAttribute("placeholder", this.userExample);
+        dom.byId("LogPassword").setAttribute("placeholder", this.passwordExample);
+        dom.byId("Regpassword1").setAttribute("placeholder", this.passwordExample);
+        dom.byId("Regpassword2").setAttribute("placeholder", this.passwordExample);
+        dom.byId("forgetID").setAttribute("placeholder", this.emailExample);
+        dom.byId("RegEmail").setAttribute("placeholder", this.emailExample);
 
-        dom.byId("LoginID").setAttribute("value", this.logintext);
-        dom.byId("signup").setAttribute("value", this.signuptext);
+        dom.byId("LoginID").setAttribute("value", this.loginText);
+        dom.byId("signup").setAttribute("value", this.signupText);
         dom.byId("RememberPassword").setAttribute("value", this.resetPasswordtext);
     }
     private updateRendering() {
@@ -160,13 +160,13 @@ class TabbedLogin extends WidgetBase {
 
     private displayLabels() {
         if (this.showLabels) {
-            dom.byId("userLabel").innerHTML = this.usernameLabel;
+            dom.byId("userLabel").innerHTML = this.userNameLabel;
             dom.byId("userPassword").innerHTML = this.passwordLabel;
             dom.byId("EmailLabel").innerHTML = this.emailLabel;
             dom.byId("EmailLabel1").innerHTML = this.emailLabel;
             dom.byId("userPassword2").innerHTML = this.passwordLabel;
             dom.byId("userPassword1").innerHTML = this.passwordLabel;
-            dom.byId("userLabel1").innerHTML = this.usernameLabel;
+            dom.byId("userLabel1").innerHTML = this.userNameLabel;
             dom.byId("tab1").innerHTML = this.loginTab;
             dom.byId("tab2").innerHTML = this.signupTab;
             dom.byId("tab3").innerHTML = this.forgotTab;
@@ -200,11 +200,9 @@ class TabbedLogin extends WidgetBase {
     }
     private validatePasswordFields() {
         if (dom.byId("Regpassword1").value !== dom.byId("Regpassword2").value) {
-            dom.byId("warningNode2").innerHTML = "<div style='color:red; display: block;'>" +
-                "Passwords dont match. Please check and try again.<br/></div>";
+            dom.byId("warningNode2").innerHTML = this.displayWarning("Passwords dont match! Please check and try again.");
         } else {
-            dom.byId("warningNode2").innerHTML = "<div style='display: none;'>" +
-                "<br/></div>";
+            dom.byId("warningNode2").innerHTML = this.displayWarning("");
         }
     }
 
@@ -226,11 +224,17 @@ class TabbedLogin extends WidgetBase {
                 }
             });
         } else {
-            dom.byId("warningNode2").innerHTML = `<div style='color:red; display: block;'>
-                                                    The Email address you entered is invalid.<br/>
-                                                  </div>`;
+            dom.byId("warningNode2").innerHTML = this.displayWarning("The Email address you entered is invalid.");
         }
     }
+
+    private displayWarning(WarningText: string) {
+        const WarningTextSample = "<div style='color:red; display: block;'>" +
+            WarningText +
+            "<br/></div>";
+        return WarningTextSample;
+    }
+
     private loginMethod() {
         const UserNameN = this.changeCase(dom.byId("LogUserName").value);
         const PasswordN = dom.byId("LogPassword").value;
@@ -251,7 +255,7 @@ class TabbedLogin extends WidgetBase {
             },
             () => {
 
-                if ((dom.byId("LogUserName").value !== "") || (dom.byId("LogPassword").value !== "")) {
+                if ((UserNameN !== "") || (PasswordN !== "")) {
 
                     if (this.showLoginFailureWarning) {
                         if (this.loginForm_FailedAttempts === 1) {
@@ -259,23 +263,21 @@ class TabbedLogin extends WidgetBase {
                         }
                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                     }
-                    dom.byId("warningNode").innerHTML = "<div style='color:red; display: block;'>" +
-                        this.message + "<br/></div>";
-
+                    dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
                     console.log("Error in login");
                 } else {
-                    dom.byId("warningNode").innerHTML = "<div style='color:red; display: block;'>" +
-                        this.emptytext + "<br/></div>";
+                    dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
                 }
-                if (this.clearPw) {
+                if (this.clearPassword) {
                     dom.byId("LogUserName").setAttribute("value", "");
                 }
-                if (this.clearUn) {
+                if (this.clearUserName) {
                     dom.byId("LogPassword").setAttribute("value", "");
                 }
             });
 
     }
+
     private focusNode() {
         setTimeout(() => {
             dom.byId("LogUserName").focus();
@@ -308,6 +310,7 @@ class TabbedLogin extends WidgetBase {
             dom.byId("Regusername").setAttribute("text-transform", "uppercase");
         }
     }
+
     private recoverPassword() {
         if (this.validateEmail(dom.byId("forgetID").value)) {
             mx.data.create({
@@ -320,13 +323,12 @@ class TabbedLogin extends WidgetBase {
                     console.error("Could not commit object:", e);
                 }
             });
-            dom.byId("warningNode3").innerHTML = "<div style='color:red; display: none;'>" +
-                "<br/></div>";
+            dom.byId("warningNode3").innerHTML = this.displayWarning("");
         } else {
-            dom.byId("warningNode3").innerHTML = "<div style='color:red; display: block;'>" +
-                "The Email address you entered is invalid.<br/></div>";
+            dom.byId("warningNode3").innerHTML = this.displayWarning("The Email address you entered is invalid.");
         }
     }
+
     private changeCase(username: string): string {
         if (this.convertCase === "toUpperCase") {
             return username.toUpperCase();
@@ -336,6 +338,7 @@ class TabbedLogin extends WidgetBase {
         }
         return username;
     }
+
     private executeMicroflow(microflow: string, guid: string, callback?: (obj: mendix.lib.MxObject) => void) {
         if (microflow && guid) {
             mx.ui.action(microflow, {
@@ -381,13 +384,11 @@ class TabbedLogin extends WidgetBase {
                                         }
                                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                                     }
-                                    dom.byId("warningNode").innerHTML = "<div style='color:red; display: block;'>" +
-                                        this.message + "<br/></div>";
+                                    dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
 
                                     console.log("Error in login");
                                 } else {
-                                    dom.byId("warningNode").innerHTML = "<div style='color:red; display: block;'>" +
-                                        this.emptytext + "<br/></div>";
+                                    dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
                                 }
                             });
                     }
@@ -408,5 +409,4 @@ dojoDeclare("widget.TabbedLogin", [ WidgetBase ], function (Source: any) {
         }
     }
     return result;
-
 }(TabbedLogin));

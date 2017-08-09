@@ -129,7 +129,7 @@ class TabbedLoginNoContext extends WidgetBase {
         }
     }
 
-    private displayWarning(WarningText: string) {
+    private displayWarning1(WarningText: string) {
         const WarningTextSample = "<div style='color:red; display: block;'>" +
             WarningText +
             "<br/></div>";
@@ -164,10 +164,10 @@ class TabbedLoginNoContext extends WidgetBase {
                         }
                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                     }
-                    dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
+                    dom.byId("warningNode").innerHTML = this.displayWarning1(this.message);
                     console.log("Error in login");
                 } else {
-                    dom.byId("warningNode").innerHTML = this.displayWarning( this.emptyText1);
+                    dom.byId("warningNode").innerHTML = this.displayWarning1( this.emptyText1);
                 }
                 if (this.clearPassword1) {
                     dom.byId("LogUserName1").setAttribute("value", "");

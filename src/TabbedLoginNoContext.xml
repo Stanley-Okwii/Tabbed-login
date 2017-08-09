@@ -18,17 +18,17 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
         <property key="loginTab1" type="string" defaultValue="Login" required="false">
             <caption>Login tab label</caption>
             <category>Appearance</category>
-            <description>Input box sample value of login tab</description>
+            <description>Input value of login tab</description>
         </property>
         <property key="userExample1" type="string" defaultValue="Username" required="false">
             <caption>Username placeholder</caption>
             <category>Appearance</category>
-            <description>Input box sample value</description>
+            <description>Input value of user name placeholder</description>
         </property>
         <property key="passExample1" type="string" defaultValue="Password" required="false">
             <caption>Password placeholder</caption>
             <category>Appearance</category>
-            <description>Input box sample value</description>
+            <description>Input value of password placeholder</description>
         </property>
         <property key="showLabels1" type="boolean" defaultValue="false">
             <caption>Show labels</caption>
@@ -51,7 +51,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <description>Login button caption </description>
         </property>
         <property key="emptyText1" type="string" required="false" defaultValue="No username or password given">
-            <caption>Empty username/password</caption>
+            <caption>Empty test</caption>
             <category>Appearance</category>
             <description>Display when Username or Password is empty</description>
         </property>
@@ -92,7 +92,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
         </property>
         <property key="convertCase1" type="enumeration" defaultValue="none">
             <caption>Convert case</caption>
-            <category>Appearance</category>
+            <category>Events</category>
             <description>Automatic conversion of Username to lowercase/uppercase</description>
             <enumerationValues>
                 <enumerationValue key="none">None</enumerationValue>
@@ -111,12 +111,12 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <description>Auto-capitalize Username</description>
         </property>
         <property key="gliphyIconunMask" type="image" required= "false">
-            <caption>Show password gliph icon</caption>
+            <caption>Unmask password icon</caption>
             <category>Appearance</category>
             <description>Icon for unmask password</description>
         </property>
         <property key="gliphyIconMask" type="image" required= "false">
-            <caption>Hide password gliph icon</caption>
+            <caption>Mask password icon</caption>
             <category>Appearance</category>
             <description>Icon for mask password</description>
         </property>
