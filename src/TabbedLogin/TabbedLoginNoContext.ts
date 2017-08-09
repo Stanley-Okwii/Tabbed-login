@@ -163,7 +163,7 @@ class TabbedLoginNoContext extends WidgetBase {
                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                     }
                     dom.byId("warningNode1").innerHTML = this.displayWarning1(this.message);
-                    console.log("Error in login");
+                    
                 } else {
                     dom.byId("warningNode1").innerHTML = this.displayWarning1( this.emptyText1);
                 }
