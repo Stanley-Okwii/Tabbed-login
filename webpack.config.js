@@ -5,8 +5,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     entry:
     {
-        TabbedLogin: "./src/TabbedLogin.ts",
-        TabbedLoginNoContext: "./src/TabbedLoginNoContext.ts"
+        TabbedLogin: "./src/TabbedLogin/TabbedLogin.ts",
+        TabbedLoginNoContext: "./src/TabbedLogin/TabbedLoginNoContext.ts"
     },
     output: {
         path: __dirname + "/dist/tmp",
@@ -14,7 +14,7 @@ module.exports = {
         libraryTarget: "umd"
     },
     resolve: {
-        extensions: [".ts", ".js", ".json", ".html"],
+        extensions: [".ts"],
     },
     module: {
         rules: [
