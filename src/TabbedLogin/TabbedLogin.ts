@@ -353,7 +353,6 @@ class TabbedLogin extends WidgetBase {
                             mx.login(this.changeCase(registrationUserNameValue), registrationPasswordValue,
                                 () => { },
                                 () => {
-
                                     if (this.showLoginFailureWarning) {
                                         if (this.loginForm_FailedAttempts === 1) {
                                             this.message += "</br>" + this.loginFailureText;
@@ -361,9 +360,7 @@ class TabbedLogin extends WidgetBase {
                                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                                     }
                                     dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
-
                                     console.log("Error in login");
-
                                 });
                         }
                     },
