@@ -110,16 +110,6 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <category>Mobile</category>
             <description>Auto-capitalize Username</description>
         </property>
-        <property key="gliphyIconunMask" type="image" required= "false">
-            <caption>Unmask password icon</caption>
-            <category>Appearance</category>
-            <description>Icon for unmask password</description>
-        </property>
-        <property key="gliphyIconMask" type="image" required= "false">
-            <caption>Mask password icon</caption>
-            <category>Appearance</category>
-            <description>Icon for mask password</description>
-        </property>
         <property key="keyboardType1" type="enumeration" defaultValue="text">
             <caption>Username keyboard type</caption>
             <category>Mobile</category>

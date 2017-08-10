@@ -3,7 +3,7 @@
   "widgetName": "TabbedLogin",
   "version": "0.1.0",
   "description": "Set up a login, sign up and reset your password tabs quick and easy",
-  "author": "",
+  "author": "Marvin and Stanley",
   "copyright": "Flock of Birds",
   "private": true,
   "devDependencies": {
@@ -31,9 +31,5 @@
     "typescript": "^2.0.3",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://bitbucket.org/andries-smit/croppie"
   }
 }
