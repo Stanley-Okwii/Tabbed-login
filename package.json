@@ -3,7 +3,7 @@
   "widgetName": "TabbedLogin",
   "version": "0.1.0",
   "description": "Set up a login, sign up and reset your password tabs quick and easy",
-  "author": "",
+  "author": "Marvin $ Stanley",
   "copyright": "Flock of Birds",
   "private": true,
   "devDependencies": {
