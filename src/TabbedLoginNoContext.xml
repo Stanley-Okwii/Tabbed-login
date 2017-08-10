@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <widget id="widget.TabbedLoginNoContext" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/">
     <name>Tabbed login no context</name>
-    <description>It enables a user to login ,sign up or recover their password when they forget</description>
+    <description>Contains Tabs to login form, sign up and reset your password forms respectively</description>
 
     <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
 AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZ

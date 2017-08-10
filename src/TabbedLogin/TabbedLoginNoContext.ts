@@ -15,8 +15,6 @@ class TabbedLoginNoContext extends WidgetBase {
     passwordLabel1: string;
     loginText1: string;
     loginTab1: string;
-
-    // initializing parameters for Login Behaviour category in the modeler
     showProgress1: false;
     clearPassword1: false;
     clearUserName1: false;
@@ -24,14 +22,12 @@ class TabbedLoginNoContext extends WidgetBase {
     showLoginFailureWarning1: false;
     loginFailureText1: string;
     autoComplete1: false;
-    // Mobile
     autoCorrect1: false;
     autoCapitalize1: false;
     keyboardType1: string;
-
-    // Case Handling
     convertCase1: string;
 
+    // Internal variables
     private contextObject: mendix.lib.MxObject;
     private indicator: number;
     private loginForm_FailedAttempts: number;
@@ -52,8 +48,9 @@ class TabbedLoginNoContext extends WidgetBase {
     }
 
     private displayText() {
-        const temp = require("../Template/TabbedLoginNoContext.html");
-        domConstruct.place(domConstruct.toDom(temp), this.domNode);
+        const NoContextHtml = require("../Template/TabbedLoginNoContext.html");
+
+        domConstruct.place(domConstruct.toDom(NoContextHtml), this.domNode);
         dom.byId("LogUserName1").setAttribute("placeholder", this.userExample1);
         dom.byId("LogPassword1").setAttribute("placeholder", this.passExample1);
         dom.byId("LoginID1").setAttribute("value", this.loginText1);
@@ -122,20 +119,14 @@ class TabbedLoginNoContext extends WidgetBase {
         if (this.showProgress1) {
             this.indicator = mx.ui.showProgress();
         }
-        setTimeout(() => {
-            if (this.showProgress1) {
-                this.indicator = mx.ui.showProgress();
-            }
-        }, 5);
-        mx.login(UserNameN, PasswordN,
-            () => {
-                if (this.indicator) {
-                    mx.ui.hideProgress(this.indicator);
-                }
-            },
-            () => {
-
-                if ((UserNameN !== "") || (PasswordN !== "")) {
+        if ((UserNameN !== "") || (PasswordN !== "")) {
+            mx.login(UserNameN, PasswordN,
+                () => {
+                    if (this.indicator) {
+                        mx.ui.hideProgress(this.indicator);
+                    }
+                },
+                () => {
                     if (this.showLoginFailureWarning1) {
                         if (this.loginForm_FailedAttempts === 1) {
                             this.message += "</br>" + this.loginFailureText1;
@@ -143,29 +134,27 @@ class TabbedLoginNoContext extends WidgetBase {
                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                     }
                     dom.byId("warningNode1").innerHTML = this.displayWarning1(this.message);
-                    
-                } else {
-                    dom.byId("warningNode1").innerHTML = this.displayWarning1( this.emptyText1);
-                }
-                if (this.clearPassword1) {
-                    dom.byId("LogUserName1").setAttribute("value", "");
-                }
-                if (this.clearUserName1) {
-                    dom.byId("LogPassword1").setAttribute("value", "");
-                }
-            });
-
+                    if (this.clearPassword1) {
+                        dom.byId("LogUserName1").setAttribute("value", "");
+                    }
+                    if (this.clearUserName1) {
+                        dom.byId("LogPassword1").setAttribute("value", "");
+                    }
+                });
+        } else {
+            dom.byId("warningNode1").innerHTML = this.displayWarning1(this.emptyText1);
+        }
     }
     private focusNode() {
         setTimeout(() => {
             dom.byId("LogUserName1").focus();
         }, 100);
     }
+
     private changeCase(username: string): string {
         if (this.convertCase1 === "toUpperCase") {
             return username.toUpperCase();
-        }
-        if (this.convertCase1 === "toLowerCase") {
+        } else if (this.convertCase1 === "toLowerCase") {
             return username.toLowerCase();
         }
         return username;
@@ -175,7 +164,6 @@ class TabbedLoginNoContext extends WidgetBase {
         if (this.autoCorrect1) {
             dom.byId("LogUserName1").setAttribute("autocorrect", "on");
             dom.byId("LogUserName1").setAttribute("autocorrect", "on");
-
         }
         if (this.autoCapitalize1 && this.convertCase1 !== "none") {
             dom.byId("LogUserName1").setAttribute("autocapitalize", "on");
@@ -195,7 +183,8 @@ class TabbedLoginNoContext extends WidgetBase {
     }
 }
 
-dojoDeclare("widget.TabbedLoginNoContext", [ WidgetBase ], function (Source: any) {
+// tslint:disable-next-line:only-arrow-functions
+dojoDeclare("widget.TabbedLoginNoContext", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {

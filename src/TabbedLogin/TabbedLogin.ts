@@ -189,18 +189,17 @@ class TabbedLogin extends WidgetBase {
     private signUpMethod() {
         if (this.validateEmail(dom.byId("RegEmail").value)) {
             mx.data.create({
-                callback: (obj: mendix.lib.MxObject) => {
-                    obj.set(this.userName, this.changeCase(dom.byId("Regusername").value));
-                    obj.set(this.email, dom.byId("RegEmail").value);
-                    obj.set(this.password, dom.byId("Regpassword1").value);
-                    obj.set(this.password, dom.byId("Regpassword2").value);
-                    this.contextObject = obj;
+                callback: (object: mendix.lib.MxObject) => {
+                    object.set(this.userName, this.changeCase(dom.byId("Regusername").value));
+                    object.set(this.email, dom.byId("RegEmail").value);
+                    object.set(this.password, dom.byId("Regpassword1").value);
+                    object.set(this.password, dom.byId("Regpassword2").value);
+                    this.contextObject = object;
                     this.executeMicroflow(this.signupMicroflow, this.contextObject.getGuid());
-                    console.log("Object created on server");
                 },
                 entity: this.personLogin,
-                error: (e) => {
-                    console.error("Could not commit object:", e);
+                error: (errorMessage) => {
+                    mx.ui.error("Could not commit object:");
                 }
             });
         } else {
@@ -218,14 +217,10 @@ class TabbedLogin extends WidgetBase {
     private loginMethod() {
         const UserNameN = this.changeCase(dom.byId("LogUserName").value);
         const PasswordN = dom.byId("LogPassword").value;
+
         if (this.showprogress) {
             this.indicator = mx.ui.showProgress();
         }
-        // setTimeout(() => {
-        //     if (this.showprogress) {
-        //         this.indicator = mx.ui.showProgress();
-        //     }
-        // }, 5);
         if ((UserNameN !== "") || (PasswordN !== "")) {
             mx.login(UserNameN, PasswordN,
                 () => {
@@ -287,13 +282,13 @@ class TabbedLogin extends WidgetBase {
     private recoverPassword() {
         if (this.validateEmail(dom.byId("forgetID").value)) {
             mx.data.create({
-                callback: (obj: mendix.lib.MxObject) => {
-                    obj.set(this.email, dom.byId("forgetID").value);
-                    this.executeMicroflow(this.forgetPasswordMicroflow, obj.getGuid());
+                callback: (object: mendix.lib.MxObject) => {
+                    object.set(this.email, dom.byId("forgetID").value);
+                    this.executeMicroflow(this.forgetPasswordMicroflow, object.getGuid());
                 },
                 entity: this.personLogin,
                 error: (errors) => {
-                    mx.ui.error("Could not commit object:");
+                    mx.ui.error("Failed to fetch email address!");
                 }
             });
             dom.byId("warningNode3").innerHTML = this.displayWarning("");
@@ -305,54 +300,43 @@ class TabbedLogin extends WidgetBase {
     private changeCase(username: string): string {
         if (this.convertCase === "toUpperCase") {
             return username.toUpperCase();
-        }
-        // tslint:disable-next-line:one-line
-        else if (this.convertCase === "toLowerCase") {
+        } else if (this.convertCase === "toLowerCase") {
             return username.toLowerCase();
         }
         return username;
     }
 
-    private executeMicroflow(microflow: string, guid: string, callback?: (obj: mendix.lib.MxObject) => void) {
-
-        if (microflow === this.forgetPasswordMicroflow) {
-            if (microflow && guid) {
-                mx.ui.action(microflow, {
-                    callback: (objs: mendix.lib.MxObject) => {
-                        if (callback && typeof callback === "function") {
-                            callback(objs);
-                        }
-                    },
-                    error: (error) => {
-                         mx.ui.error("Could not commit object:");
-                    },
-                    params: {
-                        applyto: "selection",
-                        guids: [guid]
-                    }
-                }, this);
-            }
+    private executeMicroflow(microflow: string, guid: string, callback?: (object: mendix.lib.MxObject) => void) {
+        if (microflow === this.forgetPasswordMicroflow && microflow && guid) {
+            mx.ui.action(microflow, {
+                // tslint:disable-next-line:no-empty
+                callback: (object: mendix.lib.MxObject) => {
+                },
+                error: (error) => {
+                    mx.ui.error("Could not commit object");
+                },
+                params: {
+                    applyto: "selection",
+                    guids: [ guid ]
+                }
+            }, this);
         } else if (microflow === this.signupMicroflow) {
-            let registrationUserNameValue = dom.byId("Regusername").value;
-            let registrationPasswordValue = dom.byId("Regpassword1").value;
+            const registrationUserNameValue = dom.byId("Regusername").value;
+            const registrationPasswordValue = dom.byId("Regpassword1").value;
             if (registrationPasswordValue || registrationUserNameValue) {
                 dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
             }
             if (microflow && guid) {
                 mx.ui.action(microflow, {
-                    params: {
-                        applyto: "selection",
-                        guids: [guid]
-                    },
-                    callback: (objs: mendix.lib.MxObject) => {
+                    callback: (object: mendix.lib.MxObject) => {
                         if (callback && typeof callback === "function") {
-                            callback(objs);
+                            callback(object);
                         }
-                        if (objs) {
+                        if (object) {
                             mx.login(this.changeCase(registrationUserNameValue), registrationPasswordValue,
+                                // tslint:disable-next-line:no-empty
                                 () => { },
                                 () => {
-
                                     if (this.showLoginFailureWarning) {
                                         if (this.loginForm_FailedAttempts === 1) {
                                             this.message += "</br>" + this.loginFailureText;
@@ -360,14 +344,15 @@ class TabbedLogin extends WidgetBase {
                                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                                     }
                                     dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
-
-                                    console.log("Error in login");
-
                                 });
                         }
                     },
                     error: (error) => {
-                        // console.debug(error.description);
+                        mx.ui.error("Failed to ");
+                    },
+                    params: {
+                        applyto: "selection",
+                        guids: [ guid ]
                     }
                 }, this);
             }
@@ -375,7 +360,8 @@ class TabbedLogin extends WidgetBase {
     }
 }
 
-dojoDeclare("widget.TabbedLogin", [WidgetBase], function (Source: any) {
+// tslint:disable-next-line:only-arrow-functions
+dojoDeclare("widget.TabbedLogin", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {

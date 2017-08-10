@@ -2,8 +2,8 @@
   "name": "tabbedlogin",
   "widgetName": "TabbedLogin",
   "version": "0.1.0",
-  "description": "Contains a Tabs to login form, sign up and reset your password forms respectively",
-  "author": "Marvin $ Stanley",
+  "description": "Contains Tabs to login form, sign up and reset your password forms respectively",
+  "author": "Marvin & Stanley",
   "copyright": "Flock of Birds",
   "private": true,
   "devDependencies": {
