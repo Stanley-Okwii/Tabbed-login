@@ -189,18 +189,18 @@ class TabbedLogin extends WidgetBase {
     private signUpMethod() {
         if (this.validateEmail(dom.byId("RegEmail").value)) {
             mx.data.create({
-                callback: (obj: mendix.lib.MxObject) => {
-                    obj.set(this.userName, this.changeCase(dom.byId("Regusername").value));
-                    obj.set(this.email, dom.byId("RegEmail").value);
-                    obj.set(this.password, dom.byId("Regpassword1").value);
-                    obj.set(this.password, dom.byId("Regpassword2").value);
-                    this.contextObject = obj;
+                callback: (object: mendix.lib.MxObject) => {
+                    object.set(this.userName, this.changeCase(dom.byId("Regusername").value));
+                    object.set(this.email, dom.byId("RegEmail").value);
+                    object.set(this.password, dom.byId("Regpassword1").value);
+                    object.set(this.password, dom.byId("Regpassword2").value);
+                    this.contextObject = object;
                     this.executeMicroflow(this.signupMicroflow, this.contextObject.getGuid());
                     console.log("Object created on server");
                 },
                 entity: this.personLogin,
-                error: (e) => {
-                    console.error("Could not commit object:", e);
+                error: (errorMessage) => {
+                    console.error("Could not commit object:", errorMessage);
                 }
             });
         } else {
@@ -288,13 +288,13 @@ class TabbedLogin extends WidgetBase {
     private recoverPassword() {
         if (this.validateEmail(dom.byId("forgetID").value)) {
             mx.data.create({
-                callback: (obj: mendix.lib.MxObject) => {
-                    obj.set(this.email, dom.byId("forgetID").value);
-                    this.executeMicroflow(this.forgetPasswordMicroflow, obj.getGuid());
+                callback: (object: mendix.lib.MxObject) => {
+                    object.set(this.email, dom.byId("forgetID").value);
+                    this.executeMicroflow(this.forgetPasswordMicroflow, object.getGuid());
                 },
                 entity: this.personLogin,
-                error: (e) => {
-                    console.error("Could not commit object:", e);
+                error: (errorMessage) => {
+                    console.error("Could not commit object:", errorMessage);
                 }
             });
             dom.byId("warningNode3").innerHTML = this.displayWarning("");
@@ -314,14 +314,14 @@ class TabbedLogin extends WidgetBase {
         return username;
     }
 
-    private executeMicroflow(microflow: string, guid: string, callback?: (obj: mendix.lib.MxObject) => void) {
+    private executeMicroflow(microflow: string, guid: string, callback?: (object: mendix.lib.MxObject) => void) {
 
         if (microflow === this.forgetPasswordMicroflow) {
             if (microflow && guid) {
                 mx.ui.action(microflow, {
-                    callback: (objs: mendix.lib.MxObject) => {
+                    callback: (object: mendix.lib.MxObject) => {
                         if (callback && typeof callback === "function") {
-                            callback(objs);
+                            callback(object);
                         }
                     },
                     error: (error) => {
@@ -345,11 +345,11 @@ class TabbedLogin extends WidgetBase {
                         applyto: "selection",
                         guids: [guid]
                     },
-                    callback: (objs: mendix.lib.MxObject) => {
+                    callback: (object: mendix.lib.MxObject) => {
                         if (callback && typeof callback === "function") {
-                            callback(objs);
+                            callback(object);
                         }
-                        if (objs) {
+                        if (object) {
                             mx.login(this.changeCase(registrationUserNameValue), registrationPasswordValue,
                                 () => { },
                                 () => {
