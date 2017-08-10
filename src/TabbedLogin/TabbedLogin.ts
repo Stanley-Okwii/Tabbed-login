@@ -246,7 +246,6 @@ class TabbedLogin extends WidgetBase {
                     if (this.clearUserName) {
                         dom.byId("LogPassword").setAttribute("value", "");
                     }
-                    if (this.indicator) { mx.ui.hideProgress(this.indicator); }
                 });
         } else {
             dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
@@ -293,8 +292,8 @@ class TabbedLogin extends WidgetBase {
                     this.executeMicroflow(this.forgetPasswordMicroflow, obj.getGuid());
                 },
                 entity: this.personLogin,
-                error: (e) => {
-                    console.error("Could not commit object:", e);
+                error: (errors) => {
+                    mx.ui.error("Could not commit object:");
                 }
             });
             dom.byId("warningNode3").innerHTML = this.displayWarning("");
@@ -325,7 +324,7 @@ class TabbedLogin extends WidgetBase {
                         }
                     },
                     error: (error) => {
-                        // console.debug(error.description);
+                         mx.ui.error("Could not commit object:");
                     },
                     params: {
                         applyto: "selection",
