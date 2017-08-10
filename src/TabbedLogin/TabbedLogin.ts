@@ -316,8 +316,7 @@ class TabbedLogin extends WidgetBase {
 
     private executeMicroflow(microflow: string, guid: string, callback?: (object: mendix.lib.MxObject) => void) {
 
-        if (microflow === this.forgetPasswordMicroflow) {
-            if (microflow && guid) {
+        if (microflow === this.forgetPasswordMicroflow && microflow && guid) {
                 mx.ui.action(microflow, {
                     callback: (object: mendix.lib.MxObject) => {
                         if (callback && typeof callback === "function") {
@@ -332,7 +331,6 @@ class TabbedLogin extends WidgetBase {
                         guids: [guid]
                     }
                 }, this);
-            }
         } else if (microflow === this.signupMicroflow) {
             let registrationUserNameValue = dom.byId("Regusername").value;
             let registrationPasswordValue = dom.byId("Regpassword1").value;
