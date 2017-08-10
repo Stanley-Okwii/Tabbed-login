@@ -55,6 +55,7 @@ class TabbedLoginNoContext extends WidgetBase {
         dom.byId("LogPassword1").setAttribute("placeholder", this.passExample1);
         dom.byId("LoginID1").setAttribute("value", this.loginText1);
     }
+
     private updateRendering() {
         this.displayText();
         this.displayLabels();
@@ -145,12 +146,12 @@ class TabbedLoginNoContext extends WidgetBase {
             dom.byId("warningNode1").innerHTML = this.displayWarning1(this.emptyText1);
         }
     }
+
     private focusNode() {
         setTimeout(() => {
             dom.byId("LogUserName1").focus();
         }, 100);
     }
-
     private changeCase(username: string): string {
         if (this.convertCase1 === "toUpperCase") {
             return username.toUpperCase();

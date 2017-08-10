@@ -57,13 +57,11 @@ class TabbedLogin extends WidgetBase {
         this.isUnMask = false;
         this.loginForm_FailedAttempts = 0;
         this.message = "The username or password you entered is incorrect.";
-
     }
 
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
         this.updateRendering();
-
         if (callback) {
             callback();
         }
