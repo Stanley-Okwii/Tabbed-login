@@ -4,7 +4,6 @@ import * as WidgetBase from "mxui/widget/_WidgetBase";
 import * as dom from "dojo/dom";
 import * as dojoHas from "dojo/has";
 import * as dojoEvent from "dojo/_base/event";
-//import * as myImage from "";
 import "../ui/TabbedLogin.css";
 
 class TabbedLogin extends WidgetBase {
@@ -42,9 +41,9 @@ class TabbedLogin extends WidgetBase {
     // Mobile
     autoCorrect: false;
     autoCapitalize: false;
-    private keyboardType: string;
 
     // Case Handling
+    private keyboardType: string;
     private showForgotTab: boolean;
     private showSignupTab: boolean;
     private convertCase: string;
@@ -196,7 +195,7 @@ class TabbedLogin extends WidgetBase {
                     obj.set(this.password, dom.byId("Regpassword1").value);
                     obj.set(this.password, dom.byId("Regpassword2").value);
                     this.contextObject = obj;
-                    this.executeMicroflowSignup(this.signupMicroflow, this.contextObject.getGuid());
+                    this.executeMicroflow(this.signupMicroflow, this.contextObject.getGuid());
                     console.log("Object created on server");
                 },
                 entity: this.personLogin,
@@ -316,36 +315,44 @@ class TabbedLogin extends WidgetBase {
     }
 
     private executeMicroflow(microflow: string, guid: string, callback?: (obj: mendix.lib.MxObject) => void) {
-        if (microflow && guid) {
-            mx.ui.action(microflow, {
-                callback: (objs: mendix.lib.MxObject) => { },
-                // tslint:disable-next-line:no-empty
-                error: (error) => { },
-                params: {
-                    applyto: "selection",
-                    guids: [guid]
-                }
-            }, this);
-        }
-    }
 
-    private executeMicroflowSignup(microflow: string, guid: string, callback?: (obj: mendix.lib.MxObject) => void) {
-        if (microflow && guid) {
-            mx.ui.action(microflow, {
-                params: {
-                    applyto: "selection",
-                    guids: [guid]
-                },
-                callback: (objs: mendix.lib.MxObject) => {
-                    if (objs) {
-
-                        mx.login(this.changeCase(dom.byId("Regusername").value), dom.byId("Regpassword1").value,
-                            () => {
-                                console.log("successful login");
-                            },
-                            () => {
-
-                                if ((dom.byId("LogUserName").value !== "") || (dom.byId("LogPassword").value !== "")) {
+        if (microflow === this.forgetPasswordMicroflow) {
+            if (microflow && guid) {
+                mx.ui.action(microflow, {
+                    callback: (objs: mendix.lib.MxObject) => {
+                        if (callback && typeof callback === "function") {
+                            callback(objs);
+                        }
+                    },
+                    error: (error) => {
+                        // console.debug(error.description);
+                    },
+                    params: {
+                        applyto: "selection",
+                        guids: [guid]
+                    }
+                }, this);
+            }
+        } else if (microflow === this.signupMicroflow) {
+            let registrationUserNameValue = dom.byId("Regusername").value;
+            let registrationPasswordValue = dom.byId("Regpassword1").value;
+            if (registrationPasswordValue || registrationUserNameValue) {
+                dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
+            }
+            if (microflow && guid) {
+                mx.ui.action(microflow, {
+                    params: {
+                        applyto: "selection",
+                        guids: [guid]
+                    },
+                    callback: (objs: mendix.lib.MxObject) => {
+                        if (callback && typeof callback === "function") {
+                            callback(objs);
+                        }
+                        if (objs) {
+                            mx.login(this.changeCase(registrationUserNameValue), registrationPasswordValue,
+                                () => { },
+                                () => {
 
                                     if (this.showLoginFailureWarning) {
                                         if (this.loginForm_FailedAttempts === 1) {
@@ -356,19 +363,19 @@ class TabbedLogin extends WidgetBase {
                                     dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
 
                                     console.log("Error in login");
-                                } else {
-                                    dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
-                                }
-                            });
+
+                                });
+                        }
+                    },
+                    error: (error) => {
+                        // console.debug(error.description);
                     }
-                },
-                error: (error) => { }
-            }, this);
+                }, this);
+            }
         }
     }
 }
 
-// tslint:disable-next-line:only-arrow-functions
 dojoDeclare("widget.TabbedLogin", [WidgetBase], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {

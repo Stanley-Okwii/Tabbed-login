@@ -2,9 +2,7 @@
 A custom login,signup and forgo form which can be used as an alternative to the default Mendix login page.
 
 ## Description
-This widget allows users to create accounts, login to a particular website applications and recover their forgotten passwords.
-The widget uses the default System.User entity to create account instances and their is no need for creating user entities on usage.
-
+Contains a Tabs to login form, sign up and reset your password forms respectively
 
 ## Contributing
 For more information on contributing to this repository visit [Contributing to a GitHub repository](https://github.com/sendimarvin/Tabbed-login.git)!
