@@ -57,13 +57,11 @@ class TabbedLogin extends WidgetBase {
         this.isUnMask = false;
         this.loginForm_FailedAttempts = 0;
         this.message = "The username or password you entered is incorrect.";
-
     }
 
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
         this.updateRendering();
-
         if (callback) {
             callback();
         }
@@ -306,9 +304,7 @@ class TabbedLogin extends WidgetBase {
     private changeCase(username: string): string {
         if (this.convertCase === "toUpperCase") {
             return username.toUpperCase();
-        }
-        // tslint:disable-next-line:one-line
-        else if (this.convertCase === "toLowerCase") {
+        } else if (this.convertCase === "toLowerCase") {
             return username.toLowerCase();
         }
         return username;
@@ -328,12 +324,12 @@ class TabbedLogin extends WidgetBase {
                     },
                     params: {
                         applyto: "selection",
-                        guids: [guid]
+                        guids: [ guid ]
                     }
                 }, this);
         } else if (microflow === this.signupMicroflow) {
-            let registrationUserNameValue = dom.byId("Regusername").value;
-            let registrationPasswordValue = dom.byId("Regpassword1").value;
+            const registrationUserNameValue = dom.byId("Regusername").value;
+            const registrationPasswordValue = dom.byId("Regpassword1").value;
             if (registrationPasswordValue || registrationUserNameValue) {
                 dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
             }
@@ -341,14 +337,16 @@ class TabbedLogin extends WidgetBase {
                 mx.ui.action(microflow, {
                     params: {
                         applyto: "selection",
-                        guids: [guid]
+                        guids: [ guid ]
                     },
+                    // tslint:disable-next-line:object-literal-sort-keys
                     callback: (object: mendix.lib.MxObject) => {
                         if (callback && typeof callback === "function") {
                             callback(object);
                         }
                         if (object) {
                             mx.login(this.changeCase(registrationUserNameValue), registrationPasswordValue,
+                                // tslint:disable-next-line:no-empty
                                 () => { },
                                 () => {
                                     if (this.showLoginFailureWarning) {
@@ -371,7 +369,8 @@ class TabbedLogin extends WidgetBase {
     }
 }
 
-dojoDeclare("widget.TabbedLogin", [WidgetBase], function (Source: any) {
+// tslint:disable-next-line:only-arrow-functions
+dojoDeclare("widget.TabbedLogin", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {

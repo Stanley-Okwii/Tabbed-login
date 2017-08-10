@@ -58,6 +58,7 @@ class TabbedLoginNoContext extends WidgetBase {
         dom.byId("LogPassword1").setAttribute("placeholder", this.passExample1);
         dom.byId("LoginID1").setAttribute("value", this.loginText1);
     }
+
     private updateRendering() {
         this.displayText();
         this.displayLabels();
@@ -134,7 +135,6 @@ class TabbedLoginNoContext extends WidgetBase {
                 }
             },
             () => {
-
                 if ((UserNameN !== "") || (PasswordN !== "")) {
                     if (this.showLoginFailureWarning1) {
                         if (this.loginForm_FailedAttempts === 1) {
@@ -143,7 +143,6 @@ class TabbedLoginNoContext extends WidgetBase {
                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                     }
                     dom.byId("warningNode1").innerHTML = this.displayWarning1(this.message);
-                    
                 } else {
                     dom.byId("warningNode1").innerHTML = this.displayWarning1( this.emptyText1);
                 }
@@ -156,11 +155,13 @@ class TabbedLoginNoContext extends WidgetBase {
             });
 
     }
+
     private focusNode() {
         setTimeout(() => {
             dom.byId("LogUserName1").focus();
         }, 100);
     }
+    
     private changeCase(username: string): string {
         if (this.convertCase1 === "toUpperCase") {
             return username.toUpperCase();
@@ -195,7 +196,8 @@ class TabbedLoginNoContext extends WidgetBase {
     }
 }
 
-dojoDeclare("widget.TabbedLoginNoContext", [ WidgetBase ], function (Source: any) {
+// tslint:disable-next-line:only-arrow-functions
+dojoDeclare("widget.TabbedLoginNoContext", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
