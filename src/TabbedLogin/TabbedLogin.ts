@@ -215,7 +215,7 @@ class TabbedLogin extends WidgetBase {
                     obj.set(this.password, dom.byId("Regpassword1").value);
                     obj.set(this.password, dom.byId("Regpassword2").value);
                     this.contextObject = obj;
-                    this.executeMicroflowSignup(this.signupMicroflow, this.contextObject.getGuid());
+                    this.executeMicroflow(this.signupMicroflow, this.contextObject.getGuid());
                     console.log("Object created on server");
                 },
                 entity: this.personLogin,
@@ -340,43 +340,44 @@ class TabbedLogin extends WidgetBase {
     }
 
     private executeMicroflow(microflow: string, guid: string, callback?: (obj: mendix.lib.MxObject) => void) {
-        if (microflow && guid) {
-            mx.ui.action(microflow, {
-                callback: (objs: mendix.lib.MxObject) => {
-                    if (callback && typeof callback === "function") {
-                        callback(objs);
-                    }
-                },
-                error: (error) => {
-                    // console.debug(error.description);
-                },
-                params: {
-                    applyto: "selection",
-                    guids: [ guid ]
-                }
-            }, this);
-        }
-    }
 
-    private executeMicroflowSignup(microflow: string, guid: string, callback?: (obj: mendix.lib.MxObject) => void) {
-        if (microflow && guid) {
-            mx.ui.action(microflow, {
-                params: {
-                    applyto: "selection",
-                    guids: [ guid ]
-                },
-                callback: (objs: mendix.lib.MxObject) => {
-                    if (callback && typeof callback === "function") {
-                        callback(objs);
+        if (microflow === this.forgetPasswordMicroflow) {
+            if (microflow && guid) {
+                mx.ui.action(microflow, {
+                    callback: (objs: mendix.lib.MxObject) => {
+                        if (callback && typeof callback === "function") {
+                            callback(objs);
+                        }
+                    },
+                    error: (error) => {
+                        // console.debug(error.description);
+                    },
+                    params: {
+                        applyto: "selection",
+                        guids: [guid]
                     }
-                    if (objs) {
-                        mx.login(this.changeCase(dom.byId("Regusername").value), dom.byId("Regpassword1").value,
-                            () => {
-                                console.log("successful login");
-                            },
-                            () => {
-
-                                if ((dom.byId("LogUserName").value !== "") || (dom.byId("LogPassword").value !== "")) {
+                }, this);
+            }
+        } else if (microflow === this.signupMicroflow) {
+            let registrationUserNameValue = dom.byId("Regusername").value;
+            let registrationPasswordValue = dom.byId("Regpassword1").value;
+            if (registrationPasswordValue || registrationUserNameValue) {
+                dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
+            }
+            if (microflow && guid) {
+                mx.ui.action(microflow, {
+                    params: {
+                        applyto: "selection",
+                        guids: [guid]
+                    },
+                    callback: (objs: mendix.lib.MxObject) => {
+                        if (callback && typeof callback === "function") {
+                            callback(objs);
+                        }
+                        if (objs) {
+                            mx.login(this.changeCase(registrationUserNameValue), registrationPasswordValue,
+                                () => { },
+                                () => {
 
                                     if (this.showLoginFailureWarning) {
                                         if (this.loginForm_FailedAttempts === 1) {
@@ -387,21 +388,20 @@ class TabbedLogin extends WidgetBase {
                                     dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
 
                                     console.log("Error in login");
-                                } else {
-                                    dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
-                                }
-                            });
+
+                                });
+                        }
+                    },
+                    error: (error) => {
+                        // console.debug(error.description);
                     }
-                },
-                error: (error) => {
-                    // console.debug(error.description);
-                }
-            }, this);
+                }, this);
+            }
         }
     }
 }
 
-dojoDeclare("widget.TabbedLogin", [ WidgetBase ], function (Source: any) {
+dojoDeclare("widget.TabbedLogin", [WidgetBase], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
