@@ -28,32 +28,32 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
         <property key="loginTab" type="string" defaultValue="Login" required="false">
             <caption>Login tab label</caption>
             <category>Tab control</category>
-            <description>Input value of Login tab</description>
+            <description>Login tab caption</description>
         </property>
         <property key="signupTab" type="string" defaultValue="Sign up" required="false">
             <caption>Sign up label</caption>
             <category>Tab control</category>
-            <description>Input value of sign up tab</description>
+            <description>Sign up tab caption</description>
         </property>
         <property key="forgotTab" type="string" defaultValue="Forgot password" required="false">
             <caption>Forgot password label</caption>
             <category>Tab control</category>
-            <description>Input value of forgot password tab</description>
+            <description>Forgot password tab caption</description>
         </property>
         <property key="userExample" type="string" defaultValue="Username" required="false">
             <caption>Username placeholder</caption>
             <category>Appearance</category>
-            <description>Input value of user name placeholder</description>
+            <description>Sample value of user name placeholder</description>
         </property>
         <property key="passwordExample" type="string" defaultValue="Password" required="false">
             <caption>Password placeholder</caption>
             <category>Appearance</category>
-            <description>Input value of password placeholder</description>
+            <description>Sample value of password placeholder</description>
         </property>
         <property key="emailExample" type="string" defaultValue="example@org.com" required="false">
             <caption>Email placeholder</caption>
             <category>Appearance</category>
-            <description>Input value of email placeholder</description>
+            <description>Sample value of email placeholder</description>
         </property>
         <property key="showLabels" type="boolean" defaultValue="false">
             <caption>Show labels</caption>
@@ -140,7 +140,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <description>Warning message to show when login fails twice</description>
         </property>
         <property key="dofocus" type="boolean" defaultValue="false">
-            <caption>Focus username input field</caption>
+            <caption>Focus username input</caption>
             <category>Events</category>
             <description>When form is shown, username filed takes focus </description>
         </property>

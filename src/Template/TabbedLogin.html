@@ -13,12 +13,12 @@
     <form target='_blank'>
         <div>
             <div id='warningNode'></div><span id='userLabel'>User name</span><br/>
-            <input type='text' id='LogUserName' /><br/>
+            <input type='text' id='loginUserName' /><br/>
             <span id='userPassword'>Password</span><br/>
-            <div style='display: inline-flex; width:100% '> <input type='password' id='LogPassword' />
-                <span id='eye' style='color:#008CBA; padding: 5px 5px; margin: 8px 0' >Show</span>
+            <div style='display: inline-flex; width:100% '> <input type='password' id='loginPassword' />
+                <span id='passwordVisibility' style='color:#008CBA; padding: 5px 5px; margin: 8px 0 ;cursor: pointer;' >Show</span>
             </div>
-            <br/><input type='button' class='ButtonDiv' value='Log in' id='LoginID' />
+            <br/><input type='button' class='ButtonDiv' value='Log in' id='loginButton' />
             </div>
     </form>
 
@@ -27,13 +27,13 @@
 <section id='content2'>
     <form target='_blank'>
         <div id='warningNode2'></div><span id='userLabel1'>User name</span><br/>
-        <input type='text' placeholder='user name' id='Regusername' /><br/>
+        <input type='text' placeholder='user name' id='registerUserName' /><br/>
         <span id='userPassword1'>Password</span><br/>
-        <input type='password' placeholder='Password' id='Regpassword1' /><br/>
+        <input type='password' placeholder='Password' id='registerPassword1' /><br/>
         <span id='userPassword2'>Password again</span><br/>
-        <input type='password' placeholder='Password' id='Regpassword2' /><br/>
-        <span id='EmailLabel'>Email</span><br/>
-        <input type='email' placeholder='example@gmail.com' id='RegEmail' /><br/>
+        <input type='password' placeholder='Password' id='registerPassword2' /><br/>
+        <span id='emailLabel'>Email</span><br/>
+        <input type='email' placeholder='example@gmail.com' id='registerEmail' /><br/>
         <input type='button' value='sign up' id='signup' />
         
     </form>
@@ -43,9 +43,9 @@
     <form target='_blank'>
         <div>
             <div id='warningNode3'></div>
-            <span id='EmailLabel1'>Email</span><br/>
-            <input type='email' placeholder='example@gmail.com' id='forgetID' /><br/>
-            <input type='button' value='Reset' id='RememberPassword' />
+            <span id='forgotEmailLabel1'>Email</span><br/>
+            <input type='email' placeholder='example@gmail.com' id='forgotPasswordEmail' /><br/>
+            <input type='button' value='Reset' id='resetPassword' />
     </form>
 </section>
 </div>

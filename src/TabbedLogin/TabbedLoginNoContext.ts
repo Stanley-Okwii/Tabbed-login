@@ -26,6 +26,7 @@ class TabbedLoginNoContext extends WidgetBase {
     autoCapitalize1: false;
     keyboardType1: string;
     convertCase1: string;
+    forgetPasswordMicroflowNoContext: string;
 
     // Internal variables
     private contextObject: mendix.lib.MxObject;
@@ -61,27 +62,18 @@ class TabbedLoginNoContext extends WidgetBase {
         if (this.dofocus1) {
             this.focusNode();
         }
-        dom.byId("LoginID1").addEventListener("click", () => {
-            this.loginMethod();
-        }, false);
-
+        dom.byId("LoginID1").addEventListener("click", () => this.loginMethod(), false);
+        dom.byId("forgottenPassword").addEventListener("click", () => this.executeMicroflow(), false);
         let isUnMask = false;
         dom.byId("eyeIdNoContext").addEventListener("click", () => {
-            function ShowPassword1() {
-                dom.byId("LogPassword1").setAttribute("type", "text");
-                dom.byId("eyeIdNoContext").innerHTML = "Hide";
-            }
-            function HidePassword1() {
-                dom.byId("LogPassword1").setAttribute("type", "password");
-                dom.byId("eyeIdNoContext").innerHTML = "Show";
-            }
-
             if (isUnMask === false) {
                 isUnMask = true;
-                ShowPassword1();
+                dom.byId("LogPassword1").setAttribute("type", "text");
+                dom.byId("eyeIdNoContext").innerHTML = "Hide";
             } else {
                 isUnMask = false;
-                HidePassword1();
+                dom.byId("LogPassword1").setAttribute("type", "password");
+                dom.byId("eyeIdNoContext").innerHTML = "Show";
             }
         }, false);
 
@@ -114,7 +106,7 @@ class TabbedLoginNoContext extends WidgetBase {
     }
 
     private loginMethod() {
-        const UserNameN = this.changeCase(dom.byId("LogUserName1").value);
+        const UserNameN = this.changeCase(dom.byId("LogUserName1").value.trim());
         const PasswordN = dom.byId("LogPassword1").value;
         if (this.showProgress1) {
             this.indicator = mx.ui.showProgress();
@@ -142,7 +134,8 @@ class TabbedLoginNoContext extends WidgetBase {
                     }
                 });
         } else {
-            dom.byId("warningNode1").innerHTML = this.displayWarning1(this.emptyText1);
+            dom.byId("tryme").innerHTML = this.displayWarning1(this.emptyText1);
+            dom.byId("LogUserName1").setAttribute("style", "border:1px solid red;");
         }
     }
     private focusNode() {
@@ -163,7 +156,6 @@ class TabbedLoginNoContext extends WidgetBase {
     private setUsernameInputAttributes() {
         if (this.autoCorrect1) {
             dom.byId("LogUserName1").setAttribute("autocorrect", "on");
-            dom.byId("LogUserName1").setAttribute("autocorrect", "on");
         }
         if (this.autoCapitalize1 && this.convertCase1 !== "none") {
             dom.byId("LogUserName1").setAttribute("autocapitalize", "on");
@@ -181,10 +173,21 @@ class TabbedLoginNoContext extends WidgetBase {
             dom.byId("LogUserName1").setAttribute("text-transform", "uppercase");
         }
     }
-}
 
+
+    private executeMicroflow() {
+        mx.ui.action(this.forgetPasswordMicroflowNoContext, {
+            error: () => {
+                mx.ui.error("Could not execute mircoflow");
+            },
+            params: {
+                applyto: "none"
+            }
+        }, this);
+    }
+}
 // tslint:disable-next-line:only-arrow-functions
-dojoDeclare("widget.TabbedLoginNoContext", [ WidgetBase ], function(Source: any) {
+dojoDeclare("widget.TabbedLoginNoContext", [WidgetBase], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
