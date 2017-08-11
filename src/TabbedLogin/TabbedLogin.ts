@@ -328,27 +328,6 @@ class TabbedLogin extends WidgetBase {
         if (this.showprogress) {
             this.indicator = mx.ui.showProgress();
         }
-<<<<<<< HEAD
-        // setTimeout(() => {
-        //     if (this.showprogress) {
-        //         this.indicator = mx.ui.showProgress();
-        //     }
-        // }, 5);
-        if ((UserNameN !== "") || (PasswordN !== "")) {
-            mx.login(UserNameN, PasswordN,
-                () => {
-                    if (this.indicator) { mx.ui.hideProgress(this.indicator); }
-                },
-                () => {
-                    if (this.showLoginFailureWarning) {
-                        if (this.loginForm_FailedAttempts === 1) {
-                            this.message += "</br>" + this.loginFailureText;
-                        }
-                        this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
-                    }
-                    dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
-=======
->>>>>>> temp
 
         mx.login(UserNameN, PasswordN,
             () => {
@@ -359,13 +338,6 @@ class TabbedLogin extends WidgetBase {
                     if (this.loginForm_FailedAttempts === 1) {
                         this.message += "</br>" + this.loginFailureText;
                     }
-<<<<<<< HEAD
-                    if (this.indicator) { mx.ui.hideProgress(this.indicator); }
-                });
-        } else {
-            dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
-        }
-=======
                     this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                 }
                 dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
@@ -378,7 +350,6 @@ class TabbedLogin extends WidgetBase {
                 }
             });
 
->>>>>>> temp
     }
 
     private focusNode() {
@@ -443,22 +414,6 @@ class TabbedLogin extends WidgetBase {
     private executeMicroflow(microflow: string, guid: string, callback?: (object: mendix.lib.MxObject) => void) {
 
         if (microflow === this.forgetPasswordMicroflow && microflow && guid) {
-<<<<<<< HEAD
-                mx.ui.action(microflow, {
-                    callback: (object: mendix.lib.MxObject) => {
-                        if (callback && typeof callback === "function") {
-                            callback(object);
-                        }
-                    },
-                    error: (error) => {
-                        // console.debug(error.description);
-                    },
-                    params: {
-                        applyto: "selection",
-                        guids: [ guid ]
-                    }
-                }, this);
-=======
             mx.ui.action(microflow, {
                 // tslint:disable-next-line:no-empty
                 callback: (object: mendix.lib.MxObject) => {
@@ -471,7 +426,6 @@ class TabbedLogin extends WidgetBase {
                     guids: [guid]
                 }
             }, this);
->>>>>>> temp
         } else if (microflow === this.signupMicroflow) {
             const registrationUserNameValue = dom.byId("userNameToRegister").value;
             const registrationPasswordValue = dom.byId("passwordToRegister1").value;
@@ -506,15 +460,7 @@ class TabbedLogin extends WidgetBase {
                         }
                     },
                     error: (error) => {
-<<<<<<< HEAD
-                        // console.debug(error.description);
-=======
                         mx.ui.error("Failed to ");
-                    },
-                    params: {
-                        applyto: "selection",
-                        guids: [guid]
->>>>>>> temp
                     }
                 }, this);
             }
