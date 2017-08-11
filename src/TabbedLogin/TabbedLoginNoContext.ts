@@ -161,7 +161,10 @@ class TabbedLoginNoContext extends WidgetBase {
             dom.byId("LogUserName1").focus();
         }, 100);
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> temp
     private changeCase(username: string): string {
         if (this.convertCase1 === "toUpperCase") {
             return username.toUpperCase();

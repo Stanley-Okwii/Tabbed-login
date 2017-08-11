@@ -72,12 +72,12 @@ class TabbedLogin extends WidgetBase {
 
         domConstruct.place(domConstruct.toDom(HtmlTemplate), this.domNode);
         dom.byId("LogUserName").setAttribute("placeholder", this.userExample);
-        dom.byId("Regusername").setAttribute("placeholder", this.userExample);
+        dom.byId("userNameToRegister").setAttribute("placeholder", this.userExample);
         dom.byId("LogPassword").setAttribute("placeholder", this.passwordExample);
-        dom.byId("Regpassword1").setAttribute("placeholder", this.passwordExample);
-        dom.byId("Regpassword2").setAttribute("placeholder", this.passwordExample);
+        dom.byId("passwordToRegister1").setAttribute("placeholder", this.passwordExample);
+        dom.byId("passwordToRegister2").setAttribute("placeholder", this.passwordExample);
         dom.byId("forgetID").setAttribute("placeholder", this.emailExample);
-        dom.byId("RegEmail").setAttribute("placeholder", this.emailExample);
+        dom.byId("emailToRegister").setAttribute("placeholder", this.emailExample);
 
         dom.byId("LoginID").setAttribute("value", this.loginText);
         dom.byId("signup").setAttribute("value", this.signupText);
@@ -90,16 +90,125 @@ class TabbedLogin extends WidgetBase {
         if (this.dofocus) {
             this.focusNode();
         }
+        ////////////////////////////////////////////////////
+        dom.byId("LogUserName").addEventListener("blur", () => {
+            const loginUserNameValue = dom.byId("LogUserName").value.trim();
+            if (loginUserNameValue !== "") {
+                dom.byId("LogUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+            } else {
+                dom.byId("warningNode").innerHTML = this.displayWarning("Please enter your user name");
+                dom.byId("LogUserName").setAttribute("style", "border: 1px solid red");
+            }
+        }, false);
+        dom.byId("LogPassword").addEventListener("blur", () => {
+            const passwordForLogin = dom.byId("LogPassword").value;
+            if (passwordForLogin !== "") {
+                dom.byId("LogPassword").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+            } else {
+                dom.byId("warningNode").innerHTML = this.displayWarning("Please enter your password");
+                dom.byId("LogPassword").setAttribute("style", "border: 1px solid red");
+            }
+        }, false);
         dom.byId("LoginID").addEventListener("click", () => {
-            this.loginMethod();
+            const loginUserNameValue = dom.byId("LogUserName").value.trim();
+            const passwordForLogin = dom.byId("LogPassword").value;
+
+            if (!loginUserNameValue || !passwordForLogin) {
+                if (!loginUserNameValue) {
+                    dom.byId("warningNode").innerHTML = this.displayWarning("Please enter a user name");
+                    dom.byId("LogUserName").setAttribute("style", "border: 1px solid red");
+                }
+                if (!passwordForLogin) {
+                    dom.byId("warningNode").innerHTML = this.displayWarning("Please enter a password");
+                    dom.byId("LogUserName").setAttribute("style", "border: 1px solid red");
+                }
+            } else {
+                this.loginMethod();
+            }
+        }, false);
+        //handle my blur events
+        /////////////////////////////////////////////////
+        //handle my validation events
+        dom.byId("userNameToRegister").addEventListener("blur", () => {
+            const registrationUserNameValue = dom.byId("userNameToRegister").value.trim();
+            if (registrationUserNameValue !== "") {
+                dom.byId("userNameToRegister").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+            } else {
+                dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter a user name");
+                dom.byId("userNameToRegister").setAttribute("style", "border: 1px solid red");
+            }
+        }, false);
+        dom.byId("emailToRegister").addEventListener("blur", () => {
+            const emailFromInput = dom.byId("emailToRegister").value.trim();
+            if (emailFromInput !== "") {
+                dom.byId("emailToRegister").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+            } else {
+                dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter an email");
+                dom.byId("emailToRegister").setAttribute("style", "border: 1px solid red");
+            }
+        }, false);
+        dom.byId("passwordToRegister1").addEventListener("blur", () => {
+            const passwordForsignUp = dom.byId("passwordToRegister1").value;
+            if (passwordForsignUp !== "") {
+                dom.byId("passwordToRegister1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+            } else {
+                dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter password");
+                dom.byId("passwordToRegister1").setAttribute("style", "border: 1px solid red");
+            }
+        }, false);
+        dom.byId("passwordToRegister2").addEventListener("blur", () => {
+            const confirmPasswordForsignUp = dom.byId("passwordToRegister2").value;
+            if (confirmPasswordForsignUp !== "") {
+                dom.byId("passwordToRegister2").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+            } else {
+                dom.byId("warningNode2").innerHTML = this.displayWarning("Please confirm password");
+                dom.byId("passwordToRegister2").setAttribute("style", "border: 1px solid red");
+            }
         }, false);
         dom.byId("signup").addEventListener("click", () => {
-            this.signUpMethod();
+            const registrationUserNameValue = dom.byId("userNameToRegister").value.trim();
+            const emailFromInput = dom.byId("emailToRegister").value.trim();
+            const passwordForsignUp = dom.byId("passwordToRegister1").value;
+            const confirmPasswordForsignUp = dom.byId("passwordToRegister2").value;
+
+            const regulaExpressionUpperCase = new RegExp("[A-Z]");
+            //if any of the field value if empty, look for that field value and check it
+            if (!registrationUserNameValue || !emailFromInput || !passwordForsignUp || !confirmPasswordForsignUp) {
+                if (!registrationUserNameValue) {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter a user name");
+                    dom.byId("userNameToRegister").setAttribute("style", "border: 1px solid red");
+                }
+                if (!emailFromInput) {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter an email");
+                    dom.byId("emailToRegister").setAttribute("style", "border: 1px solid red");
+                }
+                if (!passwordForsignUp) {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter a password");
+                    dom.byId("passwordToRegister1").setAttribute("style", "border: 1px solid red");
+                }
+                if (!confirmPasswordForsignUp) {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please comfirm password");
+                    dom.byId("passwordToRegister2").setAttribute("style", "border: 1px solid red");
+                }
+
+            } else if (regulaExpressionUpperCase.test(emailFromInput)) {
+                dom.byId("warningNode2").innerHTML = this.displayWarning("Email contains uppercase");
+                dom.byId("emailToRegister").setAttribute("style", "border: 1px solid red");
+            } else if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailFromInput)) === false) {
+                dom.byId("warningNode2").innerHTML = this.displayWarning("Invalid email");
+                dom.byId("emailToRegister").setAttribute("style", "border: 1px solid red");
+            } else if (passwordForsignUp !== confirmPasswordForsignUp) {
+                dom.byId("warningNode2").innerHTML = this.displayWarning("Passwords do not match");
+                dom.byId("passwordToRegister2").setAttribute("style", "border: 1px solid red");
+            } else {
+                this.signUpMethod();
+            }
         }, false);
+        //handle my blur events
         dom.byId("RememberPassword").addEventListener("click", () => {
             this.recoverPassword();
         }, false);
-        dom.byId("Regpassword2").addEventListener("blur", () => {
+        dom.byId("passwordToRegister2").addEventListener("blur", () => {
             this.validatePasswordFields();
         }, false);
 
@@ -128,8 +237,8 @@ class TabbedLogin extends WidgetBase {
         if (this.autoComplete) {
             dom.byId("LogUserName").setAttribute("autocomplete", "on");
             dom.byId("forgetID").setAttribute("autocomplete", "on");
-            dom.byId("RegEmail").setAttribute("autocomplete", "on");
-            dom.byId("Regusername").setAttribute("autocomplete", "on");
+            dom.byId("emailToRegister").setAttribute("autocomplete", "on");
+            dom.byId("userNameToRegister").setAttribute("autocomplete", "on");
         }
         this.addMobileOptions();
     }
@@ -176,7 +285,7 @@ class TabbedLogin extends WidgetBase {
     }
 
     private validatePasswordFields() {
-        if (dom.byId("Regpassword1").value !== dom.byId("Regpassword2").value) {
+        if (dom.byId("passwordToRegister1").value !== dom.byId("passwordToRegister2").value) {
             // tslint:disable-next-line:max-line-length
             dom.byId("warningNode2").innerHTML = this.displayWarning("Passwords dont match! Please check and try again.");
         } else {
@@ -185,13 +294,13 @@ class TabbedLogin extends WidgetBase {
     }
 
     private signUpMethod() {
-        if (this.validateEmail(dom.byId("RegEmail").value)) {
+        if (this.validateEmail(dom.byId("emailToRegister").value)) {
             mx.data.create({
                 callback: (object: mendix.lib.MxObject) => {
-                    object.set(this.userName, this.changeCase(dom.byId("Regusername").value));
-                    object.set(this.email, dom.byId("RegEmail").value);
-                    object.set(this.password, dom.byId("Regpassword1").value);
-                    object.set(this.password, dom.byId("Regpassword2").value);
+                    object.set(this.userName, this.changeCase(dom.byId("userNameToRegister").value));
+                    object.set(this.email, dom.byId("emailToRegister").value);
+                    object.set(this.password, dom.byId("passwordToRegister1").value);
+                    object.set(this.password, dom.byId("passwordToRegister2").value);
                     this.contextObject = object;
                     this.executeMicroflow(this.signupMicroflow, this.contextObject.getGuid());
                     console.log("Object created on server");
@@ -219,6 +328,7 @@ class TabbedLogin extends WidgetBase {
         if (this.showprogress) {
             this.indicator = mx.ui.showProgress();
         }
+<<<<<<< HEAD
         // setTimeout(() => {
         //     if (this.showprogress) {
         //         this.indicator = mx.ui.showProgress();
@@ -237,18 +347,38 @@ class TabbedLogin extends WidgetBase {
                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                     }
                     dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
+=======
+>>>>>>> temp
 
-                    if (this.clearPassword) {
-                        dom.byId("LogUserName").setAttribute("value", "");
+        mx.login(UserNameN, PasswordN,
+            () => {
+                if (this.indicator) { mx.ui.hideProgress(this.indicator); }
+            },
+            () => {
+                if (this.showLoginFailureWarning) {
+                    if (this.loginForm_FailedAttempts === 1) {
+                        this.message += "</br>" + this.loginFailureText;
                     }
-                    if (this.clearUserName) {
-                        dom.byId("LogPassword").setAttribute("value", "");
-                    }
+<<<<<<< HEAD
                     if (this.indicator) { mx.ui.hideProgress(this.indicator); }
                 });
         } else {
             dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
         }
+=======
+                    this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
+                }
+                dom.byId("warningNode").innerHTML = this.displayWarning(this.message);
+
+                if (this.clearPassword) {
+                    dom.byId("LogUserName").setAttribute("value", "");
+                }
+                if (this.clearUserName) {
+                    dom.byId("LogPassword").setAttribute("value", "");
+                }
+            });
+
+>>>>>>> temp
     }
 
     private focusNode() {
@@ -272,14 +402,14 @@ class TabbedLogin extends WidgetBase {
         }
         if (this.convertCase !== "none") {
             dom.byId("LogUserName").setAttribute("autocapitalize", "on");
-            dom.byId("Regusername").setAttribute("autocapitalize", "on");
+            dom.byId("userNameToRegister").setAttribute("autocapitalize", "on");
         }
         if (this.convertCase === "toLowerCase") {
             dom.byId("LogUserName").setAttribute("text-transform", "lowercase");
-            dom.byId("Regusername").setAttribute("text-transform", "lowercase");
+            dom.byId("userNameToRegister").setAttribute("text-transform", "lowercase");
         } else if (this.convertCase === "toUpperCase") {
             dom.byId("LogUserName").setAttribute("text-transform", "uppercase");
-            dom.byId("Regusername").setAttribute("text-transform", "uppercase");
+            dom.byId("userNameToRegister").setAttribute("text-transform", "uppercase");
         }
     }
 
@@ -313,6 +443,7 @@ class TabbedLogin extends WidgetBase {
     private executeMicroflow(microflow: string, guid: string, callback?: (object: mendix.lib.MxObject) => void) {
 
         if (microflow === this.forgetPasswordMicroflow && microflow && guid) {
+<<<<<<< HEAD
                 mx.ui.action(microflow, {
                     callback: (object: mendix.lib.MxObject) => {
                         if (callback && typeof callback === "function") {
@@ -327,9 +458,23 @@ class TabbedLogin extends WidgetBase {
                         guids: [ guid ]
                     }
                 }, this);
+=======
+            mx.ui.action(microflow, {
+                // tslint:disable-next-line:no-empty
+                callback: (object: mendix.lib.MxObject) => {
+                },
+                error: (error) => {
+                    mx.ui.error("Could not commit object");
+                },
+                params: {
+                    applyto: "selection",
+                    guids: [guid]
+                }
+            }, this);
+>>>>>>> temp
         } else if (microflow === this.signupMicroflow) {
-            const registrationUserNameValue = dom.byId("Regusername").value;
-            const registrationPasswordValue = dom.byId("Regpassword1").value;
+            const registrationUserNameValue = dom.byId("userNameToRegister").value;
+            const registrationPasswordValue = dom.byId("passwordToRegister1").value;
             if (registrationPasswordValue || registrationUserNameValue) {
                 dom.byId("warningNode").innerHTML = this.displayWarning(this.emptyText);
             }
@@ -361,7 +506,15 @@ class TabbedLogin extends WidgetBase {
                         }
                     },
                     error: (error) => {
+<<<<<<< HEAD
                         // console.debug(error.description);
+=======
+                        mx.ui.error("Failed to ");
+                    },
+                    params: {
+                        applyto: "selection",
+                        guids: [guid]
+>>>>>>> temp
                     }
                 }, this);
             }
@@ -370,7 +523,7 @@ class TabbedLogin extends WidgetBase {
 }
 
 // tslint:disable-next-line:only-arrow-functions
-dojoDeclare("widget.TabbedLogin", [ WidgetBase ], function(Source: any) {
+dojoDeclare("widget.TabbedLogin", [WidgetBase], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
