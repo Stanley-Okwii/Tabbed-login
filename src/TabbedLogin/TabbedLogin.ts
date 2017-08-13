@@ -92,7 +92,42 @@ class TabbedLogin extends WidgetBase {
             if (this.dofocus) {
                 this.focusNode();
             }
-            dom.byId("loginButton").addEventListener("click", () => this.loginMethod(), false);
+            dom.byId("loginUserName").addEventListener("blur", () => {
+                const loginUserNameValue = dom.byId("loginUserName").value.trim();
+                if (loginUserNameValue !== "") {
+                    dom.byId("loginUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                } else {
+                    dom.byId("warningNode").innerHTML = this.displayWarning("Please enter your user name");
+                    dom.byId("loginUserName").setAttribute("style", "border: 1px solid red");
+                }
+            }, false);
+            dom.byId("loginPassword").addEventListener("blur", () => {
+                const passwordForLogin = dom.byId("loginPassword").value;
+                if (passwordForLogin !== "") {
+                    dom.byId("loginPassword").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                } else {
+                    dom.byId("warningNode").innerHTML = this.displayWarning("Please enter your password");
+                    dom.byId("loginPassword").setAttribute("style", "border: 1px solid red");
+                }
+            }, false);
+            dom.byId("loginButton").addEventListener("click", () => {
+                const loginUserNameValue = dom.byId("loginUserName").value.trim();
+                const passwordForLogin = dom.byId("loginPassword").value;
+
+                if (!loginUserNameValue || !passwordForLogin) {
+                    if (!loginUserNameValue) {
+                        dom.byId("warningNode").innerHTML = this.displayWarning("Please enter a user name");
+                        dom.byId("loginUserName").setAttribute("style", "border: 1px solid red");
+                    }
+                    if (!passwordForLogin) {
+                        dom.byId("warningNode").innerHTML = this.displayWarning("Please enter a password");
+                        dom.byId("loginPassword").setAttribute("style", "border: 1px solid red");
+                    }
+                } else {
+                    this.loginMethod();
+                }
+                this.loginMethod();
+            }, false);
 
             this.setUsernameInputAttributes();
             if (this.autoComplete) {
