@@ -240,7 +240,29 @@ class TabbedLogin extends WidgetBase {
         if (this.showSignupTab === false) {
             dom.byId("domtablabel3").setAttribute("style", "display: none");
         } else {
-            dom.byId("resetPassword").addEventListener("click", () => this.recoverPassword(), false);
+            dom.byId("forgotPasswordEmail").addEventListener("blur", () => {
+                const forgotPasswordValue = dom.byId("forgotPasswordEmail").value.trim();
+                if (forgotPasswordValue !== "") {
+                    dom.byId("forgotPasswordEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                } else {
+                    dom.byId("warningNode3").innerHTML = this.displayWarning("Please enter an email");
+                    dom.byId("forgotPasswordEmail").setAttribute("style", "border: 1px solid red");
+                }
+            }, false);
+            dom.byId("resetPassword").addEventListener("click", () => {
+
+                ///////////////////////
+                dom.byId("resetPassword").addEventListener("click", () => {
+            const emailValue = dom.byId("forgotPasswordEmail").value.trim();
+
+            if (!emailValue) {
+                    dom.byId("warningNode3").innerHTML = this.displayWarning("Please enter an email");
+                    dom.byId("forgotPasswordEmail").setAttribute("style", "border: 1px solid red");
+            } else {
+                this.recoverPassword();
+            }
+        }, false);
+            }, false);
             dom.byId("registerPassword2").addEventListener("blur", () => {
                 this.validatePasswordFields();
             }, false);
