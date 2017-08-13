@@ -162,7 +162,80 @@ class TabbedLogin extends WidgetBase {
         if (this.showForgotTab === false) {
             dom.byId("domtablabel2").setAttribute("style", "display: none");
         } else {
-            dom.byId("signup").addEventListener("click", () => this.signUpMethod(), false);
+            dom.byId("registerUserName").addEventListener("blur", () => {
+                const registrationUserNameValue = dom.byId("registerUserName").value.trim();
+                if (registrationUserNameValue !== "") {
+                    dom.byId("registerUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                } else {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter a user name");
+                    dom.byId("registerUserName").setAttribute("style", "border: 1px solid red");
+                }
+            }, false);
+            dom.byId("registerEmail").addEventListener("blur", () => {
+                const emailFromInput = dom.byId("registerEmail").value.trim();
+                if (emailFromInput !== "") {
+                    dom.byId("registerEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                } else {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter an email");
+                    dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
+                }
+            }, false);
+            dom.byId("registerPassword1").addEventListener("blur", () => {
+                const passwordForsignUp = dom.byId("registerPassword1").value;
+                if (passwordForsignUp !== "") {
+                    dom.byId("registerPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                } else {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter password");
+                    dom.byId("registerPassword1").setAttribute("style", "border: 1px solid red");
+                }
+            }, false);
+            dom.byId("registerPassword2").addEventListener("blur", () => {
+                const confirmPasswordForsignUp = dom.byId("registerPassword2").value;
+                if (confirmPasswordForsignUp !== "") {
+                    dom.byId("registerPassword2").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                } else {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please confirm password");
+                    dom.byId("registerPassword2").setAttribute("style", "border: 1px solid red");
+                }
+            }, false);
+            dom.byId("signup").addEventListener("click", () => {
+                const registrationUserNameValue = dom.byId("registerUserName").value.trim();
+                const emailFromInput = dom.byId("registerEmail").value.trim();
+                const passwordForsignUp = dom.byId("registerPassword1").value;
+                const confirmPasswordForsignUp = dom.byId("registerPassword2").value;
+
+                const regulaExpressionUpperCase = new RegExp("[A-Z]");
+                if (!registrationUserNameValue || !emailFromInput || !passwordForsignUp || !confirmPasswordForsignUp) {
+                    if (!registrationUserNameValue) {
+                        dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter a user name");
+                        dom.byId("registerUserName").setAttribute("style", "border: 1px solid red");
+                    }
+                    if (!emailFromInput) {
+                        dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter an email");
+                        dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
+                    }
+                    if (!passwordForsignUp) {
+                        dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter a password");
+                        dom.byId("registerPassword1").setAttribute("style", "border: 1px solid red");
+                    }
+                    if (!confirmPasswordForsignUp) {
+                        dom.byId("warningNode2").innerHTML = this.displayWarning("Please comfirm password");
+                        dom.byId("registerPassword2").setAttribute("style", "border: 1px solid red");
+                    }
+
+                } else if (regulaExpressionUpperCase.test(emailFromInput)) {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Email contains uppercase");
+                    dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
+                } else if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailFromInput)) === false) {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Invalid email");
+                    dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
+                } else if (passwordForsignUp !== confirmPasswordForsignUp) {
+                    dom.byId("warningNode2").innerHTML = this.displayWarning("Passwords do not match");
+                    dom.byId("registerPassword2").setAttribute("style", "border: 1px solid red");
+                } else {
+                    this.signUpMethod();
+                }
+            }, false);
         }
         if (this.showSignupTab === false) {
             dom.byId("domtablabel3").setAttribute("style", "display: none");
