@@ -19,20 +19,12 @@ module.exports = {
     module: {
         rules: [
             { test: /\.ts$/, use: "ts-loader" },
+            { test: /\.html$/, use: "html-loader" },
             {
                 test: /\.css$/, loader: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: "css-loader"
                 })
-            },
-            {
-                test: /\.(html)$/,
-                use: {
-                    loader: 'html-loader',
-                    options: {
-                        minimize: true
-                    }
-                }
             }
         ]
     },

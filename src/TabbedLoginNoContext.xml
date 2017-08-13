@@ -71,7 +71,7 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
             <description>Warning message to show when login fails twice</description>
         </property>
         <property key="dofocus1" type="boolean" defaultValue="false">
-            <caption>Focus username input field</caption>
+            <caption>Focus username input</caption>
             <category>Events</category>
             <description>When form is shown, username filed takes focus (if not automatic)</description>
         </property>
@@ -100,7 +100,13 @@ AAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
                 <enumerationValue key="toUpperCase">Convert to uppercase</enumerationValue>
             </enumerationValues>
         </property>
-                <property key="autoCorrect1" type="boolean" defaultValue="false">
+        <property key="forgetPasswordMicroflowNoContext" type="microflow" required="false" defaultValue="">
+            <caption>Forgot password</caption>
+            <category>Events</category>
+            <description>This microflow will be executed when user clicks forgot password</description>
+            <returnType type="Void" />
+        </property>
+        <property key="autoCorrect1" type="boolean" defaultValue="false">
             <caption>Auto-correct</caption>
             <category>Mobile</category>
             <description>Auto-correct username</description>
