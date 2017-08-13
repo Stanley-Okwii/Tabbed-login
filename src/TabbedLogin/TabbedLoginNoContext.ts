@@ -62,7 +62,41 @@ class TabbedLoginNoContext extends WidgetBase {
         if (this.dofocus1) {
             this.focusNode();
         }
-        dom.byId("LoginID1").addEventListener("click", () => this.loginMethod(), false);
+        dom.byId("LogUserName1").addEventListener("blur", () => {
+                const userNameForLogin = dom.byId("LogUserName1").value;
+                if (userNameForLogin !== "") {
+                    dom.byId("LogUserName1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                } else {
+                    dom.byId("warningNode1").innerHTML = this.displayWarning1("Please enter your username");
+                    dom.byId("LogUserName1").setAttribute("style", "border: 1px solid red");
+                }
+            }, false);
+        dom.byId("LogPassword1").addEventListener("blur", () => {
+                const passwordForLogin = dom.byId("LogPassword1").value;
+                if (passwordForLogin !== "") {
+                    dom.byId("LogPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                } else {
+                    dom.byId("warningNode1").innerHTML = this.displayWarning1("Please enter your password");
+                    dom.byId("LogPassword1").setAttribute("style", "border: 1px solid red");
+                }
+            }, false);
+        dom.byId("LoginID1").addEventListener("click", () => {
+            const loginUserNameValueNoContext = dom.byId("LogUserName1").value.trim();
+            const passwordForLoginNoContext = dom.byId("LogPassword1").value;
+
+            if (!loginUserNameValueNoContext || !passwordForLoginNoContext) {
+                if (!loginUserNameValueNoContext) {
+                    dom.byId("warningNode1").innerHTML = this.displayWarning1("Please enter a user name");
+                    dom.byId("LogUserName1").setAttribute("style", "border: 1px solid red");
+                }
+                if (!passwordForLoginNoContext) {
+                    dom.byId("warningNode1").innerHTML = this.displayWarning1("Please enter your password");
+                    dom.byId("LogPassword1").setAttribute("style", "border: 1px solid red");
+                }
+            } else {
+                this.loginMethodNoContext();
+            }
+        }, false);
         dom.byId("forgottenPassword").addEventListener("click", () => this.executeMicroflow(), false);
         let isUnMask = false;
         dom.byId("eyeIdNoContext").addEventListener("click", () => {
@@ -105,14 +139,14 @@ class TabbedLoginNoContext extends WidgetBase {
         return WarningTextSample;
     }
 
-    private loginMethod() {
-        const UserNameN = this.changeCase(dom.byId("LogUserName1").value.trim());
-        const PasswordN = dom.byId("LogPassword1").value;
+    private loginMethodNoContext() {
+        const UserNameNoContext = this.changeCase(dom.byId("LogUserName1").value.trim());
+        const PasswordNoContext = dom.byId("LogPassword1").value;
         if (this.showProgress1) {
             this.indicator = mx.ui.showProgress();
         }
-        if ((UserNameN !== "") || (PasswordN !== "")) {
-            mx.login(UserNameN, PasswordN,
+        if ((UserNameNoContext !== "") || (PasswordNoContext !== "")) {
+            mx.login(UserNameNoContext, PasswordNoContext,
                 () => {
                     if (this.indicator) {
                         mx.ui.hideProgress(this.indicator);
@@ -125,7 +159,7 @@ class TabbedLoginNoContext extends WidgetBase {
                         }
                         this.loginForm_FailedAttempts = this.loginForm_FailedAttempts + 1;
                     }
-                    dom.byId("warningNode1").innerHTML = this.displayWarning1(this.message);
+                    dom.byId("warningNodeNoContext").innerHTML = this.displayWarning1(this.message);
                     if (this.clearPassword1) {
                         dom.byId("LogUserName1").setAttribute("value", "");
                     }

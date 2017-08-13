@@ -126,7 +126,6 @@ class TabbedLogin extends WidgetBase {
                 } else {
                     this.loginMethod();
                 }
-                this.loginMethod();
             }, false);
 
             this.setUsernameInputAttributes();
@@ -251,7 +250,6 @@ class TabbedLogin extends WidgetBase {
             }, false);
             dom.byId("resetPassword").addEventListener("click", () => {
 
-                ///////////////////////
                 dom.byId("resetPassword").addEventListener("click", () => {
             const emailValue = dom.byId("forgotPasswordEmail").value.trim();
 
