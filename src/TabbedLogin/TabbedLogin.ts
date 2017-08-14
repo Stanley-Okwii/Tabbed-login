@@ -85,6 +85,11 @@ class TabbedLogin extends WidgetBase {
                 innerHTML: "Forgot password microflow has not been configured",
                 style: "color:red; display: block;"
             }, this.domNode);
+        } else if (this.showSignupTab && this.signupMicroflow === "") {
+            domConstruct.create("div", {
+                innerHTML: "sign up microflow has not been configured",
+                style: "color:red; display: block;"
+            }, this.domNode);
         } else {
             this.displayText();
             this.displayLabels();
@@ -97,8 +102,8 @@ class TabbedLogin extends WidgetBase {
                 if (loginUserNameValue !== "") {
                     dom.byId("loginUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
-                    dom.byId("loginUserNameError").innerHTML = this.displayWarning("Please enter your user name");
-                    dom.byId("loginUserName").setAttribute("style", "border: 1px solid red");
+                    dom.byId("loginUserNameError").innerHTML = this.displayWarning("Please enter your user name");;
+                    this.styleNode("loginUserName");
                 }
             }, false);
             dom.byId("loginPassword").addEventListener("blur", () => {
@@ -107,7 +112,7 @@ class TabbedLogin extends WidgetBase {
                     dom.byId("loginPassword").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("userPasswordError").innerHTML = this.displayWarning("Please enter your password");
-                    dom.byId("loginPassword").setAttribute("style", "border: 1px solid red");
+                    this.styleNode("loginPassword");
                 }
             }, false);
             dom.byId("loginButton").addEventListener("click", () => {
@@ -117,11 +122,11 @@ class TabbedLogin extends WidgetBase {
                 if (!loginUserNameValue || !passwordForLogin) {
                     if (!loginUserNameValue) {
                         dom.byId("loginUserNameError").innerHTML = this.displayWarning("Please enter a user name");
-                        dom.byId("loginUserName").setAttribute("style", "border: 1px solid red");
+                        this.styleNode("loginUserName");
                     }
                     if (!passwordForLogin) {
                         dom.byId("userPasswordError").innerHTML = this.displayWarning("Please enter a password");
-                        dom.byId("loginPassword").setAttribute("style", "border: 1px solid red");
+                        this.styleNode("loginPassword");
                     }
                 } else {
                     this.loginMethod();
@@ -168,7 +173,7 @@ class TabbedLogin extends WidgetBase {
                     dom.byId("registerUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("registerUserNameError").innerHTML = this.displayWarning("Please enter a user name");
-                    dom.byId("registerUserName").setAttribute("style", "border: 1px solid red");
+                    this.styleNode("registerUserName");
                 }
             }, false);
             dom.byId("registerEmail").addEventListener("blur", () => {
@@ -177,7 +182,7 @@ class TabbedLogin extends WidgetBase {
                     dom.byId("registerEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Please enter an email");
-                    dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
+                    this.styleNode("registerEmail");
                 }
             }, false);
             dom.byId("registerPassword1").addEventListener("blur", () => {
@@ -187,7 +192,7 @@ class TabbedLogin extends WidgetBase {
                     dom.byId("registerPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("registerPassword1Error").innerHTML = this.displayWarning("Please enter password");
-                    dom.byId("registerPassword1").setAttribute("style", "border: 1px solid red");
+                    this.styleNode("registerPassword1");
                 }
             }, false);
             dom.byId("registerPassword2").addEventListener("blur", () => {
@@ -197,7 +202,7 @@ class TabbedLogin extends WidgetBase {
                     dom.byId("registerPassword2").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Please confirm password");
-                    dom.byId("registerPassword2").setAttribute("style", "border: 1px solid red");
+                    this.styleNode("registerPassword2");
                 }
             }, false);
             dom.byId("signup").addEventListener("click", () => {
@@ -210,30 +215,30 @@ class TabbedLogin extends WidgetBase {
                 if (!registrationUserNameValue || !emailFromInput || !passwordForsignUp || !confirmPasswordForsignUp) {
                     if (!registrationUserNameValue) {
                         dom.byId("registerUserNameError").innerHTML = this.displayWarning("Please enter a user name");
-                        dom.byId("registerUserName").setAttribute("style", "border: 1px solid red");
+                        this.styleNode("registerUserName");
                     }
                     if (!emailFromInput) {
                         dom.byId("registerEmailError").innerHTML = this.displayWarning("Please enter an email");
-                        dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
+                        this.styleNode("registerEmail");
                     }
                     if (!passwordForsignUp) {
                         dom.byId("registerPassword1Error").innerHTML = this.displayWarning("Please enter a password");
-                        dom.byId("registerPassword1").setAttribute("style", "border: 1px solid red");
+                        this.styleNode("registerPassword1");
                     }
                     if (!confirmPasswordForsignUp) {
                         dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Please comfirm password");
-                        dom.byId("registerPassword2").setAttribute("style", "border: 1px solid red");
+                        this.styleNode("registerPassword2");
                     }
 
                 } else if (regulaExpressionUpperCase.test(emailFromInput)) {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Email contains uppercase");
-                    dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
+                    this.styleNode("registerEmail");
                 } else if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailFromInput)) === false) {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Invalid email");
-                    dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
+                    this.styleNode("registerEmail");
                 } else if (passwordForsignUp !== confirmPasswordForsignUp) {
                     dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Passwords do not match");
-                    dom.byId("registerPassword2").setAttribute("style", "border: 1px solid red");
+                    this.styleNode("registerPassword2");
                 } else {
                     this.signUpMethod();
                 }
@@ -249,21 +254,21 @@ class TabbedLogin extends WidgetBase {
                     dom.byId("forgotPasswordEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
-                    dom.byId("forgotPasswordEmail").setAttribute("style", "border: 1px solid red");
+                    this.styleNode("forgotPasswordEmail");
                 }
             }, false);
             dom.byId("resetPassword").addEventListener("click", () => {
 
                 dom.byId("resetPassword").addEventListener("click", () => {
-            const emailValue = dom.byId("forgotPasswordEmail").value.trim();
+                    const emailValue = dom.byId("forgotPasswordEmail").value.trim();
 
-            if (!emailValue) {
-                    dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
-                    dom.byId("forgotPasswordEmail").setAttribute("style", "border: 1px solid red");
-            } else {
-                this.recoverPassword();
-            }
-        }, false);
+                    if (!emailValue) {
+                        dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
+                        this.styleNode("forgotPasswordEmail");
+                    } else {
+                        this.recoverPassword();
+                    }
+                }, false);
             }, false);
             dom.byId("registerPassword2").addEventListener("blur", () => {
                 this.validatePasswordFields();
@@ -328,6 +333,10 @@ class TabbedLogin extends WidgetBase {
             WarningText +
             "</div>";
         return WarningTextSample;
+    }
+
+    private styleNode(elementId: string) {
+        dom.byId(elementId).setAttribute("style", "border:1px solid red;");
     }
 
     private loginMethod() {
