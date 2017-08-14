@@ -12,14 +12,21 @@
 
     <form target='_blank'>
         <div>
-            <div id='warningNode'></div><span id='userLabel'>User name</span><br/>
-           <div  style='display: inline-flex;'> <input type='text' id='loginUserName' /><span id="loginUserNameError" style='padding: 5px 5px; margin: 8px 0;'></span></div><br/>
-            <span id='userPassword'>Password</span><br/>
-            <div style='display: inline-flex;'> <input type='password' id='loginPassword' />
-                <span id='passwordVisibility' style='color:#008CBA; padding: 5px 5px; margin: 8px 0 ;cursor: pointer;' >Show</span>
-            </div><span id="userPasswordError" ></span>
-            <br/><input type='button' value='Log in' id='loginButton' />
+            <div id='warningNode'></div>
+            <span id='userLabel'>User name</span><br/>
+            <div  style='display: inline-flex;'>
+                 <input type='text' id='loginUserName' />
+                 <span id="loginUserNameError" style='padding: 5px 5px; margin: 8px 0;'></span>
             </div>
+            <br/>
+            <span id='userPassword'>Password</span>
+            <div style='display: inline-flex;'>
+                <input type='password' id='loginPassword' />
+                <span id='passwordVisibility' style='color:#008CBA; padding: 5px 5px; margin: 8px 0 ;cursor: pointer;' >Show</span>
+            </div>
+            <span id="userPasswordError" ></span>
+            <br/><input type='button' value='Log in' id='loginButton' />
+        </div>
     </form>
 
 </section>
@@ -27,13 +34,26 @@
 <section id='content2'>
     <form target='_blank'>
         <div id='warningNode2'></div><span id='userLabel1'>User name</span><br/>
-       <div style='display: inline-flex;'> <input type='text' placeholder='user name' id='registerUserName' /><span id="registerUserNameError"  style='padding: 5px 5px; margin: 8px 0;'></span></div><br/>
-        <span id='emailLabel'>Email</span><br/>
-       <div style='display: inline-flex;'> <input type='email' placeholder='example@gmail.com' id='registerEmail' /><span id="registerEmailError"  style='padding: 5px 5px; margin: 8px 0;'></span></div><br/>
+       <div style='display: inline-flex;'>
+            <input type='text' placeholder='user name' id='registerUserName' />
+            <span id="registerUserNameError"  style='padding: 5px 5px; margin: 8px 0;'></span>
+        </div><br/>
+        <span id='emailLabel'>Email</span>
+        <div style='display: inline-flex;'>
+             <input type='email' placeholder='example@gmail.com' id='registerEmail' />
+             <span id="registerEmailError"  style='padding: 5px 5px; margin: 8px 0;'></span>
+        </div><br/>
         <span id='userPassword1'>Password</span><br/>
-        <div style='display: inline-flex;'><input type='password' placeholder='Password' id='registerPassword1' /><span id="registerPassword1Error"  style='padding: 5px 5px; margin: 8px 0;'></span></div><br/>
+        <div style='display: inline-flex;'>
+            <input type='password' placeholder='Password' id='registerPassword1' />
+            <span id="registerPassword1Error"  style='padding: 5px 5px; margin: 8px 0;'></span>
+        </div><br/>
         <span id='userPassword2'>Password again</span><br/>
-        <div style='display: inline-flex;'><input type='password' placeholder='Password' id='registerPassword2' /><span id="registerPassword2Error"  style='padding: 5px 5px; margin: 8px 0;'></span></div><br/>
+        <div style='display: inline-flex;'>
+            <input type='password' placeholder='Password' id='registerPassword2' />
+            <span id="registerPassword2Error"  style='padding: 5px 5px; margin: 8px 0;'></span>
+        </div>
+        <br/>
         <input type='button' value='sign up' id='signup' />
         
     </form>
@@ -44,7 +64,11 @@
         <div>
             <div id='warningNode3'></div>
             <span id='forgotEmailLabel1'>Email</span><br/>
-           <div style='display: inline-flex;'> <input type='email' placeholder='example@gmail.com' id='forgotPasswordEmail' /><span id="forgotPasswordEmailError"  style='padding: 5px 5px; margin: 8px 0;'></span></div><br/>
+           <div style='display: inline-flex;'>
+                <input type='email' placeholder='example@gmail.com' id='forgotPasswordEmail' />
+                <span id="forgotPasswordEmailError"  style='padding: 5px 5px; margin: 8px 0;'></span>
+            </div>
+            <br/>
             <input type='button' value='Reset' id='resetPassword' />
     </form>
 </section>

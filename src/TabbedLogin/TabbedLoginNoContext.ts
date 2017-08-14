@@ -54,7 +54,7 @@ class TabbedLoginNoContext extends WidgetBase {
         domConstruct.place(domConstruct.toDom(NoContextHtml), this.domNode);
         dom.byId("LogUserName1").setAttribute("placeholder", this.userExample1);
         dom.byId("LogPassword1").setAttribute("placeholder", this.passExample1);
-        dom.byId("LoginID1").setAttribute("value", this.loginText1);
+        dom.byId("loginButton1").setAttribute("value", this.loginText1);
     }
     private updateRendering() {
         this.displayText();
@@ -63,35 +63,35 @@ class TabbedLoginNoContext extends WidgetBase {
             this.focusNode();
         }
         dom.byId("LogUserName1").addEventListener("blur", () => {
-                const userNameForLogin = dom.byId("LogUserName1").value;
-                if (userNameForLogin !== "") {
-                    dom.byId("LogUserName1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
-                } else {
-                    dom.byId("userNameError").innerHTML = this.displayWarning1("Please enter your username");
-                    dom.byId("LogUserName1").setAttribute("style", "border: 1px solid red");
-                }
-            }, false);
+            const userNameForLogin = dom.byId("LogUserName1").value;
+            if (userNameForLogin !== "") {
+                dom.byId("LogUserName1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+            } else {
+                dom.byId("userNameError").innerHTML = this.displayWarning1("Please enter your username");
+                this.styleNode1("LogUserName1");
+            }
+        }, false);
         dom.byId("LogPassword1").addEventListener("blur", () => {
-                const passwordForLogin = dom.byId("LogPassword1").value;
-                if (passwordForLogin !== "") {
-                    dom.byId("LogPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
-                } else {
-                    dom.byId("passwordError").innerHTML = this.displayWarning1("Please enter your password");
-                    dom.byId("LogPassword1").setAttribute("style", "border: 1px solid red");
-                }
-            }, false);
-        dom.byId("LoginID1").addEventListener("click", () => {
+            const passwordForLogin = dom.byId("LogPassword1").value;
+            if (passwordForLogin !== "") {
+                dom.byId("LogPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+            } else {
+                dom.byId("passwordError").innerHTML = this.displayWarning1("Please enter your password");
+                this.styleNode1("LogPassword1");
+            }
+        }, false);
+        dom.byId("loginButton1").addEventListener("click", () => {
             const loginUserNameValueNoContext = dom.byId("LogUserName1").value.trim();
             const passwordForLoginNoContext = dom.byId("LogPassword1").value;
 
             if (!loginUserNameValueNoContext || !passwordForLoginNoContext) {
                 if (!loginUserNameValueNoContext) {
                     dom.byId("userNameError").innerHTML = this.displayWarning1("Please enter a user name");
-                    dom.byId("LogUserName1").setAttribute("style", "border: 1px solid red");
+                    this.styleNode1("LogUserName1");
                 }
                 if (!passwordForLoginNoContext) {
                     dom.byId("passwordError").innerHTML = this.displayWarning1("Please enter your password");
-                    dom.byId("LogPassword1").setAttribute("style", "border: 1px solid red");
+                    this.styleNode1("LogPassword1");
                 }
             } else {
                 this.loginMethodNoContext();
@@ -132,6 +132,10 @@ class TabbedLoginNoContext extends WidgetBase {
         }
     }
 
+    private styleNode1(elementId: string) {
+        dom.byId(elementId).setAttribute("style", "border:1px solid red;");
+    }
+
     private displayWarning1(WarningText: string) {
         const WarningTextSample = "<div style='color:red; display: block;'>" +
             WarningText +
@@ -169,7 +173,7 @@ class TabbedLoginNoContext extends WidgetBase {
                 });
         } else {
             dom.byId("userNameError").innerHTML = this.displayWarning1(this.emptyText1);
-            dom.byId("LogUserName1").setAttribute("style", "border:1px solid red;");
+            this.styleNode1("LogUserName1");
         }
     }
     private focusNode() {
