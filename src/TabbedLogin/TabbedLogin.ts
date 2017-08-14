@@ -30,7 +30,7 @@ class TabbedLogin extends WidgetBase {
     showprogress: false;
     clearPassword: false;
     clearUserName: false;
-    dofocus: false;
+    dofocus: boolean;
     showLoginFailureWarning: false;
     loginFailureText: string;
     autoComplete: false;
@@ -89,8 +89,8 @@ class TabbedLogin extends WidgetBase {
             this.displayText();
             this.displayLabels();
             this.displayTabs();
-            if (this.dofocus) {
-                this.focusNode();
+            if (this.dofocus === true) {
+                this.focusUserName();
             }
             dom.byId("loginUserName").addEventListener("blur", () => {
                 const loginUserNameValue = dom.byId("loginUserName").value.trim();
@@ -182,6 +182,7 @@ class TabbedLogin extends WidgetBase {
             dom.byId("registerPassword1").addEventListener("blur", () => {
                 const passwordForsignUp = dom.byId("registerPassword1").value;
                 if (passwordForsignUp !== "") {
+                    // tslint:disable-next-line:max-line-length
                     dom.byId("registerPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter password");
@@ -191,6 +192,7 @@ class TabbedLogin extends WidgetBase {
             dom.byId("registerPassword2").addEventListener("blur", () => {
                 const confirmPasswordForsignUp = dom.byId("registerPassword2").value;
                 if (confirmPasswordForsignUp !== "") {
+                    // tslint:disable-next-line:max-line-length
                     dom.byId("registerPassword2").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("warningNode2").innerHTML = this.displayWarning("Please confirm password");
@@ -242,6 +244,7 @@ class TabbedLogin extends WidgetBase {
             dom.byId("forgotPasswordEmail").addEventListener("blur", () => {
                 const forgotPasswordValue = dom.byId("forgotPasswordEmail").value.trim();
                 if (forgotPasswordValue !== "") {
+                    // tslint:disable-next-line:max-line-length
                     dom.byId("forgotPasswordEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("warningNode3").innerHTML = this.displayWarning("Please enter an email");
@@ -360,7 +363,7 @@ class TabbedLogin extends WidgetBase {
         }
     }
 
-    private focusNode() {
+    private focusUserName() {
         setTimeout(() => {
             dom.byId("loginUserName").focus();
         }, 100);
@@ -470,11 +473,6 @@ class TabbedLogin extends WidgetBase {
 // tslint:disable-next-line:only-arrow-functions
 dojoDeclare("widget.TabbedLogin", [WidgetBase], function (Source: any) {
     const result: any = {};
-    // autoLoad = false;
-    // const timeout = 100;
-    // setTimeout(function () {
-    //     this.set("loaded");
-    // }, timeout);
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
             result[i] = Source.prototype[i];

@@ -18,7 +18,7 @@ class TabbedLoginNoContext extends WidgetBase {
     showProgress1: false;
     clearPassword1: false;
     clearUserName1: false;
-    dofocus1: false;
+    dofocus1: boolean;
     showLoginFailureWarning1: false;
     loginFailureText1: string;
     autoComplete1: false;
@@ -59,7 +59,7 @@ class TabbedLoginNoContext extends WidgetBase {
     private updateRendering() {
         this.displayText();
         this.displayLabels();
-        if (this.dofocus1) {
+        if (this.dofocus1 === true) {
             this.focusNode();
         }
         dom.byId("LogUserName1").addEventListener("blur", () => {
@@ -67,7 +67,7 @@ class TabbedLoginNoContext extends WidgetBase {
                 if (userNameForLogin !== "") {
                     dom.byId("LogUserName1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
-                    dom.byId("warningNode1").innerHTML = this.displayWarning1("Please enter your username");
+                    dom.byId("userNameError").innerHTML = this.displayWarning1("Please enter your username");
                     dom.byId("LogUserName1").setAttribute("style", "border: 1px solid red");
                 }
             }, false);
@@ -76,7 +76,7 @@ class TabbedLoginNoContext extends WidgetBase {
                 if (passwordForLogin !== "") {
                     dom.byId("LogPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
-                    dom.byId("warningNode1").innerHTML = this.displayWarning1("Please enter your password");
+                    dom.byId("passwordError").innerHTML = this.displayWarning1("Please enter your password");
                     dom.byId("LogPassword1").setAttribute("style", "border: 1px solid red");
                 }
             }, false);
@@ -86,11 +86,11 @@ class TabbedLoginNoContext extends WidgetBase {
 
             if (!loginUserNameValueNoContext || !passwordForLoginNoContext) {
                 if (!loginUserNameValueNoContext) {
-                    dom.byId("warningNode1").innerHTML = this.displayWarning1("Please enter a user name");
+                    dom.byId("userNameError").innerHTML = this.displayWarning1("Please enter a user name");
                     dom.byId("LogUserName1").setAttribute("style", "border: 1px solid red");
                 }
                 if (!passwordForLoginNoContext) {
-                    dom.byId("warningNode1").innerHTML = this.displayWarning1("Please enter your password");
+                    dom.byId("passwordError").innerHTML = this.displayWarning1("Please enter your password");
                     dom.byId("LogPassword1").setAttribute("style", "border: 1px solid red");
                 }
             } else {
@@ -168,7 +168,7 @@ class TabbedLoginNoContext extends WidgetBase {
                     }
                 });
         } else {
-            dom.byId("tryme").innerHTML = this.displayWarning1(this.emptyText1);
+            dom.byId("userNameError").innerHTML = this.displayWarning1(this.emptyText1);
             dom.byId("LogUserName1").setAttribute("style", "border:1px solid red;");
         }
     }
