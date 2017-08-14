@@ -116,6 +116,7 @@ input[type=text] {
   display: block;
   padding: 5px 5px;
   width: 70%;
+  height: 30px;
   margin: 8px 0;
   box-sizing: border-box;
   border-radius: 4px;
@@ -132,6 +133,7 @@ input[type=text]:focus {
 input[type=password] {
   display: block;
   width: 70%;
+  height: 30px;
   padding: 5px 5px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -149,6 +151,7 @@ input[type=password]:focus {
 input[type=email] {
   display: block;
   width: 70%;
+  height: 30px;
   padding: 5px 5px;
   margin: 8px 0;
   box-sizing: border-box;
