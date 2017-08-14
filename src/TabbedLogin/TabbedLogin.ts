@@ -97,7 +97,7 @@ class TabbedLogin extends WidgetBase {
                 if (loginUserNameValue !== "") {
                     dom.byId("loginUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
-                    dom.byId("warningNode").innerHTML = this.displayWarning("Please enter your user name");
+                    dom.byId("loginUserNameError").innerHTML = this.displayWarning("Please enter your user name");
                     dom.byId("loginUserName").setAttribute("style", "border: 1px solid red");
                 }
             }, false);
@@ -106,7 +106,7 @@ class TabbedLogin extends WidgetBase {
                 if (passwordForLogin !== "") {
                     dom.byId("loginPassword").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
-                    dom.byId("warningNode").innerHTML = this.displayWarning("Please enter your password");
+                    dom.byId("userPasswordError").innerHTML = this.displayWarning("Please enter your password");
                     dom.byId("loginPassword").setAttribute("style", "border: 1px solid red");
                 }
             }, false);
@@ -116,11 +116,11 @@ class TabbedLogin extends WidgetBase {
 
                 if (!loginUserNameValue || !passwordForLogin) {
                     if (!loginUserNameValue) {
-                        dom.byId("warningNode").innerHTML = this.displayWarning("Please enter a user name");
+                        dom.byId("loginUserNameError").innerHTML = this.displayWarning("Please enter a user name");
                         dom.byId("loginUserName").setAttribute("style", "border: 1px solid red");
                     }
                     if (!passwordForLogin) {
-                        dom.byId("warningNode").innerHTML = this.displayWarning("Please enter a password");
+                        dom.byId("userPasswordError").innerHTML = this.displayWarning("Please enter a password");
                         dom.byId("loginPassword").setAttribute("style", "border: 1px solid red");
                     }
                 } else {
@@ -164,9 +164,10 @@ class TabbedLogin extends WidgetBase {
             dom.byId("registerUserName").addEventListener("blur", () => {
                 const registrationUserNameValue = dom.byId("registerUserName").value.trim();
                 if (registrationUserNameValue !== "") {
+                    // tslint:disable-next-line:max-line-length
                     dom.byId("registerUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
-                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter a user name");
+                    dom.byId("registerUserNameError").innerHTML = this.displayWarning("Please enter a user name");
                     dom.byId("registerUserName").setAttribute("style", "border: 1px solid red");
                 }
             }, false);
@@ -175,7 +176,7 @@ class TabbedLogin extends WidgetBase {
                 if (emailFromInput !== "") {
                     dom.byId("registerEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
-                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter an email");
+                    dom.byId("registerEmailError").innerHTML = this.displayWarning("Please enter an email");
                     dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
                 }
             }, false);
@@ -185,7 +186,7 @@ class TabbedLogin extends WidgetBase {
                     // tslint:disable-next-line:max-line-length
                     dom.byId("registerPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
-                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter password");
+                    dom.byId("registerPassword1Error").innerHTML = this.displayWarning("Please enter password");
                     dom.byId("registerPassword1").setAttribute("style", "border: 1px solid red");
                 }
             }, false);
@@ -195,7 +196,7 @@ class TabbedLogin extends WidgetBase {
                     // tslint:disable-next-line:max-line-length
                     dom.byId("registerPassword2").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
-                    dom.byId("warningNode2").innerHTML = this.displayWarning("Please confirm password");
+                    dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Please confirm password");
                     dom.byId("registerPassword2").setAttribute("style", "border: 1px solid red");
                 }
             }, false);
@@ -208,30 +209,30 @@ class TabbedLogin extends WidgetBase {
                 const regulaExpressionUpperCase = new RegExp("[A-Z]");
                 if (!registrationUserNameValue || !emailFromInput || !passwordForsignUp || !confirmPasswordForsignUp) {
                     if (!registrationUserNameValue) {
-                        dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter a user name");
+                        dom.byId("registerUserNameError").innerHTML = this.displayWarning("Please enter a user name");
                         dom.byId("registerUserName").setAttribute("style", "border: 1px solid red");
                     }
                     if (!emailFromInput) {
-                        dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter an email");
+                        dom.byId("registerEmailError").innerHTML = this.displayWarning("Please enter an email");
                         dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
                     }
                     if (!passwordForsignUp) {
-                        dom.byId("warningNode2").innerHTML = this.displayWarning("Please enter a password");
+                        dom.byId("registerPassword1Error").innerHTML = this.displayWarning("Please enter a password");
                         dom.byId("registerPassword1").setAttribute("style", "border: 1px solid red");
                     }
                     if (!confirmPasswordForsignUp) {
-                        dom.byId("warningNode2").innerHTML = this.displayWarning("Please comfirm password");
+                        dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Please comfirm password");
                         dom.byId("registerPassword2").setAttribute("style", "border: 1px solid red");
                     }
 
                 } else if (regulaExpressionUpperCase.test(emailFromInput)) {
-                    dom.byId("warningNode2").innerHTML = this.displayWarning("Email contains uppercase");
+                    dom.byId("registerEmailError").innerHTML = this.displayWarning("Email contains uppercase");
                     dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
                 } else if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailFromInput)) === false) {
-                    dom.byId("warningNode2").innerHTML = this.displayWarning("Invalid email");
+                    dom.byId("registerEmailError").innerHTML = this.displayWarning("Invalid email");
                     dom.byId("registerEmail").setAttribute("style", "border: 1px solid red");
                 } else if (passwordForsignUp !== confirmPasswordForsignUp) {
-                    dom.byId("warningNode2").innerHTML = this.displayWarning("Passwords do not match");
+                    dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Passwords do not match");
                     dom.byId("registerPassword2").setAttribute("style", "border: 1px solid red");
                 } else {
                     this.signUpMethod();
@@ -247,7 +248,7 @@ class TabbedLogin extends WidgetBase {
                     // tslint:disable-next-line:max-line-length
                     dom.byId("forgotPasswordEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
-                    dom.byId("warningNode3").innerHTML = this.displayWarning("Please enter an email");
+                    dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
                     dom.byId("forgotPasswordEmail").setAttribute("style", "border: 1px solid red");
                 }
             }, false);
@@ -257,7 +258,7 @@ class TabbedLogin extends WidgetBase {
             const emailValue = dom.byId("forgotPasswordEmail").value.trim();
 
             if (!emailValue) {
-                    dom.byId("warningNode3").innerHTML = this.displayWarning("Please enter an email");
+                    dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
                     dom.byId("forgotPasswordEmail").setAttribute("style", "border: 1px solid red");
             } else {
                 this.recoverPassword();
@@ -318,14 +319,14 @@ class TabbedLogin extends WidgetBase {
                 }
             });
         } else {
-            dom.byId("warningNode2").innerHTML = this.displayWarning("The Email address you entered is invalid.");
+            dom.byId("registerEmailError").innerHTML = this.displayWarning("The Email address you entered is invalid.");
         }
     }
 
     private displayWarning(WarningText: string) {
         const WarningTextSample = "<div style='color:red; display: block;'>" +
             WarningText +
-            "<br/></div>";
+            "</div>";
         return WarningTextSample;
     }
 
@@ -407,9 +408,9 @@ class TabbedLogin extends WidgetBase {
                     mx.ui.error("Failed to fetch email address!");
                 }
             });
-            dom.byId("warningNode3").innerHTML = this.displayWarning("");
         } else {
-            dom.byId("warningNode3").innerHTML = this.displayWarning("The Email address you entered is invalid.");
+            // tslint:disable-next-line:max-line-length
+            dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("The Email address you entered is invalid.");
         }
     }
 
