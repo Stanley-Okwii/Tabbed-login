@@ -70,11 +70,6 @@ class TabbedLogin extends WidgetBase {
         }, false);
     }
 
-    private clearErrorOnBlur(inputId: string, errorNode: string) {
-           dom.byId(inputId).setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
-           dom.byId(errorNode).setAttribute("style", "display:none;");
-    }
-
     private displayText() {
         const HtmlTemplate = require("../Template/TabbedLogin.html");
 
@@ -119,7 +114,8 @@ class TabbedLogin extends WidgetBase {
             dom.byId("loginUserName").addEventListener("blur", () => {
                 const loginUserNameValue = dom.byId("loginUserName").value.trim();
                 if (loginUserNameValue !== "") {
-                    this.clearErrorOnBlur("loginUserName","loginUserNameError");
+                    dom.byId("loginUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("loginUserNameError").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("loginUserNameError").innerHTML = this.displayWarning("Please enter your user name");
                     dom.byId("loginUserNameError").setAttribute("style", "display:block;padding: 5px 5px; margin: 8px 0;");
@@ -129,7 +125,8 @@ class TabbedLogin extends WidgetBase {
             dom.byId("loginPassword").addEventListener("blur", () => {
                 const passwordForLogin = dom.byId("loginPassword").value;
                 if (passwordForLogin !== "") {
-                    this.clearErrorOnBlur("loginPassword", "userPasswordError");
+                    dom.byId("loginPassword").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("userPasswordError").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("userPasswordError").innerHTML = this.displayWarning("Please enter your password");
                     dom.byId("userPasswordError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
@@ -189,7 +186,8 @@ class TabbedLogin extends WidgetBase {
             dom.byId("registerUserName").addEventListener("blur", () => {
                 const registrationUserNameValue = dom.byId("registerUserName").value.trim();
                 if (registrationUserNameValue !== "") {
-                    this.clearErrorOnBlur("registerUserName", "registerUserNameError");
+                    dom.byId("registerUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("registerUserNameError").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("registerUserNameError").innerHTML = this.displayWarning("Please enter a user name");
                     dom.byId("registerUserNameError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
@@ -199,7 +197,8 @@ class TabbedLogin extends WidgetBase {
             dom.byId("registerEmail").addEventListener("blur", () => {
                 const emailFromInput = dom.byId("registerEmail").value.trim();
                 if (emailFromInput !== "") {
-                    this.clearErrorOnBlur("registerEmail","registerEmailError");
+                    dom.byId("registerEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("registerEmailError").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Please enter an email");
                     this.styleNode("registerEmail");
@@ -209,7 +208,8 @@ class TabbedLogin extends WidgetBase {
             dom.byId("registerPassword1").addEventListener("blur", () => {
                 const passwordForsignUp = dom.byId("registerPassword1").value;
                 if (passwordForsignUp !== "") {
-                    this.clearErrorOnBlur("registerPassword1", "registerPassword1Error");
+                    dom.byId("registerPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("registerPassword1Error").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("registerPassword1Error").innerHTML = this.displayWarning("Please enter password");
                     this.styleNode("registerPassword1");
@@ -219,7 +219,10 @@ class TabbedLogin extends WidgetBase {
             dom.byId("registerPassword2").addEventListener("blur", () => {
                 const confirmPasswordForsignUp = dom.byId("registerPassword2").value;
                 if (confirmPasswordForsignUp !== "") {
-                    this.clearErrorOnBlur("registerPassword2","registerPassword2Error")
+                    // tslint:disable-next-line:max-line-length
+                    dom.byId("registerPassword2").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("registerPassword2Error").setAttribute("style", "display:none;");
+
                 } else {
                     dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Please confirm password");
                     this.styleNode("registerPassword2");
@@ -273,7 +276,8 @@ class TabbedLogin extends WidgetBase {
             dom.byId("forgotPasswordEmail").addEventListener("blur", () => {
                 const forgotPasswordValue = dom.byId("forgotPasswordEmail").value.trim();
                 if (forgotPasswordValue !== "") {
-                    this.clearErrorOnBlur("forgotPasswordEmail","forgotPasswordEmailError");
+                    dom.byId("forgotPasswordEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("forgotPasswordEmailError").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
                     this.styleNode("forgotPasswordEmail");
@@ -349,17 +353,13 @@ class TabbedLogin extends WidgetBase {
     }
 
     private displayWarning(WarningText: string) {
-        const WarningTextSample = "<div style='color:red; display: block;>" +
+        return "<div style='color:red; display: block;'>" +
             WarningText +
             "</div>";
-        return WarningTextSample;
     }
 
-    private styleNode(elementId: string, elementErrorId?: string) {
+    private styleNode(elementId: string) {
         dom.byId(elementId).setAttribute("style", "display:block;border:1px solid red;");
-        if (elementErrorId) {
-            dom.byId(elementId).setAttribute("style", "padding: 5px 5px; margin: 8px 0;");
-        }
     }
 
     private loginMethod() {
