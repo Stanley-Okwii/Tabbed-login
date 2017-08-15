@@ -47,7 +47,6 @@ class TabbedLoginNoContext extends WidgetBase {
             callback();
         }
     }
-
     private displayText() {
         const NoContextHtml = require("../Template/TabbedLoginNoContext.html");
 
@@ -56,18 +55,31 @@ class TabbedLoginNoContext extends WidgetBase {
         dom.byId("LogPassword1").setAttribute("placeholder", this.passExample1);
         dom.byId("loginButton1").setAttribute("value", this.loginText1);
     }
+    focusInputEvents(inputId: string, errorNode: string) {
+        dom.byId(inputId).addEventListener("focus", () => {
+            dom.byId(inputId).setAttribute("style", "border: 1px solid #008CBA;");
+            dom.byId(errorNode).setAttribute("style", "display:none;");
+        }, false);
+    }
     private updateRendering() {
         this.displayText();
         this.displayLabels();
         if (this.dofocus1 === true) {
             this.focusNode();
         }
+
+        this.focusInputEvents("LogUserName1", "userNameError");
+        this.focusInputEvents("LogPassword1", "passwordError");
+        
         dom.byId("LogUserName1").addEventListener("blur", () => {
             const userNameForLogin = dom.byId("LogUserName1").value;
             if (userNameForLogin !== "") {
                 dom.byId("LogUserName1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                dom.byId("userNameError").setAttribute("style", "display:none;");
+
             } else {
                 dom.byId("userNameError").innerHTML = this.displayWarning1("Please enter your username");
+                dom.byId("userNameError").setAttribute("style", "display:block;");
                 this.styleNode1("LogUserName1");
             }
         }, false);
@@ -75,8 +87,10 @@ class TabbedLoginNoContext extends WidgetBase {
             const passwordForLogin = dom.byId("LogPassword1").value;
             if (passwordForLogin !== "") {
                 dom.byId("LogPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                dom.byId("passwordError").setAttribute("style", "display: none");
             } else {
                 dom.byId("passwordError").innerHTML = this.displayWarning1("Please enter your password");
+                dom.byId("passwordError").setAttribute("style", "display:block;");
                 this.styleNode1("LogPassword1");
             }
         }, false);
