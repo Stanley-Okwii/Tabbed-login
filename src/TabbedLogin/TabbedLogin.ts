@@ -63,8 +63,15 @@ class TabbedLogin extends WidgetBase {
         }
     }
 
+    focusInputEvents(inputId: string, errorNode: string) {
+        dom.byId(inputId).addEventListener("focus", () => {
+            dom.byId(inputId).setAttribute("style", "border: 1px solid #008CBA;");
+            dom.byId(errorNode).setAttribute("style", "display:none;");
+        }, false);
+    }
     private displayText() {
         const HtmlTemplate = require("../Template/TabbedLogin.html");
+
 
         domConstruct.place(domConstruct.toDom(HtmlTemplate), this.domNode);
         dom.byId("loginUserName").setAttribute("placeholder", this.userExample);
@@ -80,6 +87,7 @@ class TabbedLogin extends WidgetBase {
         dom.byId("resetPassword").setAttribute("value", this.resetPasswordtext);
     }
     private updateRendering() {
+
         if (this.showForgotTab && this.forgetPasswordMicroflow === "") {
             domConstruct.create("div", {
                 innerHTML: "Forgot password microflow has not been configured",
@@ -97,6 +105,13 @@ class TabbedLogin extends WidgetBase {
             if (this.dofocus === true) {
                 this.focusUserName();
             }
+            this.focusInputEvents("loginUserName", "loginUserNameError");
+            this.focusInputEvents("loginPassword", "userPasswordError");
+            this.focusInputEvents("registerUserName", "registerUserNameError");
+            this.focusInputEvents("registerPassword1", "registerPassword1Error");
+            this.focusInputEvents("registerPassword2", "registerPassword2Error");
+            this.focusInputEvents("registerEmail", "registerEmailError");
+            this.focusInputEvents("forgotPasswordEmail", "forgotPasswordEmailError");
             dom.byId("loginUserName").addEventListener("blur", () => {
                 const loginUserNameValue = dom.byId("loginUserName").value.trim();
                 if (loginUserNameValue !== "") {
