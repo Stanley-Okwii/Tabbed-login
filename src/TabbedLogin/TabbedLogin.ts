@@ -175,38 +175,46 @@ class TabbedLogin extends WidgetBase {
                 if (registrationUserNameValue !== "") {
                     // tslint:disable-next-line:max-line-length
                     dom.byId("registerUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("registerUserNameError").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("registerUserNameError").innerHTML = this.displayWarning("Please enter a user name");
+                    dom.byId("registerUserNameError").setAttribute("style", "display:block;");
                     this.styleNode("registerUserName");
                 }
             }, false);
             dom.byId("registerEmail").addEventListener("blur", () => {
                 const emailFromInput = dom.byId("registerEmail").value.trim();
                 if (emailFromInput !== "") {
+                    dom.byId("registerEmailError").setAttribute("style", "display:none;");
                     dom.byId("registerEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Please enter an email");
                     this.styleNode("registerEmail");
+                    dom.byId("registerEmailError").setAttribute("style", "display:block;");
                 }
             }, false);
             dom.byId("registerPassword1").addEventListener("blur", () => {
                 const passwordForsignUp = dom.byId("registerPassword1").value;
                 if (passwordForsignUp !== "") {
                     // tslint:disable-next-line:max-line-length
+                    dom.byId("registerPassword1Error").setAttribute("style", "display:none;");
                     dom.byId("registerPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("registerPassword1Error").innerHTML = this.displayWarning("Please enter password");
                     this.styleNode("registerPassword1");
+                    dom.byId("registerPassword1Error").setAttribute("style", "display:block;");
                 }
             }, false);
             dom.byId("registerPassword2").addEventListener("blur", () => {
                 const confirmPasswordForsignUp = dom.byId("registerPassword2").value;
                 if (confirmPasswordForsignUp !== "") {
                     // tslint:disable-next-line:max-line-length
+                    dom.byId("registerPassword2Error").setAttribute("style", "display:none;");
                     dom.byId("registerPassword2").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Please confirm password");
                     this.styleNode("registerPassword2");
+                    dom.byId("registerPassword2Error").setAttribute("style", "display:block;");
                 }
             }, false);
             dom.byId("signup").addEventListener("click", () => {
