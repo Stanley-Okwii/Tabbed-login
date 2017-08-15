@@ -64,6 +64,14 @@ input:checked + label {
   border-bottom: 1px solid #fff;
 }
 
+
+.form_wrapper_no_context input:checked + label {    
+  color: #008CBA;
+  border: none;
+  border-top: none;
+  border-bottom: none;
+}
+
 #tab1:checked ~ #content1,
 #tab11:checked ~ #content11,
 #tab2:checked ~ #content2,
