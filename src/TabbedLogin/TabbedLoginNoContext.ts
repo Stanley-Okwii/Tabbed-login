@@ -66,8 +66,11 @@ class TabbedLoginNoContext extends WidgetBase {
             const userNameForLogin = dom.byId("LogUserName1").value;
             if (userNameForLogin !== "") {
                 dom.byId("LogUserName1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                dom.byId("userNameError").setAttribute("style", "display:none;");
+
             } else {
                 dom.byId("userNameError").innerHTML = this.displayWarning1("Please enter your username");
+                dom.byId("userNameError").setAttribute("style", "display:block;");
                 this.styleNode1("LogUserName1");
             }
         }, false);
@@ -75,8 +78,10 @@ class TabbedLoginNoContext extends WidgetBase {
             const passwordForLogin = dom.byId("LogPassword1").value;
             if (passwordForLogin !== "") {
                 dom.byId("LogPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                dom.byId("passwordError").setAttribute("style", "display: none");
             } else {
                 dom.byId("passwordError").innerHTML = this.displayWarning1("Please enter your password");
+                dom.byId("passwordError").setAttribute("style", "display:block;");
                 this.styleNode1("LogPassword1");
             }
         }, false);
