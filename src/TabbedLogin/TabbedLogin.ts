@@ -226,7 +226,7 @@ class TabbedLogin extends WidgetBase {
                         this.styleNode("registerPassword1");
                     }
                     if (!confirmPasswordForsignUp) {
-                        dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Please comfirm password");
+                        dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Please confirm password");
                         this.styleNode("registerPassword2");
                     }
 
