@@ -119,7 +119,7 @@ class TabbedLogin extends WidgetBase {
                     dom.byId("loginUserNameError").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("loginUserNameError").innerHTML = this.displayWarning("Please enter your user name");
-                    dom.byId("loginUserNameError").setAttribute("style", "display:block;");
+                    dom.byId("loginUserNameError").setAttribute("style", "display:block;padding: 5px 5px; margin: 8px 0;");
                     this.styleNode("loginUserName");
                 }
             }, false);
@@ -130,7 +130,7 @@ class TabbedLogin extends WidgetBase {
                     dom.byId("userPasswordError").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("userPasswordError").innerHTML = this.displayWarning("Please enter your password");
-                    dom.byId("userPasswordError").setAttribute("style", "display:block;");
+                    dom.byId("userPasswordError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
                     this.styleNode("loginPassword");
                 }
             }, false);
@@ -193,7 +193,7 @@ class TabbedLogin extends WidgetBase {
                     dom.byId("registerUserNameError").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("registerUserNameError").innerHTML = this.displayWarning("Please enter a user name");
-                    dom.byId("registerUserNameError").setAttribute("style", "display:block;");
+                    dom.byId("registerUserNameError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
                     this.styleNode("registerUserName");
                 }
             }, false);
@@ -205,7 +205,7 @@ class TabbedLogin extends WidgetBase {
                 } else {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Please enter an email");
                     this.styleNode("registerEmail");
-                    dom.byId("registerEmailError").setAttribute("style", "display:block;");
+                    dom.byId("registerEmailError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
                 }
             }, false);
             dom.byId("registerPassword1").addEventListener("blur", () => {
@@ -217,7 +217,7 @@ class TabbedLogin extends WidgetBase {
                 } else {
                     dom.byId("registerPassword1Error").innerHTML = this.displayWarning("Please enter password");
                     this.styleNode("registerPassword1");
-                    dom.byId("registerPassword1Error").setAttribute("style", "display:block;");
+                    dom.byId("registerPassword1Error").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
                 }
             }, false);
             dom.byId("registerPassword2").addEventListener("blur", () => {
@@ -229,7 +229,7 @@ class TabbedLogin extends WidgetBase {
                 } else {
                     dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Please confirm password");
                     this.styleNode("registerPassword2");
-                    dom.byId("registerPassword2Error").setAttribute("style", "display:block;");
+                    dom.byId("registerPassword2Error").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
                 }
             }, false);
             dom.byId("signup").addEventListener("click", () => {
@@ -260,9 +260,11 @@ class TabbedLogin extends WidgetBase {
                 } else if (regulaExpressionUpperCase.test(emailFromInput)) {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Email contains uppercase");
                     this.styleNode("registerEmail");
+                    dom.byId("registerEmailError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
                 } else if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailFromInput)) === false) {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Invalid email");
                     this.styleNode("registerEmail");
+                    dom.byId("registerEmailError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
                 } else if (passwordForsignUp !== confirmPasswordForsignUp) {
                     dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Passwords do not match");
                     this.styleNode("registerPassword2");
@@ -283,7 +285,7 @@ class TabbedLogin extends WidgetBase {
                 } else {
                     dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
                     this.styleNode("forgotPasswordEmail");
-                    dom.byId("forgotPasswordEmailError").setAttribute("style", "display:block;");
+                    dom.byId("forgotPasswordEmailError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
                 }
             }, false);
             dom.byId("resetPassword").addEventListener("click", () => {
