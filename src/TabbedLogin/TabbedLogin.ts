@@ -101,8 +101,10 @@ class TabbedLogin extends WidgetBase {
                 const loginUserNameValue = dom.byId("loginUserName").value.trim();
                 if (loginUserNameValue !== "") {
                     dom.byId("loginUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("loginUserNameError").setAttribute("style", "display:none;");
                 } else {
-                    dom.byId("loginUserNameError").innerHTML = this.displayWarning("Please enter your user name");;
+                    dom.byId("loginUserNameError").innerHTML = this.displayWarning("Please enter your user name");
+                    dom.byId("loginUserNameError").setAttribute("style", "display:block;");
                     this.styleNode("loginUserName");
                 }
             }, false);
@@ -110,8 +112,10 @@ class TabbedLogin extends WidgetBase {
                 const passwordForLogin = dom.byId("loginPassword").value;
                 if (passwordForLogin !== "") {
                     dom.byId("loginPassword").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("userPasswordError").setAttribute("style", "display:none;");
                 } else {
                     dom.byId("userPasswordError").innerHTML = this.displayWarning("Please enter your password");
+                    dom.byId("userPasswordError").setAttribute("style", "display:block;");
                     this.styleNode("loginPassword");
                 }
             }, false);
