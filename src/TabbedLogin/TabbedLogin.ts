@@ -263,10 +263,12 @@ class TabbedLogin extends WidgetBase {
                 const forgotPasswordValue = dom.byId("forgotPasswordEmail").value.trim();
                 if (forgotPasswordValue !== "") {
                     // tslint:disable-next-line:max-line-length
-                    dom.byId("forgotPasswordEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("userNameError").setAttribute("style", "display:none;");
+                    dom.byId("forgotPasswordEmailError").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
                     this.styleNode("forgotPasswordEmail");
+                    dom.byId("userNameError").setAttribute("style", "display:block;");
                 }
             }, false);
             dom.byId("resetPassword").addEventListener("click", () => {
