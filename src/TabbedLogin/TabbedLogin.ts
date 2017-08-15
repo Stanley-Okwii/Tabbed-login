@@ -263,26 +263,23 @@ class TabbedLogin extends WidgetBase {
                 const forgotPasswordValue = dom.byId("forgotPasswordEmail").value.trim();
                 if (forgotPasswordValue !== "") {
                     // tslint:disable-next-line:max-line-length
-                    dom.byId("userNameError").setAttribute("style", "display:none;");
-                    dom.byId("forgotPasswordEmailError").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+                    dom.byId("forgotPasswordEmailError").setAttribute("style", "display:none;");
+                    dom.byId("forgotPasswordEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
                 } else {
                     dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
                     this.styleNode("forgotPasswordEmail");
-                    dom.byId("userNameError").setAttribute("style", "display:block;");
+                    dom.byId("forgotPasswordEmailError").setAttribute("style", "display:block;");
                 }
             }, false);
             dom.byId("resetPassword").addEventListener("click", () => {
+                const emailValue = dom.byId("forgotPasswordEmail").value.trim();
 
-                dom.byId("resetPassword").addEventListener("click", () => {
-                    const emailValue = dom.byId("forgotPasswordEmail").value.trim();
-
-                    if (!emailValue) {
-                        dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
-                        this.styleNode("forgotPasswordEmail");
-                    } else {
-                        this.recoverPassword();
-                    }
-                }, false);
+                if (!emailValue) {
+                    dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
+                    this.styleNode("forgotPasswordEmail");
+                } else {
+                    this.recoverPassword();
+                }
             }, false);
             dom.byId("registerPassword2").addEventListener("blur", () => {
                 this.validatePasswordFields();
