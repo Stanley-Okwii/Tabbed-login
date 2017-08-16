@@ -114,23 +114,19 @@ class TabbedLogin extends WidgetBase {
             dom.byId("loginUserName").addEventListener("blur", () => {
                 const loginUserNameValue = dom.byId("loginUserName").value.trim();
                 if (loginUserNameValue !== "") {
-                    dom.byId("loginUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
-                    dom.byId("loginUserNameError").setAttribute("style", "display:none;");
+                    this.clearErrorOnBlur("loginUserName", "loginUserNameError");
                 } else {
                     dom.byId("loginUserNameError").innerHTML = this.displayWarning("Please enter your user name");
-                    dom.byId("loginUserNameError").setAttribute("style", "display:block;padding: 5px 5px; margin: 8px 0;");
-                    this.styleNode("loginUserName");
+                    this.styleNode("loginUserName", "loginUserNameError");
                 }
             }, false);
             dom.byId("loginPassword").addEventListener("blur", () => {
                 const passwordForLogin = dom.byId("loginPassword").value;
                 if (passwordForLogin !== "") {
-                    dom.byId("loginPassword").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
-                    dom.byId("userPasswordError").setAttribute("style", "display:none;");
+                    this.clearErrorOnBlur("loginPassword", "userPasswordError");
                 } else {
                     dom.byId("userPasswordError").innerHTML = this.displayWarning("Please enter your password");
-                    dom.byId("userPasswordError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
-                    this.styleNode("loginPassword");
+                    this.styleNode("loginPassword", "userPasswordError");
                 }
             }, false);
             dom.byId("loginButton").addEventListener("click", () => {
@@ -186,47 +182,38 @@ class TabbedLogin extends WidgetBase {
             dom.byId("registerUserName").addEventListener("blur", () => {
                 const registrationUserNameValue = dom.byId("registerUserName").value.trim();
                 if (registrationUserNameValue !== "") {
-                    dom.byId("registerUserName").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
-                    dom.byId("registerUserNameError").setAttribute("style", "display:none;");
+                    this.clearErrorOnBlur("registerUserName", "registerUserNameError");
                 } else {
                     dom.byId("registerUserNameError").innerHTML = this.displayWarning("Please enter a user name");
-                    dom.byId("registerUserNameError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
-                    this.styleNode("registerUserName");
+                    this.styleNode("registerUserName", "registerUserNameError");
                 }
             }, false);
             dom.byId("registerEmail").addEventListener("blur", () => {
                 const emailFromInput = dom.byId("registerEmail").value.trim();
                 if (emailFromInput !== "") {
-                    dom.byId("registerEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
-                    dom.byId("registerEmailError").setAttribute("style", "display:none;");
+                    this.clearErrorOnBlur("registerEmail", "registerEmailError");
                 } else {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Please enter an email");
-                    this.styleNode("registerEmail");
-                    dom.byId("registerEmailError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
+                    this.styleNode("registerEmail", "registerEmailError");
                 }
             }, false);
             dom.byId("registerPassword1").addEventListener("blur", () => {
                 const passwordForsignUp = dom.byId("registerPassword1").value;
                 if (passwordForsignUp !== "") {
-                    dom.byId("registerPassword1").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
-                    dom.byId("registerPassword1Error").setAttribute("style", "display:none;");
+                    this.clearErrorOnBlur("registerPassword1", "registerPassword1Error");
                 } else {
                     dom.byId("registerPassword1Error").innerHTML = this.displayWarning("Please enter password");
-                    this.styleNode("registerPassword1");
-                    dom.byId("registerPassword1Error").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
+                    this.styleNode("registerPassword1", "registerPassword1Error");
                 }
             }, false);
             dom.byId("registerPassword2").addEventListener("blur", () => {
                 const confirmPasswordForsignUp = dom.byId("registerPassword2").value;
                 if (confirmPasswordForsignUp !== "") {
-                    // tslint:disable-next-line:max-line-length
-                    dom.byId("registerPassword2").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
-                    dom.byId("registerPassword2Error").setAttribute("style", "display:none;");
+                    this.clearErrorOnBlur("registerPassword2", "registerPassword2Error");
 
                 } else {
                     dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Please confirm password");
-                    this.styleNode("registerPassword2");
-                    dom.byId("registerPassword2Error").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
+                    this.styleNode("registerPassword2", "registerPassword2Error");
                 }
             }, false);
             dom.byId("signup").addEventListener("click", () => {
@@ -256,12 +243,10 @@ class TabbedLogin extends WidgetBase {
 
                 } else if (regulaExpressionUpperCase.test(emailFromInput)) {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Email contains uppercase");
-                    this.styleNode("registerEmail");
-                    dom.byId("registerEmailError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
+                    this.styleNode("registerEmail", "registerEmailError");
                 } else if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailFromInput)) === false) {
                     dom.byId("registerEmailError").innerHTML = this.displayWarning("Invalid email");
-                    this.styleNode("registerEmail");
-                    dom.byId("registerEmailError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
+                    this.styleNode("registerEmail", "registerEmailError");
                 } else if (passwordForsignUp !== confirmPasswordForsignUp) {
                     dom.byId("registerPassword2Error").innerHTML = this.displayWarning("Passwords do not match");
                     this.styleNode("registerPassword2");
@@ -276,21 +261,26 @@ class TabbedLogin extends WidgetBase {
             dom.byId("forgotPasswordEmail").addEventListener("blur", () => {
                 const forgotPasswordValue = dom.byId("forgotPasswordEmail").value.trim();
                 if (forgotPasswordValue !== "") {
-                    dom.byId("forgotPasswordEmail").setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
-                    dom.byId("forgotPasswordEmailError").setAttribute("style", "display:none;");
+                    this.clearErrorOnBlur("forgotPasswordEmail", "forgotPasswordEmailError");
                 } else {
                     dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
-                    this.styleNode("forgotPasswordEmail");
-                    dom.byId("forgotPasswordEmailError").setAttribute("style", "display:block; padding: 5px 5px; margin: 8px 0;");
+                    this.styleNode("forgotPasswordEmail", "forgotPasswordEmailError");
                 }
             }, false);
             dom.byId("resetPassword").addEventListener("click", () => {
                 const emailValue = dom.byId("forgotPasswordEmail").value.trim();
+                const regularExpressionUpperCase = new RegExp("[A-Z]");
 
                 if (!emailValue) {
                     dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Please enter an email");
                     this.styleNode("forgotPasswordEmail");
-                } else {
+                } else if (regularExpressionUpperCase.test(emailValue)) {
+                    dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Email contains uppercase");
+                    this.styleNode("forgotPasswordEmail", "forgotPasswordEmailError");
+                } else if ((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailValue)) === false) {
+                    dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("Invalid email");
+                    this.styleNode("forgotPasswordEmail", "forgotPasswordEmailError");
+                }else {
                     this.recoverPassword();
                 }
             }, false);
@@ -319,10 +309,6 @@ class TabbedLogin extends WidgetBase {
         }
     }
 
-    private validateEmail(mail: string): boolean {
-        return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail));
-    }
-
     private validatePasswordFields() {
         if (dom.byId("registerPassword1").value !== dom.byId("registerPassword2").value) {
             // tslint:disable-next-line:max-line-length
@@ -333,7 +319,6 @@ class TabbedLogin extends WidgetBase {
     }
 
     private signUpMethod() {
-        if (this.validateEmail(dom.byId("registerEmail").value)) {
             mx.data.create({
                 callback: (object) => {
                     object.set(this.userName, this.changeCase(dom.byId("registerUserName").value));
@@ -347,9 +332,6 @@ class TabbedLogin extends WidgetBase {
                     mx.ui.error("Could not commit object:");
                 }
             });
-        } else {
-            dom.byId("registerEmailError").innerHTML = this.displayWarning("The Email address you entered is invalid.");
-        }
     }
 
     private displayWarning(WarningText: string) {
@@ -358,8 +340,16 @@ class TabbedLogin extends WidgetBase {
             "</div>";
     }
 
-    private styleNode(elementId: string) {
+    private styleNode(elementId: string, elementErrorId?: string) {
         dom.byId(elementId).setAttribute("style", "display:block;border:1px solid red;");
+        if (elementErrorId) {
+            dom.byId(elementErrorId).setAttribute("style", "display:block;padding: 5px 5px; margin: 8px 0;");
+        }
+    }
+
+    private clearErrorOnBlur(nodeId: string, nodeErrorId: string ) {
+        dom.byId(nodeId).setAttribute("style", "border: none; border-bottom: 1px solid #008CBA;");
+        dom.byId(nodeErrorId).setAttribute("style", "display:none;");
     }
 
     private loginMethod() {
@@ -398,7 +388,7 @@ class TabbedLogin extends WidgetBase {
 
     private focusUserName() {
         setTimeout(() => {
-            dom.byId("loginUserName").focus();
+           // dom.byId("loginUserName").focus();
         }, 100);
     }
 
@@ -429,7 +419,6 @@ class TabbedLogin extends WidgetBase {
     }
 
     private recoverPassword() {
-        if (this.validateEmail(dom.byId("forgotPasswordEmail").value)) {
             mx.data.create({
                 callback: object => {
                     object.set(this.email, dom.byId("forgotPasswordEmail").value);
@@ -440,10 +429,6 @@ class TabbedLogin extends WidgetBase {
                     mx.ui.error("Failed to fetch email address!");
                 }
             });
-        } else {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("forgotPasswordEmailError").innerHTML = this.displayWarning("The Email address you entered is invalid.");
-        }
     }
 
     private changeCase(username: string): string {
@@ -463,7 +448,7 @@ class TabbedLogin extends WidgetBase {
                 },
                 params: {
                     applyto: "selection",
-                    guids: [guid]
+                    guids: [ guid ]
                 }
             }, this);
         } else if (microflow === this.signupMicroflow) {
@@ -495,7 +480,7 @@ class TabbedLogin extends WidgetBase {
                     },
                     params: {
                         applyto: "selection",
-                        guids: [guid]
+                        guids: [ guid ]
                     }
                 }, this);
             }
@@ -504,7 +489,7 @@ class TabbedLogin extends WidgetBase {
 }
 
 // tslint:disable-next-line:only-arrow-functions
-dojoDeclare("widget.TabbedLogin", [WidgetBase], function (Source: any) {
+dojoDeclare("widget.TabbedLogin", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
