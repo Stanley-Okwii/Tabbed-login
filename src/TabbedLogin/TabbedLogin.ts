@@ -341,7 +341,7 @@ class TabbedLogin extends WidgetBase {
     }
 
     private displayWarning(WarningText: string) {
-        const WarningTextSample = "<div style='color:red; display: block;'>" +
+        const WarningTextSample = "<div style='color:red; display: block;>" +
             WarningText +
             "</div>";
         return WarningTextSample;
